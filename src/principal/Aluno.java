@@ -92,7 +92,23 @@ public class Aluno {
 	public String getEmail() {
 		return email;
 	}
-
+	
+	/**
+	 * Representacao textual do aluno, com matricula, nome, codigo do curso, telefone (se houver) e
+	 * email separados por hifens.
+	 * 
+	 * @return String com os dados do aluno
+	 */
+	@Override
+	public String toString() {
+		String dados = this.matricula + " - " + this.nome + " - " + this.codigoCurso;
+		if (telefone.equals("")) {
+			dados += " - " + this.email;
+		}
+		dados += " - " + this.telefone + " - " + this.email;
+		return dados;
+	}
+	
 	/**
 	 * Implementacao do hashcode, com matricula como identificador
 	 * 
