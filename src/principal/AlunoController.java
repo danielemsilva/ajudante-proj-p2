@@ -19,13 +19,12 @@ public class AlunoController {
 	
 	public void cadastrarAluno(String nome, String matricula, String codigoCurso,
 			String telefone, String email) {
+		Aluno novoAluno = new Aluno(nome, matricula, codigoCurso, telefone, email);
 		if(procuraAluno(matricula) != null) {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
-		} else {
-			Aluno novoAluno = new Aluno(nome, matricula, codigoCurso, telefone, email);
-			alunos.add(novoAluno);	
 		}
+		alunos.add(novoAluno);
 	}
 	
 	public String recuperaAluno(String matricula) {
