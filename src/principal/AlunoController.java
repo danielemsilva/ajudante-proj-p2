@@ -1,48 +1,67 @@
 package principal;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import base.AlunoComparator;
 
 public class AlunoController {
 
-	private Map<String, Aluno> alunos;
+	private List<Aluno> alunos;
+	private Comparator<Aluno> comparator;
 	
 	public AlunoController() {
-		alunos = new HashMap<>();
+		alunos = new ArrayList<>();
+		comparator = new AlunoComparator();
 	}
 	
 	public void cadastrarAluno(String nome, String matricula, String codigoCurso,
 			String telefone, String email) {
-		if (!alunoExiste(matricula)) {
-			Aluno novoAluno = new Aluno(nome, matricula, codigoCurso, telefone, email);
-			alunos.put(matricula, novoAluno);
+		if(procuraAluno(matricula) != null) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
 		} else {
-			// erro se existir um aluno com essa matricula
+			Aluno novoAluno = new Aluno(nome, matricula, codigoCurso, telefone, email);
+			alunos.add(novoAluno);	
 		}
 	}
 	
 	public String recuperaAluno(String matricula) {
-		if(alunoExiste(matricula)) {
-			return alunos.get(matricula).toString();
-		} else {
-			// erro se não existir um aluno com essa matricula
+		Aluno aluno = procuraAluno(matricula);
+		if(aluno == null) {
+			throw new IllegalArgumentException("Erro na busca por aluno: Aluno nao encontrado");
 		}
-		return "";
+		return aluno.toString();
 	}
 	
 	public String listarAlunos() {
+		Collections.sort(alunos, comparator);
 		String lista = "";
-		for (String matricula : alunos.keySet()) {
-			lista += alunos.get(matricula);
+		for (int i = 0; i < alunos.size(); i++) {
+			lista += alunos.get(i).toString();
+			if(i != alunos.size() - 1) {
+				lista += ", ";
+			}
 		}
 		return lista;
 	}
 	
 	public String getInfoAluno(String matricula, String atributo) {
-		return alunos.get(matricula).getInfo(atributo);
+		Aluno aluno = procuraAluno(matricula);
+		if(aluno == null) {
+			throw new IllegalArgumentException("Erro na obtencao de informacao de aluno: Aluno nao encontrado");
+		}
+		return aluno.getInfo(atributo);
 	}
 	
-	private boolean alunoExiste(String matricula) {
-		return alunos.containsKey(matricula);
+	private Aluno procuraAluno(String matricula) {
+		for (Aluno aluno : alunos) {
+			if(aluno.getMatricula().equals(matricula)) {
+				return aluno;
+			}
+		}
+		return null;
 	}
 }
