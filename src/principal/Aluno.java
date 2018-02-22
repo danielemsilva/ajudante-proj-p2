@@ -35,16 +35,23 @@ public class Aluno {
 	}
 	
 	public String getInfo(String atributo) {
-		if (atributo.equals("nome")) {
+		if (atributo.equals("Nome")) {
 			return this.getNome();
-		} else if (atributo.equals("matricula")) {
+		} 
+		else if (atributo.equals("Matricula")) {
 			return this.getMatricula();
-		} else if (atributo.equals("codigoCurso")) {
+		} 
+		else if (atributo.equals("CodigoCurso")) {
 			return this.getCodigoCurso();
-		} else if (atributo.equals("telefone")) {
+		} 
+		else if (atributo.equals("Telefone")) {
 			return this.getTelefone();
-		} else if (atributo.equals("email")) {
+		} 
+		else if (atributo.equals("Email")) {
 			return this.getEmail();
+		}
+		else {
+			// lança erro de atributo invalido
 		}
 		return "";
 	}
@@ -98,10 +105,10 @@ public class Aluno {
 	@Override
 	public String toString() {
 		String dados = this.matricula + " - " + this.nome + " - " + this.codigoCurso;
-		if (telefone.equals("")) {
-			dados += " - " + this.email;
+		if (!telefone.equals("")) {
+			dados += " - " + this.telefone;
 		}
-		dados += " - " + this.telefone + " - " + this.email;
+		dados += " - " + this.email;
 		return dados;
 	}
 	
