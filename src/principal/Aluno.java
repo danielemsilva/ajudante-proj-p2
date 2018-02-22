@@ -13,8 +13,8 @@ public class Aluno {
 	private String email;
 	
 	/**
-	 * Cria um aluno, cujo telefone nao foi informado,
-	 * caso os argumentos informados sejam válidos.
+	 * Cria um aluno, cujo telefone nao foi informado, verificando se
+	 * os argumentos informados sao validos.
 	 * 
 	 * @param nome
 	 *     String que representa o nome do aluno.
@@ -26,19 +26,8 @@ public class Aluno {
 	 *     String que representa o email do aluno.
 	 */
 	public Aluno(String nome, String matricula, String codigoCurso, String email) {
-		if (nome.trim().equals("") || nome.equals(null)) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de aluno: nome não pode ser nulo ou vazio.");
-		}
-		if (matricula.trim().equals("") || matricula.equals(null)) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de aluno: matricula não pode ser nula ou vazia.");
-		}
-		if (email.trim().equals("") || email.equals(null)) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de aluno: email não pode ser nulo ou vazio.");
-		}
-		this.validaEmail(email);
+		validaDados(nome, matricula, codigoCurso, email);
+		validaEmail(email);
 		
 		this.nome = nome;
 		this.matricula = matricula;
@@ -154,6 +143,35 @@ public class Aluno {
 		}
 		return true;
 	}
+	
+	/**
+	 * Valida os dados matricula, nome, codigo e email passados por parametro
+	 * e gera excecao se algum deles for nulo ou vazio.
+	 * 
+	 * @param matricula matricula a ser validada
+	 * @param nome nome a ser validado
+	 * @param codigo codigo do curso a ser validado
+	 * @param email email a ser validado 
+	 */
+	private void validaDados(String matricula, String nome, String codigo,
+			String email) {
+		if (nome.trim().equals("") || nome.equals(null)) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aluno: Nome não pode ser vazio ou nulo.");
+		}
+		if (matricula.trim().equals("") || matricula.equals(null)) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aluno: Matricula não pode ser vazia ou nula.");
+		}
+		if (codigo.trim().equals("") || codigo.equals(null)) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aluno: Codigo do curso não pode ser vazio ou nulo.");
+		}
+		if (email.trim().equals("") || email.equals(null)) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aluno: Email não pode ser vazio ou nulo.");
+		}
+	}
 
 	/**
 	 * Valida um email para que este tenha obrigatoriamente um '@' com texto 
@@ -166,7 +184,7 @@ public class Aluno {
 		if (email.contains("@")) {
 			if (email.indexOf("@") == 0 && email.indexOf("@") == email.length() - 1) {
 				throw new IllegalArgumentException(
-						"Erro no cadastro de aluno: email invalido.");
+						"Erro no cadastro de aluno: Email invalido.");
 			}
 		}
 	}
