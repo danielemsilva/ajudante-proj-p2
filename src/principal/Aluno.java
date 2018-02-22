@@ -95,7 +95,7 @@ public class Aluno {
 		} else if (atributo.equals("email")) {
 			return this.getEmail();
 		}
-		return null;
+		return "";
 	}
 	
 	public String getNome() {
