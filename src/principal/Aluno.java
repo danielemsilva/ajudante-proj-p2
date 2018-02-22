@@ -1,3 +1,4 @@
+package principal;
 
 public class Aluno {
 	
@@ -94,6 +95,7 @@ public class Aluno {
 		} else if (atributo.equals("email")) {
 			return this.getEmail();
 		}
+		return null;
 	}
 	
 	public String getNome() {
