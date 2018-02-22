@@ -6,11 +6,7 @@ package principal;
  */
 public class Aluno {
 	
-	private String nome;
-	private String matricula;
-	private String codigoCurso;
-	private String telefone;
-	private String email;
+	private String nome, matricula, codigoCurso, telefone, email;
 	
 	/**
 	 * Cria um aluno, com nome, matricula, codigo do curso, telefone e email,
