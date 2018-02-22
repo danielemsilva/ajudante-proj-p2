@@ -1,5 +1,9 @@
 package principal;
 
+/** 
+ * Essa classe representa um aluno, que possui nome, matricula (identificador),
+ * codigo do curso, email e telefone (opcional). 
+ */
 public class Aluno {
 	
 	private String nome;
@@ -9,7 +13,7 @@ public class Aluno {
 	private String email;
 	
 	/**
-	 * Cria um aluno, cujo telefone não foi informado,
+	 * Cria um aluno, cujo telefone nao foi informado,
 	 * caso os argumentos informados sejam válidos.
 	 * 
 	 * @param nome
@@ -67,22 +71,6 @@ public class Aluno {
 		this.telefone = telefone;
 	}
 	
-	/**
-	 * Valida um email para que este tenha obrigatoriamente um '@'
-	 * e algo antes e depois desta.
-	 * 
-	 * @param email
-	 *     String que representa um email.
-	 */
-	public void validaEmail(String email) {
-		if (email.contains("@")) {
-			if (email.indexOf("@") == 0 && email.indexOf("@") == email.length() - 1) {
-				throw new IllegalArgumentException(
-						"Erro no cadastro de aluno: email invalido.");
-			}
-		}
-	}
-	
 	public String getInfo(String atributo) {
 		if (atributo.equals("nome")) {
 			return this.getNome();
@@ -102,44 +90,85 @@ public class Aluno {
 		return nome;
 	}
 
+	/**
+	 * Retorna a matricula do aluno
+	 * @return matricula
+	 */
 	public String getMatricula() {
 		return matricula;
 	}
 
+	/**
+	 * Retorna o codigo do curso que o aluno participa
+	 * @return codigo do curso
+	 */
 	public String getCodigoCurso() {
 		return codigoCurso;
 	}
 
+	/**
+	 * Retorna o telefone do aluno
+	 * @return telefone
+	 */
 	public String getTelefone() {
 		return telefone;
 	}
 
+	/**
+	 * Retorna o email do aluno
+	 * @return email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Implementacao do hashcode, com matricula como identificador
+	 * 
+	 * @return hashcode
+	 */
 	@Override
 	public int hashCode() {
 		return this.matricula.hashCode();
 	}
 
+	/**
+	 * Compara dois objetos do tipo Aluno, identificados pela matricula 
+	 * 
+	 * @param obj objeto a ser comparado
+	 * @return true se os objetos forem iguais, false caso contrario
+	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		Aluno outroAluno = (Aluno) obj;
+		if (this.matricula == null && outroAluno.matricula != null) {
 			return false;
-		Aluno other = (Aluno) obj;
-		if (matricula == null) {
-			if (other.matricula != null)
-				return false;
-		} else if (!matricula.equals(other.matricula))
+		} else if (!matricula.equals(outroAluno.matricula)) {
 			return false;
+		}
 		return true;
 	}
 
-	
+	/**
+	 * Valida um email para que este tenha obrigatoriamente um '@' com texto 
+	 * antes e depois dele.
+	 * 
+	 * @param email
+	 *     String que representa um email.
+	 */
+	private void validaEmail(String email) {
+		if (email.contains("@")) {
+			if (email.indexOf("@") == 0 && email.indexOf("@") == email.length() - 1) {
+				throw new IllegalArgumentException(
+						"Erro no cadastro de aluno: email invalido.");
+			}
+		}
+	}
 
 }
