@@ -34,6 +34,12 @@ public class Aluno {
 		this.telefone = telefone;
 	}
 	
+	/**
+	 * Retorna algum dado de aluno requisitado por parametro, redirecionando para os metodos
+	 * responsaveis.
+	 * @param atributo categoria do dado requerido
+	 * @return dado requerido
+	 */
 	public String getInfo(String atributo) {
 		if (atributo.equals("Nome")) {
 			return this.getNome();
@@ -181,13 +187,7 @@ public class Aluno {
 	 *     String que representa um email.
 	 */
 	private void validaEmail(String email) {
-		if (email.contains("@")) {
-			if (email.indexOf("@") == 0 && email.indexOf("@") == email.length() - 1) {
-				throw new IllegalArgumentException(
-						"Erro no cadastro de aluno: Email invalido.");
-			}
-		}
-		else {
+		if (!email.contains("@") || email.indexOf("@") == 0 || email.indexOf("@") == email.length() - 1) {
 			throw new IllegalArgumentException("Erro no cadastro de aluno: Email invalido");
 		}
 	}
