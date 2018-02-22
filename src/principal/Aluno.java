@@ -13,32 +13,8 @@ public class Aluno {
 	private String email;
 	
 	/**
-	 * Cria um aluno, cujo telefone nao foi informado, verificando se
-	 * os argumentos informados sao validos.
-	 * 
-	 * @param nome
-	 *     String que representa o nome do aluno.
-	 * @param matricula
-	 *     String que representa a matrícula do aluno.
-	 * @param codigoCurso
-	 *     int que representa o codigo do curso do aluno.
-	 * @param email
-	 *     String que representa o email do aluno.
-	 */
-	public Aluno(String nome, String matricula, String codigoCurso, String email) {
-		validaDados(nome, matricula, codigoCurso, email);
-		validaEmail(email);
-		
-		this.nome = nome;
-		this.matricula = matricula;
-		this.codigoCurso = codigoCurso;
-		this.email = email;
-		
-	}
-	
-	/**
-	 * Cria um aluno, cujo telefone foi informado,
-	 * caso os argumentos informados sejam válidos.
+	 * Cria um aluno, com nome, matricula, codigo do curso, telefone e email,
+	 * verificando se os argumentos informados sao validos.
 	 * 
 	 * @param nome
 	 *     String que representa o nome do aluno.
@@ -52,11 +28,13 @@ public class Aluno {
 	 *     String que representa o email do aluno.
 	 */
 	public Aluno(String nome, String matricula, String codigoCurso, String telefone, String email) {
-		this(nome, matricula, codigoCurso, email);
-		if (telefone.trim().equals("") || telefone.equals(null)) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de aluno: email não pode ser nulo ou vazio.");
-		}
+		validaDados(nome, matricula, codigoCurso, email);
+		validaEmail(email);
+		
+		this.nome = nome;
+		this.matricula = matricula;
+		this.codigoCurso = codigoCurso;
+		this.email = email;
 		this.telefone = telefone;
 	}
 	
@@ -75,6 +53,10 @@ public class Aluno {
 		return "";
 	}
 	
+	/**
+	 * Retorna o nome do aluno
+	 * @return nome do aluno
+	 */
 	public String getNome() {
 		return nome;
 	}
@@ -153,21 +135,20 @@ public class Aluno {
 	 * @param codigo codigo do curso a ser validado
 	 * @param email email a ser validado 
 	 */
-	private void validaDados(String matricula, String nome, String codigo,
-			String email) {
-		if (nome.trim().equals("") || nome.equals(null)) {
+	private void validaDados(String matricula, String nome, String codigo, String email) {
+		if (nome == null || nome.trim().equals("")) {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de aluno: Nome não pode ser vazio ou nulo.");
 		}
-		if (matricula.trim().equals("") || matricula.equals(null)) {
+		if (matricula == null || matricula.trim().equals("")) {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de aluno: Matricula não pode ser vazia ou nula.");
 		}
-		if (codigo.trim().equals("") || codigo.equals(null)) {
+		if (codigo == null || codigo.trim().equals("")) {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de aluno: Codigo do curso não pode ser vazio ou nulo.");
 		}
-		if (email.trim().equals("") || email.equals(null)) {
+		if (email == null || email.trim().equals("")) {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de aluno: Email não pode ser vazio ou nulo.");
 		}
