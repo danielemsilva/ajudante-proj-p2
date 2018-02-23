@@ -1,12 +1,17 @@
 package principal;
 
 /** 
- * Essa classe representa um aluno, que possui nome, matricula (identificador),
- * codigo do curso, email e telefone (opcional). 
+ * Esta classe representa um aluno, que possui nome,
+ * matricula (identificador), codigo do curso,
+ * email e telefone (opcional). 
  */
 public class Aluno {
 	
-	private String nome, matricula, codigoCurso, telefone, email;
+	private String nome;
+	private String matricula;
+	private String codigoCurso; 
+	private String telefone;
+	private String email;
 	
 	/**
 	 * Cria um aluno, com nome, matricula, codigo do curso, telefone e email,
@@ -23,7 +28,8 @@ public class Aluno {
 	 * @param email
 	 *     String que representa o email do aluno.
 	 */
-	public Aluno(String nome, String matricula, String codigoCurso, String telefone, String email) {
+	public Aluno(String nome, String matricula, String codigoCurso, 
+			String telefone, String email) {
 		validaDados(nome, matricula, codigoCurso, email);
 		validaEmail(email);
 		
@@ -35,9 +41,12 @@ public class Aluno {
 	}
 	
 	/**
-	 * Retorna algum dado de aluno requisitado por parametro, redirecionando para os metodos
-	 * responsaveis.
-	 * @param atributo categoria do dado requerido
+	 * Retorna algum dado de um aluno requisitado por parametro.
+	 * Os dados possiveis sao: nome, matricula, codigoCurso, telefone, email.
+	 * 
+	 * @param atributo
+	 *     categoria do dado requerido
+	 *     
 	 * @return dado requerido
 	 */
 	public String getInfo(String atributo) {
@@ -64,7 +73,8 @@ public class Aluno {
 	
 	/**
 	 * Retorna o nome do aluno
-	 * @return nome do aluno
+	 * 
+	 * @return nome
 	 */
 	public String getNome() {
 		return nome;
@@ -72,6 +82,7 @@ public class Aluno {
 
 	/**
 	 * Retorna a matricula do aluno
+	 * 
 	 * @return matricula
 	 */
 	public String getMatricula() {
@@ -80,6 +91,7 @@ public class Aluno {
 
 	/**
 	 * Retorna o codigo do curso que o aluno participa
+	 * 
 	 * @return codigo do curso
 	 */
 	public String getCodigoCurso() {
@@ -88,6 +100,7 @@ public class Aluno {
 
 	/**
 	 * Retorna o telefone do aluno
+	 * 
 	 * @return telefone
 	 */
 	public String getTelefone() {
@@ -96,6 +109,7 @@ public class Aluno {
 
 	/**
 	 * Retorna o email do aluno
+	 * 
 	 * @return email
 	 */
 	public String getEmail() {
@@ -103,14 +117,15 @@ public class Aluno {
 	}
 	
 	/**
-	 * Representacao textual do aluno, com matricula, nome, codigo do curso, telefone (se houver) e
-	 * email separados por hifens.
+	 * Retorna a representacao textual do aluno, com matricula, nome, 
+	 * codigo do curso, telefone (se houver) e email separados por hifens.
 	 * 
 	 * @return String com os dados do aluno
 	 */
 	@Override
 	public String toString() {
-		String dados = this.matricula + " - " + this.nome + " - " + this.codigoCurso;
+		String dados = this.matricula + " - " + this.nome + " - "
+	        + this.codigoCurso;
 		if (!telefone.equals("")) {
 			dados += " - " + this.telefone;
 		}
@@ -119,7 +134,7 @@ public class Aluno {
 	}
 	
 	/**
-	 * Implementacao do hashcode, com matricula como identificador
+	 * Implementacao do hashcode com matricula como identificador.
 	 * 
 	 * @return hashcode
 	 */
@@ -129,10 +144,12 @@ public class Aluno {
 	}
 
 	/**
-	 * Compara dois objetos do tipo Aluno, identificados pela matricula 
+	 * Compara dois objetos do tipo Aluno, identificados pela matricula.
 	 * 
-	 * @param obj objeto a ser comparado
-	 * @return true se os objetos forem iguais, false caso contrario
+	 * @param obj
+	 *     objeto a ser comparado
+	 *     
+	 * @return true, se os objetos forem iguais, e false caso contrario
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -152,15 +169,20 @@ public class Aluno {
 	}
 	
 	/**
-	 * Valida os dados matricula, nome, codigo e email passados por parametro
+	 * Valida os dados matricula, nome, codigo e email
 	 * e gera excecao se algum deles for nulo ou vazio.
 	 * 
-	 * @param matricula matricula a ser validada
-	 * @param nome nome a ser validado
-	 * @param codigo codigo do curso a ser validado
-	 * @param email email a ser validado 
+	 * @param matricula
+	 *     matricula a ser validada
+	 * @param nome
+	 *     nome a ser validado
+	 * @param codigo
+	 *     codigo do curso a ser validado
+	 * @param email
+	 *     email a ser validado 
 	 */
-	private void validaDados(String nome, String matricula, String codigo, String email) {
+	private void validaDados(String nome, String matricula,
+			String codigo, String email) {
 		if (nome == null || nome.trim().equals("")) {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
