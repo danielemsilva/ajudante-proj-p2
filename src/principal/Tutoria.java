@@ -20,6 +20,14 @@ public class Tutoria {
 	private List<String> locais;
 	private Map<String, List<String>> horarios;
 
+	/**
+	 * Constroi uma nova tutoria com disciplina e proficiencia
+	 * 
+	 * @param disciplina
+	 *            disciplina da tutoria
+	 * @param proficiencia
+	 *            proficiencia da disciplina
+	 */
 	public Tutoria(String disciplina, int proficiencia) {
 		validar(disciplina, proficiencia);
 
@@ -29,18 +37,41 @@ public class Tutoria {
 		this.horarios = new HashMap<>();
 	}
 
+	/**
+	 * Retorna a disciplina da tutoria
+	 * 
+	 * @return disciplina
+	 */
 	public String getDisciplina() {
 		return disciplina;
 	}
 
+	/**
+	 * Retorna o nivel de proficiencia para a disciplina
+	 * 
+	 * @return proficiencia
+	 */
 	public int getProficiencia() {
 		return proficiencia;
 	}
 
+	/**
+	 * Retorna a numeracao da avaliacao sobre o tutor
+	 * 
+	 * @return avaliacao
+	 */
 	public int getAvaliacao() {
 		return avaliacao;
 	}
 
+	/**
+	 * Valida os argumentos 'disciplina' e 'proficiencia'
+	 * 
+	 * @param disciplina
+	 *            disciplina da tutoria
+	 * @param proficiencia
+	 *            nivel de proficiencia para a disciplina
+	 */
 	private void validar(String disciplina, int proficiencia) {
 		if (disciplina == null || disciplina.trim().equals("")) {
 			throw new IllegalArgumentException("Erro na definicao de papel: Disciplina nao pode ser nula ou vazia");
