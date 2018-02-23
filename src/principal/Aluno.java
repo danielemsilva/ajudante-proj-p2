@@ -12,6 +12,7 @@ public class Aluno {
 	private String codigoCurso; 
 	private String telefone;
 	private String email;
+	private Tutoria tutoria;
 	
 	/**
 	 * Cria um aluno, com nome, matricula, codigo do curso, telefone e email,
@@ -115,6 +116,10 @@ public class Aluno {
 	public String getEmail() {
 		return email;
 	}
+	public void tornarTutor(String disciplina, int proficiencia){
+		this.tutoria = new Tutoria(disciplina, proficiencia);
+	}
+
 	
 	/**
 	 * Retorna a representacao textual do aluno, com matricula, nome, 

@@ -88,7 +88,8 @@ public class AlunoController {
 	}
 
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-
+		Aluno aluno = procuraAluno(matricula);
+		aluno.tornarTutor(disciplina, proficiencia);
 	}
 
 	public String recuperaTutor(String matricula) {
