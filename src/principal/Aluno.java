@@ -52,32 +52,18 @@ public class Aluno {
 	public String getInfo(String atributo) {
 		if (atributo.equals("Nome")) {
 			return this.nome;
-		} 
-		else if (atributo.equals("Matricula")) {
+		} else if (atributo.equals("Matricula")) {
 			return this.matricula;
-		} 
-		else if (atributo.equals("CodigoCurso")) {
+		} else if (atributo.equals("CodigoCurso")) {
 			return this.codigoCurso;
-		} 
-		else if (atributo.equals("Telefone")) {
+		} else if (atributo.equals("Telefone")) {
 			return this.telefone;
-		} 
-		else if (atributo.equals("Email")) {
+		} else if (atributo.equals("Email")) {
 			return this.email;
-		} 
-		else {
+		} else {
 			// lança erro de atributo invalido
 		}
 		return "";
-	}
-
-	/**
-	 * Retorna o nome do aluno
-	 * 
-	 * @return nome
-	 */
-	public String getNome() {
-		return nome;
 	}
 
 	/**
@@ -90,6 +76,15 @@ public class Aluno {
 	}
 
 	/**
+	 * Retorna o nome do aluno
+	 * 
+	 * @return nome
+	 */
+	public String getNome() {
+		return nome;
+	}
+
+	/**
 	 * Retorna o email do aluno
 	 * 
 	 * @return email
@@ -98,11 +93,29 @@ public class Aluno {
 		return email;
 	}
 
+	/**
+	 * Cria uma nova instancia para tutor, se este for nulo, e adiciona a nova
+	 * disciplina disponibilizada e sua proficiencia
+	 * 
+	 * @param disciplina
+	 *            disciplina a ser acrescentada
+	 * @param proficiencia
+	 *            proficiencia em relacao a nova disciplina
+	 */
 	public void tornarTutor(String disciplina, int proficiencia) {
-		if(tutor == null) {
+		if (tutor == null) {
 			this.tutor = new Tutor();
 		}
 		tutor.adicionaTutoria(disciplina, proficiencia);
+	}
+
+	/**
+	 * Retorna se o aluno eh tutor de alguma disciplina
+	 * 
+	 * @return true se houver instancia para tutor
+	 */
+	public boolean ehTutor() {
+		return tutor != null;
 	}
 
 	/**
