@@ -7,7 +7,7 @@ import java.util.List;
 import base.AlunoComparator;
 
 /**
- * Esta classe eh responsavel pelo gerenciamento dos alunos
+ * Esta classe eh responsavel pelo gerenciamento dos alunos.
  *
  */
 public class AlunoController {
@@ -16,8 +16,8 @@ public class AlunoController {
 	private Comparator<Aluno> comparator;
 
 	/**
-	 * Constroi um novo controlar, inicializando a lista de alunos e definindo o
-	 * comparator
+	 * Constroi um novo controlar,
+	 * inicializando a lista de alunos e o comparator.
 	 */
 	public AlunoController() {
 		alunos = new ArrayList<>();
@@ -38,31 +38,36 @@ public class AlunoController {
 	 * @param email
 	 *            email
 	 */
-	public void cadastrarAluno(String nome, String matricula, String codigoCurso, String telefone, String email) {
-		Aluno novoAluno = new Aluno(nome, matricula, codigoCurso, telefone, email);
+	public void cadastrarAluno(String nome, String matricula,
+			String codigoCurso, String telefone, String email) {
+		Aluno novoAluno = new Aluno(
+				nome, matricula, codigoCurso, telefone, email);
 		if (procuraAluno(matricula) != null) {
-			throw new IllegalArgumentException("Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
+			throw new IllegalArgumentException(
+					"Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
 		}
 		alunos.add(novoAluno);
 	}
 
 	/**
-	 * Retorna os dados de um aluno consultado pela matricula
+	 * Retorna os dados de um aluno.
 	 * 
 	 * @param matricula
 	 *            matricula do aluno requisitado
+	 *            
 	 * @return informacoes do aluno
 	 */
 	public String recuperaAluno(String matricula) {
 		Aluno aluno = procuraAluno(matricula);
 		if (aluno == null) {
-			throw new IllegalArgumentException("Erro na busca por aluno: Aluno nao encontrado");
+			throw new IllegalArgumentException(
+					"Erro na busca por aluno: Aluno nao encontrado");
 		}
 		return aluno.toString();
 	}
 
 	/**
-	 * Lista os alunos, ordenados alfabeticamente
+	 * Lista os alunos ordenados alfabeticamente.
 	 * 
 	 * @return lista de alunos
 	 */
@@ -79,27 +84,29 @@ public class AlunoController {
 	}
 
 	/**
-	 * Retorna a informacao especifica do aluno
+	 * Retorna uma informacao especifica do aluno.
 	 * 
 	 * @param matricula
 	 *            matricula do aluno
 	 * @param atributo
-	 *            categoria do dado desejado
+	 *            categoria do dado
+	 *            
 	 * @return um dado do aluno
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
 		Aluno aluno = procuraAluno(matricula);
 		if (aluno == null) {
-			throw new IllegalArgumentException("Erro na obtencao de informacao de aluno: Aluno nao encontrado");
+			throw new IllegalArgumentException(
+					"Erro na obtencao de informacao de aluno: Aluno nao encontrado");
 		}
 		return aluno.getInfo(atributo);
 	}
 
 	/**
-	 * Transforma um aluno em tutor da disciplina informada
+	 * Transforma um aluno em tutor da disciplina informada.
 	 * 
 	 * @param matricula
-	 *            matricula do novo tutor
+	 *            matricula do aluno
 	 * @param disciplina
 	 *            disciplina a ser ensinada
 	 * @param proficiencia
@@ -108,27 +115,31 @@ public class AlunoController {
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 		Aluno aluno = procuraAluno(matricula);
 		if (aluno == null) {
-			throw new IllegalArgumentException("Erro na definicao de papel: Tutor nao encontrado");
+			throw new IllegalArgumentException(
+					"Erro na definicao de papel: Tutor nao encontrado");
 		}
 		aluno.tornarTutor(disciplina, proficiencia);
 	}
 
 	/**
-	 * Retorna as informacoes de um aluno tutor atraves de sua matricula
+	 * Retorna as informacoes de um aluno tutor.
 	 * 
 	 * @param matricula
 	 *            matricula do aluno
+	 *            
 	 * @return dados do tutor
 	 */
 	public String recuperaTutor(String matricula) {
 		Aluno aluno = procuraAluno(matricula);
 		if (aluno == null) {
-			throw new IllegalArgumentException("Erro na busca por tutor: Tutor nao encontrado");
+			throw new IllegalArgumentException(
+					"Erro na busca por tutor: Tutor nao encontrado");
 		}
 		return aluno.toString();
 	}
+	
 	/**
-	 * Lista todos os alunos que sao tutores
+	 * Lista todos os alunos que sao tutores.
 	 * 
 	 * @return lista com os dados dos tutores
 	 */
@@ -145,13 +156,18 @@ public class AlunoController {
 
 		return lista;
 	}
+	
 	public void cadastrarHorario(String email, String horario, String dia) {
 
 	}
+	
 	/**
-	 * Cadastra Local onde sera possivel encontrar tutor
-	 * @param email representcao de email do tutor
-	 * @param local representacao do local da tutoria
+	 * Cadastra um local de atendimento de um tutor.
+	 * 
+	 * @param email
+	 *     email do tutor
+	 * @param local
+	 *     local da tutoria
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
 		for(Aluno aluno: this.alunos) {
