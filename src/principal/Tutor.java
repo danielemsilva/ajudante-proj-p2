@@ -39,7 +39,7 @@ public class Tutor {
 	 *            Os valores possíveis pertencem ao conjunto [1, 5]
 	 */
 	public void adicionaDisciplina(String disciplina, int proficiencia) {
-		validaDados(disciplina, proficiencia);
+		this.validaDados(disciplina, proficiencia);
 		this.disciplinas.put(disciplina, proficiencia);
 	}
 
@@ -70,12 +70,12 @@ public class Tutor {
 	 *            horario no referente dia a ser adicionado
 	 */
 	public void adicionaHorario(String dia, String horario) {
-		validaDiaHorario(dia, horario);
+		this.validaDiaHorario(dia, horario);
 
-		if (!horarios.containsKey(dia)) {
-			horarios.put(dia, new ArrayList<String>());
+		if (!this.horarios.containsKey(dia)) {
+			this.horarios.put(dia, new ArrayList<String>());
 		}
-		horarios.get(dia).add(horario);
+		this.horarios.get(dia).add(horario);
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class Tutor {
 	 *     e false caso contrario
 	 */
 	public boolean consultaLocal(String local) {
-		return locais.contains(local);
+		return this.locais.contains(local);
 	}
 
 	/**
@@ -105,10 +105,10 @@ public class Tutor {
 	 *     e false caso contrario
 	 */
 	public boolean consultaHorario(String dia, String horario) {
-		if (!horarios.containsKey(dia)) {
+		if (!this.horarios.containsKey(dia)) {
 			return false;
 		}
-		return horarios.get(dia).contains(horario);
+		return this.horarios.get(dia).contains(horario);
 	}
 
 	/**
