@@ -30,8 +30,8 @@ public class Aluno {
 	 */
 	public Aluno(String nome, String matricula, String codigoCurso,
 			String telefone, String email) {
-		validaDados(nome, matricula, codigoCurso, email);
-		validaEmail(email);
+		this.validaDados(nome, matricula, codigoCurso, email);
+		this.validaEmail(email);
 
 		this.nome = nome;
 		this.matricula = matricula;
@@ -73,7 +73,7 @@ public class Aluno {
 	 * @return matricula
 	 */
 	public String getMatricula() {
-		return matricula;
+		return this.matricula;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class Aluno {
 	 * @return nome
 	 */
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class Aluno {
 	 * @return email
 	 */
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class Aluno {
 		if (tutor == null) {
 			this.tutor = new Tutor();
 		}
-		tutor.adicionaDisciplina(disciplina, proficiencia);
+		this.tutor.adicionaDisciplina(disciplina, proficiencia);
 	}
 	
 	/**
@@ -127,7 +127,7 @@ public class Aluno {
 	 *     e false caso contrario
 	 */
 	public boolean ehTutor() {
-		return tutor != null;
+		return this.tutor != null;
 	}
 
 	/**
