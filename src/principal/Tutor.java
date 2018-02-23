@@ -14,19 +14,17 @@ import java.util.Map;
  */
 public class Tutor {
 
-	private List<String> disciplinas;
-	private List<Integer> proficiencias;
-	private List<String> locais;
+	private Map<String, Integer> disciplinas;
 	private Map<String, List<String>> horarios;
+	private List<String> locais;
 
 	/**
-	 * Constroi uma nova tutoria, inicializando as listas para disciplina,
-	 * proficiencia, local e horario.
+	 * Constroi uma nova tutoria, inicializando os mapas de disciplinas com suas
+	 * proficiencias, e horarios e a lista de locais.
 	 * 
 	 */
 	public Tutor() {
-		this.disciplinas = new ArrayList<>();
-		this.proficiencias = new ArrayList<>();
+		this.disciplinas = new HashMap<>();
 		this.locais = new ArrayList<>();
 		this.horarios = new HashMap<>();
 	}
@@ -42,16 +40,24 @@ public class Tutor {
 	 */
 	public void adicionaTutoria(String disciplina, int proficiencia) {
 		validaDados(disciplina, proficiencia);
-		this.disciplinas.add(disciplina);
-		this.proficiencias.add(proficiencia);
+		this.disciplinas.put(disciplina, proficiencia);
 	}
 
 	public void adicionaLocal(String local) {
-
+		if (local == null || local.trim().equals("")) {
+			throw new IllegalArgumentException(
+					"Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+		}
+		if (locais.contains(local)) {
+			throw new IllegalArgumentException("Erro no cadastrar local de atendimento: Local ja cadastrado");
+		}
+		this.locais.add(local);
 	}
 
 	public void adicionaHorario(String dia, String horario) {
-
+		validaDiaHorario(dia, horario);
+		
+		
 	}
 
 	/**
@@ -66,11 +72,20 @@ public class Tutor {
 		if (disciplina == null || disciplina.trim().equals("")) {
 			throw new IllegalArgumentException("Erro na definicao de papel: Disciplina nao pode ser nula ou vazia");
 		}
-		if (disciplinas.contains(disciplina)) {
+		if (disciplinas.containsKey(disciplina)) {
 			throw new IllegalArgumentException("Erro na definicao de papel: Ja eh tutor dessa disciplina");
 		}
 		if (proficiencia <= 0) {
 			throw new IllegalArgumentException("Erro na definicao de papel: Proficiencia invalida");
+		}
+	}
+
+	private void validaDiaHorario(String dia, String horario) {
+		if (dia == null || dia.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
+		}
+		if (horario == null || horario.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
 		}
 	}
 }
