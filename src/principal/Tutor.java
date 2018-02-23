@@ -19,8 +19,8 @@ public class Tutor {
 	private List<String> locais;
 
 	/**
-	 * Constroi uma nova tutoria, inicializando os mapas de disciplinas com suas
-	 * proficiencias, e horarios e a lista de locais.
+	 * Constroi uma tutoria, inicializando os mapas disciplinas e horarios
+	 * e a lista locais.
 	 * 
 	 */
 	public Tutor() {
@@ -30,24 +30,31 @@ public class Tutor {
 	}
 
 	/**
-	 * Adiciona uma nova disciplina de ensino e proficiencia em relacao a essa
-	 * disciplina.
+	 * Adiciona uma nova disciplina.
 	 * 
 	 * @param disciplina
-	 *            nova disciplina disponibilizada
+	 *            nome da disciplina
 	 * @param proficiencia
-	 *            nivel de proficiencia nessa disciplina
+	 *            nivel de proficiencia nessa disciplina.
+	 *            Os valores possíveis pertencem ao conjunto [1, 5]
 	 */
-	public void adicionaTutoria(String disciplina, int proficiencia) {
-		validaDados(disciplina, proficiencia);
+	public void adicionaDisciplina(String disciplina, int proficiencia) {
+		this.validaDados(disciplina, proficiencia);
 		this.disciplinas.put(disciplina, proficiencia);
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Adiciona um novo local de atendimento
 	 * 
 	 * @param local
 	 *            local de atendimento a ser adicionado
+=======
+	 * Adiciona um local de atendimento.
+	 * 
+	 * @param local
+	 *            local de atendimento
+>>>>>>> b6b9380e50afc7ea772de7ecea0227b1f0fafb94
 	 */
 	public void adicionaLocal(String local) {
 		if (local == null || local.trim().equals("")) {
@@ -55,13 +62,18 @@ public class Tutor {
 					"Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
 		}
 		if (locais.contains(local)) {
-			throw new IllegalArgumentException("Erro no cadastrar local de atendimento: Local ja cadastrado");
+			throw new IllegalArgumentException(
+					"Erro no cadastrar local de atendimento: Local ja cadastrado");
 		}
 		this.locais.add(local);
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Adiciona um novo horario para atendimento
+=======
+	 * Adiciona um horario de atendimento.
+>>>>>>> b6b9380e50afc7ea772de7ecea0227b1f0fafb94
 	 * 
 	 * @param dia
 	 *            dia disponivel
@@ -69,12 +81,58 @@ public class Tutor {
 	 *            horario no referente dia a ser adicionado
 	 */
 	public void adicionaHorario(String dia, String horario) {
+<<<<<<< HEAD
 		validaDiaHorario(dia, horario);
 		
 	}
 
 	/**
 	 * Valida a disciplina e proficiencia.
+=======
+		this.validaDiaHorario(dia, horario);
+
+		if (!this.horarios.containsKey(dia)) {
+			this.horarios.put(dia, new ArrayList<String>());
+		}
+		this.horarios.get(dia).add(horario);
+	}
+
+	/**
+	 * Verifica se um determinado local esta entre
+	 * os locais onde o tutor atende.
+	 * 
+	 * @param local
+	 *            local a ser pesquisado
+	 *            
+	 * @return true, se o local for um dos locais de atendimento do tutor,
+	 *     e false caso contrario
+	 */
+	public boolean consultaLocal(String local) {
+		return this.locais.contains(local);
+	}
+
+	/**
+	 * Verifica se um determinado horario esta
+	 * entre os horarios de atendimento do tutor.
+	 * 
+	 * @param dia
+	 *            dia a ser pesquisado
+	 * @param horario
+	 *            horario a ser pesquisado
+	 *            
+	 * @return true, se o horario for um dos horarios de atendimento do tutor,
+	 *     e false caso contrario
+	 */
+	public boolean consultaHorario(String dia, String horario) {
+		if (!this.horarios.containsKey(dia)) {
+			return false;
+		}
+		return this.horarios.get(dia).contains(horario);
+	}
+
+	/**
+	 * Valida disciplina e proficiencia.
+>>>>>>> b6b9380e50afc7ea772de7ecea0227b1f0fafb94
 	 * 
 	 * @param disciplina
 	 *            disciplina da tutoria
@@ -83,18 +141,25 @@ public class Tutor {
 	 */
 	private void validaDados(String disciplina, int proficiencia) {
 		if (disciplina == null || disciplina.trim().equals("")) {
-			throw new IllegalArgumentException("Erro na definicao de papel: Disciplina nao pode ser nula ou vazia");
+			throw new IllegalArgumentException(
+					"Erro na definicao de papel: Disciplina nao pode ser nula ou vazia");
 		}
 		if (disciplinas.containsKey(disciplina)) {
-			throw new IllegalArgumentException("Erro na definicao de papel: Ja eh tutor dessa disciplina");
+			throw new IllegalArgumentException(
+					"Erro na definicao de papel: Ja eh tutor dessa disciplina");
 		}
 		if (proficiencia <= 0) {
-			throw new IllegalArgumentException("Erro na definicao de papel: Proficiencia invalida");
+			throw new IllegalArgumentException(
+					"Erro na definicao de papel: Proficiencia invalida");
 		}
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Valida o dia e horario de atendimento
+=======
+	 * Valida dia e horario de atendimento.
+>>>>>>> b6b9380e50afc7ea772de7ecea0227b1f0fafb94
 	 * 
 	 * @param dia
 	 *            dia disponivel
@@ -103,10 +168,12 @@ public class Tutor {
 	 */
 	private void validaDiaHorario(String dia, String horario) {
 		if (dia == null || dia.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+					"Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
 		}
 		if (horario == null || horario.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+					"Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
 		}
 	}
 }
