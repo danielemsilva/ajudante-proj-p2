@@ -43,6 +43,12 @@ public class Tutor {
 		this.disciplinas.put(disciplina, proficiencia);
 	}
 
+	/**
+	 * Adiciona um novo local de atendimento
+	 * 
+	 * @param local
+	 *            local de atendimento a ser adicionado
+	 */
 	public void adicionaLocal(String local) {
 		if (local == null || local.trim().equals("")) {
 			throw new IllegalArgumentException(
@@ -54,14 +60,21 @@ public class Tutor {
 		this.locais.add(local);
 	}
 
+	/**
+	 * Adiciona um novo horario para atendimento
+	 * 
+	 * @param dia
+	 *            dia disponivel
+	 * @param horario
+	 *            horario no referente dia a ser adicionado
+	 */
 	public void adicionaHorario(String dia, String horario) {
 		validaDiaHorario(dia, horario);
-		
 		
 	}
 
 	/**
-	 * Valida os argumentos 'disciplina' e 'proficiencia'.
+	 * Valida a disciplina e proficiencia.
 	 * 
 	 * @param disciplina
 	 *            disciplina da tutoria
@@ -80,6 +93,14 @@ public class Tutor {
 		}
 	}
 
+	/**
+	 * Valida o dia e horario de atendimento
+	 * 
+	 * @param dia
+	 *            dia disponivel
+	 * @param horario
+	 *            horario referente ao dia
+	 */
 	private void validaDiaHorario(String dia, String horario) {
 		if (dia == null || dia.trim().equals("")) {
 			throw new IllegalArgumentException("Erro no cadastrar horario: dia nao pode ser vazio ou em branco");
