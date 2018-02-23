@@ -2,10 +2,8 @@ package principal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Essa classe representa um aluno tutor, que possui, alem de suas informacoes
@@ -16,7 +14,7 @@ import java.util.Set;
  */
 public class Tutor {
 
-	private Set<String> disciplinas;
+	private List<String> disciplinas;
 	private List<Integer> proficiencias;
 	private List<String> locais;
 	private Map<String, List<String>> horarios;
@@ -27,27 +25,44 @@ public class Tutor {
 	 * 
 	 */
 	public Tutor() {
-		this.disciplinas = new HashSet<>();
+		this.disciplinas = new ArrayList<>();
 		this.proficiencias = new ArrayList<>();
 		this.locais = new ArrayList<>();
 		this.horarios = new HashMap<>();
 	}
 
+	/**
+	 * Adiciona uma nova disciplina de ensino e proficiencia em relacao a essa
+	 * disciplina.
+	 * 
+	 * @param disciplina
+	 *            nova disciplina disponibilizada
+	 * @param proficiencia
+	 *            nivel de proficiencia nessa disciplina
+	 */
 	public void adicionaTutoria(String disciplina, int proficiencia) {
-		validar(disciplina, proficiencia);
+		validaDados(disciplina, proficiencia);
 		this.disciplinas.add(disciplina);
 		this.proficiencias.add(proficiencia);
 	}
 
+	public void adicionaLocal(String local) {
+
+	}
+
+	public void adicionaHorario(String dia, String horario) {
+
+	}
+
 	/**
-	 * Valida os argumentos 'disciplina' e 'proficiencia'
+	 * Valida os argumentos 'disciplina' e 'proficiencia'.
 	 * 
 	 * @param disciplina
 	 *            disciplina da tutoria
 	 * @param proficiencia
 	 *            nivel de proficiencia para a disciplina
 	 */
-	private void validar(String disciplina, int proficiencia) {
+	private void validaDados(String disciplina, int proficiencia) {
 		if (disciplina == null || disciplina.trim().equals("")) {
 			throw new IllegalArgumentException("Erro na definicao de papel: Disciplina nao pode ser nula ou vazia");
 		}
