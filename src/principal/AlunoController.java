@@ -55,6 +55,34 @@ public class AlunoController {
 		return aluno.getInfo(atributo);
 	}
 	
+	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
+
+	}
+
+	public String recuperaTutor(String matricula) {
+		return "";
+	}
+
+	public String listarTutores() {
+		return "";
+	}
+
+	public void cadastrarHorario(String email, String horario, String dia) {
+
+	}
+
+	public void cadastrarLocalDeAtendimento(String email, String local) {
+
+	}
+
+	public boolean consultaHorario(String email, String horario, String dia) {
+		return true;
+	}
+
+	public boolean consultaLocal(String email, String local) {
+		return true;
+	}
+	
 	private Aluno procuraAluno(String matricula) {
 		for (Aluno aluno : alunos) {
 			if(aluno.getMatricula().equals(matricula)) {
