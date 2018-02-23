@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import base.AlunoComparator;
 
 /**
@@ -89,11 +88,18 @@ public class AlunoController {
 
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 		Aluno aluno = procuraAluno(matricula);
+		if (aluno == null) {
+			throw new IllegalArgumentException("Erro na definicao de papel: Tutor nao encontrado");
+		}
 		aluno.tornarTutor(disciplina, proficiencia);
 	}
 
 	public String recuperaTutor(String matricula) {
-		return "";
+		Aluno aluno = procuraAluno(matricula);
+		if (aluno == null) {
+			throw new IllegalArgumentException("Erro na busca por tutor: Tutor nao encontrado");
+		}
+		return aluno.toString();
 	}
 
 	public String listarTutores() {
