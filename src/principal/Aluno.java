@@ -106,7 +106,7 @@ public class Aluno {
 		if (tutor == null) {
 			this.tutor = new Tutor();
 		}
-		tutor.adicionaTutoria(disciplina, proficiencia);
+		tutor.adicionaDisciplina(disciplina, proficiencia);
 	}
 	/**
 	 * Adciona local de tutoria
