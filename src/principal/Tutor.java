@@ -70,7 +70,38 @@ public class Tutor {
 	 */
 	public void adicionaHorario(String dia, String horario) {
 		validaDiaHorario(dia, horario);
-		
+
+		if (!horarios.containsKey(dia)) {
+			horarios.put(dia, new ArrayList<String>());
+		}
+		horarios.get(dia).add(horario);
+	}
+
+	/**
+	 * Retorna se o local procurado existe na lista
+	 * 
+	 * @param local
+	 *            local a ser pesquisado
+	 * @return true se existir aquele local na lista
+	 */
+	public boolean consultaLocal(String local) {
+		return locais.contains(local);
+	}
+
+	/**
+	 * Retorna se o horario procurado existe no registro
+	 * 
+	 * @param dia
+	 *            dia a ser pesquisado
+	 * @param horario
+	 *            horario a ser pesquisado
+	 * @return true se o horario existir referente aquele dia
+	 */
+	public boolean consultaHorario(String dia, String horario) {
+		if (!horarios.containsKey(dia)) {
+			return false;
+		}
+		return horarios.get(dia).contains(horario);
 	}
 
 	/**
