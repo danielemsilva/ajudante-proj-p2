@@ -23,31 +23,31 @@ public class Facade {
 	}
 
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-
+		alunoController.tornarTutor(matricula, disciplina, proficiencia);
 	}
 
 	public String recuperaTutor(String matricula) {
-		return "";
+		return alunoController.recuperaTutor(matricula);
 	}
 
 	public String listarTutores() {
-		return "";
+		return alunoController.listarTutores();
 	}
 
 	public void cadastrarHorario(String email, String horario, String dia) {
-
+		alunoController.cadastrarHorario(email, horario, dia);
 	}
 
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-
+		alunoController.cadastrarLocalDeAtendimento(email, local);
 	}
 
 	public boolean consultaHorario(String email, String horario, String dia) {
-		return true;
+		return alunoController.consultaHorario(email, horario, dia);
 	}
 
 	public boolean consultaLocal(String email, String local) {
-		return true;
+		return alunoController.consultaLocal(email, local);
 	}
 
 	public static void main(String[] args) {
