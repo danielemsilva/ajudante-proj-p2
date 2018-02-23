@@ -1,77 +1,76 @@
 package principal;
 
-/** 
- * Esta classe representa um aluno, que possui nome,
- * matricula (identificador), codigo do curso,
- * email e telefone (opcional). 
+/**
+ * Esta classe representa um aluno, que possui nome, matricula (identificador),
+ * codigo do curso, email e telefone (opcional).
  */
 public class Aluno {
-	
+
 	private String nome;
 	private String matricula;
-	private String codigoCurso; 
+	private String codigoCurso;
 	private String telefone;
 	private String email;
-	private Tutoria tutoria;
-	
+	private Tutor tutor;
+
 	/**
 	 * Cria um aluno, com nome, matricula, codigo do curso, telefone e email,
 	 * verificando se os argumentos informados sao validos.
 	 * 
 	 * @param nome
-	 *     String que representa o nome do aluno.
+	 *            String que representa o nome do aluno.
 	 * @param matricula
-	 *     String que representa a matrícula do aluno.
+	 *            String que representa a matrícula do aluno.
 	 * @param codigoCurso
-	 *     int que representa o codigo do curso do aluno.
+	 *            int que representa o codigo do curso do aluno.
 	 * @param telefone
-	 *     String que representa o telefone do aluno.
+	 *            String que representa o telefone do aluno.
 	 * @param email
-	 *     String que representa o email do aluno.
+	 *            String que representa o email do aluno.
 	 */
-	public Aluno(String nome, String matricula, String codigoCurso, 
-			String telefone, String email) {
+	public Aluno(String nome, String matricula, String codigoCurso, String telefone, String email) {
 		validaDados(nome, matricula, codigoCurso, email);
 		validaEmail(email);
-		
+
 		this.nome = nome;
 		this.matricula = matricula;
 		this.codigoCurso = codigoCurso;
 		this.email = email;
 		this.telefone = telefone;
+		this.tutor = null;
 	}
-	
+
 	/**
-	 * Retorna algum dado de um aluno requisitado por parametro.
-	 * Os dados possiveis sao: nome, matricula, codigoCurso, telefone, email.
+	 * Retorna algum dado de um aluno requisitado por parametro. Os dados possiveis
+	 * sao: nome, matricula, codigoCurso, telefone, email.
 	 * 
 	 * @param atributo
-	 *     categoria do dado requerido
-	 *     
+	 *            categoria do dado requerido
+	 * 
 	 * @return dado requerido
 	 */
 	public String getInfo(String atributo) {
 		if (atributo.equals("Nome")) {
-			return this.getNome();
+			return this.nome;
 		} 
 		else if (atributo.equals("Matricula")) {
-			return this.getMatricula();
+			return this.matricula;
 		} 
 		else if (atributo.equals("CodigoCurso")) {
-			return this.getCodigoCurso();
+			return this.codigoCurso;
 		} 
 		else if (atributo.equals("Telefone")) {
-			return this.getTelefone();
+			return this.telefone;
 		} 
 		else if (atributo.equals("Email")) {
-			return this.getEmail();
-		}
+			return this.email;
+		} 
 		else {
 			// lança erro de atributo invalido
 		}
 		return "";
 	}
-	
+
 	/**
 	 * Retorna o nome do aluno
 	 * 
@@ -91,24 +90,6 @@ public class Aluno {
 	}
 
 	/**
-	 * Retorna o codigo do curso que o aluno participa
-	 * 
-	 * @return codigo do curso
-	 */
-	public String getCodigoCurso() {
-		return codigoCurso;
-	}
-
-	/**
-	 * Retorna o telefone do aluno
-	 * 
-	 * @return telefone
-	 */
-	public String getTelefone() {
-		return telefone;
-	}
-
-	/**
 	 * Retorna o email do aluno
 	 * 
 	 * @return email
@@ -116,28 +97,30 @@ public class Aluno {
 	public String getEmail() {
 		return email;
 	}
-	public void tornarTutor(String disciplina, int proficiencia){
-		this.tutoria = new Tutoria(disciplina, proficiencia);
+
+	public void tornarTutor(String disciplina, int proficiencia) {
+		if(tutor == null) {
+			this.tutor = new Tutor();
+		}
+		tutor.adicionaTutoria(disciplina, proficiencia);
 	}
 
-	
 	/**
-	 * Retorna a representacao textual do aluno, com matricula, nome, 
-	 * codigo do curso, telefone (se houver) e email separados por hifens.
+	 * Retorna a representacao textual do aluno, com matricula, nome, codigo do
+	 * curso, telefone (se houver) e email separados por hifens.
 	 * 
 	 * @return String com os dados do aluno
 	 */
 	@Override
 	public String toString() {
-		String dados = this.matricula + " - " + this.nome + " - "
-	        + this.codigoCurso;
+		String dados = this.matricula + " - " + this.nome + " - " + this.codigoCurso;
 		if (!telefone.equals("")) {
 			dados += " - " + this.telefone;
 		}
 		dados += " - " + this.email;
 		return dados;
 	}
-	
+
 	/**
 	 * Implementacao do hashcode com matricula como identificador.
 	 * 
@@ -152,8 +135,8 @@ public class Aluno {
 	 * Compara dois objetos do tipo Aluno, identificados pela matricula.
 	 * 
 	 * @param obj
-	 *     objeto a ser comparado
-	 *     
+	 *            objeto a ser comparado
+	 * 
 	 * @return true, se os objetos forem iguais, e false caso contrario
 	 */
 	@Override
@@ -172,46 +155,41 @@ public class Aluno {
 		}
 		return true;
 	}
-	
+
 	/**
-	 * Valida os dados matricula, nome, codigo e email
-	 * e gera excecao se algum deles for nulo ou vazio.
+	 * Valida os dados matricula, nome, codigo e email e gera excecao se algum deles
+	 * for nulo ou vazio.
 	 * 
 	 * @param matricula
-	 *     matricula a ser validada
+	 *            matricula a ser validada
 	 * @param nome
-	 *     nome a ser validado
+	 *            nome a ser validado
 	 * @param codigo
-	 *     codigo do curso a ser validado
+	 *            codigo do curso a ser validado
 	 * @param email
-	 *     email a ser validado 
+	 *            email a ser validado
 	 */
-	private void validaDados(String nome, String matricula,
-			String codigo, String email) {
+	private void validaDados(String nome, String matricula, String codigo, String email) {
 		if (nome == null || nome.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException("Erro no cadastro de aluno: Nome nao pode ser vazio ou nulo");
 		}
 		if (matricula == null || matricula.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de aluno: Matricula nao pode ser vazia ou nula");
+			throw new IllegalArgumentException("Erro no cadastro de aluno: Matricula nao pode ser vazia ou nula");
 		}
 		if (codigo == null || codigo.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de aluno: Codigo do curso nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException("Erro no cadastro de aluno: Codigo do curso nao pode ser vazio ou nulo");
 		}
 		if (email == null || email.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de aluno: Email nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException("Erro no cadastro de aluno: Email nao pode ser vazio ou nulo");
 		}
 	}
 
 	/**
-	 * Valida um email para que este tenha obrigatoriamente um '@' com texto 
-	 * antes e depois dele.
+	 * Valida um email para que este tenha obrigatoriamente um '@' com texto antes e
+	 * depois dele.
 	 * 
 	 * @param email
-	 *     String que representa um email.
+	 *            String que representa um email.
 	 */
 	private void validaEmail(String email) {
 		if (!email.contains("@") || email.indexOf("@") == 0 || email.indexOf("@") == email.length() - 1) {

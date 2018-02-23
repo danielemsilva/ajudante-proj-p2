@@ -12,56 +12,29 @@ import java.util.Map;
  * disponiveis.
  *
  */
-public class Tutoria {
+public class Tutor {
 
-	private String disciplina;
-	private int proficiencia;
-	private int avaliacao;
+	private List<String> disciplinas;
+	private List<Integer> proficiencias;
 	private List<String> locais;
 	private Map<String, List<String>> horarios;
 
 	/**
-	 * Constroi uma nova tutoria com disciplina e proficiencia
+	 * Constroi uma nova tutoria, inicializando as listas para 
+	 * disciplina, proficiencia, local e horario.
 	 * 
-	 * @param disciplina
-	 *            disciplina da tutoria
-	 * @param proficiencia
-	 *            proficiencia da disciplina
 	 */
-	public Tutoria(String disciplina, int proficiencia) {
-		validar(disciplina, proficiencia);
-
-		this.disciplina = disciplina;
-		this.proficiencia = proficiencia;
+	public Tutor() {
+		this.disciplinas = new ArrayList<>();
+		this.proficiencias = new ArrayList<>();
 		this.locais = new ArrayList<>();
 		this.horarios = new HashMap<>();
 	}
-
-	/**
-	 * Retorna a disciplina da tutoria
-	 * 
-	 * @return disciplina
-	 */
-	public String getDisciplina() {
-		return disciplina;
-	}
-
-	/**
-	 * Retorna o nivel de proficiencia para a disciplina
-	 * 
-	 * @return proficiencia
-	 */
-	public int getProficiencia() {
-		return proficiencia;
-	}
-
-	/**
-	 * Retorna a numeracao da avaliacao sobre o tutor
-	 * 
-	 * @return avaliacao
-	 */
-	public int getAvaliacao() {
-		return avaliacao;
+	
+	public void adicionaTutoria(String disciplina, int proficiencia) {
+		validar(disciplina, proficiencia);
+		this.disciplinas.add(disciplina);
+		this.proficiencias.add(proficiencia);
 	}
 
 	/**
