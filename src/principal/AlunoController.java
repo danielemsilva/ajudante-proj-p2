@@ -102,16 +102,39 @@ public class AlunoController {
 		return aluno.toString();
 	}
 
+	/**
+	 * Lista todos os alunos que sao tutores
+	 * 
+	 * @return lista com os dados dos tutores
+	 */
 	public String listarTutores() {
-		return "";
-	}
+		String lista = "";
+		for (Aluno aluno : alunos) {
+			if (aluno.ehTutor()) {
+				if (!lista.equals("")) {
+					lista += ", ";
+				}
+				lista += aluno.toString();
+			}
+		}
 
+		return lista;
+	}
+	
 	public void cadastrarHorario(String email, String horario, String dia) {
 
 	}
-
+	/**
+	 * Cadastra Local onde sera possivel encontrar tutor
+	 * @param email representcao de email do tutor
+	 * @param local representacao do local da tutoria
+	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-
+		for(Aluno aluno: this.alunos) {
+			if(aluno.getEmail().equals(email)) {
+				aluno.adicionaLocal(local);
+			}
+		}
 	}
 
 	public boolean consultaHorario(String email, String horario, String dia) {
