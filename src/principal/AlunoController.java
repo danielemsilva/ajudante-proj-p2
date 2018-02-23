@@ -20,8 +20,8 @@ public class AlunoController {
 	 * inicializando a lista de alunos e o comparator.
 	 */
 	public AlunoController() {
-		alunos = new ArrayList<>();
-		comparator = new AlunoComparator();
+		this.alunos = new ArrayList<>();
+		this.comparator = new AlunoComparator();
 	}
 
 	/**
@@ -42,11 +42,11 @@ public class AlunoController {
 			String codigoCurso, String telefone, String email) {
 		Aluno novoAluno = new Aluno(
 				nome, matricula, codigoCurso, telefone, email);
-		if (procuraAluno(matricula) != null) {
+		if (this.procuraAluno(matricula) != null) {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
 		}
-		alunos.add(novoAluno);
+		this.alunos.add(novoAluno);
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class AlunoController {
 	 * @return informacoes do aluno
 	 */
 	public String recuperaAluno(String matricula) {
-		Aluno aluno = procuraAluno(matricula);
+		Aluno aluno = this.procuraAluno(matricula);
 		if (aluno == null) {
 			throw new IllegalArgumentException(
 					"Erro na busca por aluno: Aluno nao encontrado");
@@ -72,9 +72,9 @@ public class AlunoController {
 	 * @return lista de alunos
 	 */
 	public String listarAlunos() {
-		Collections.sort(alunos, comparator);
+		Collections.sort(this.alunos, comparator);
 		String lista = "";
-		for (Aluno aluno : alunos) {
+		for (Aluno aluno : this.alunos) {
 			if (!lista.equals("")) {
 				lista += ", ";
 			}
@@ -94,7 +94,7 @@ public class AlunoController {
 	 * @return um dado do aluno
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		Aluno aluno = procuraAluno(matricula);
+		Aluno aluno = this.procuraAluno(matricula);
 		if (aluno == null) {
 			throw new IllegalArgumentException(
 					"Erro na obtencao de informacao de aluno: Aluno nao encontrado");
@@ -113,7 +113,7 @@ public class AlunoController {
 	 *            nivel de proficiencia para essa disciplina
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-		Aluno aluno = procuraAluno(matricula);
+		Aluno aluno = this.procuraAluno(matricula);
 		if (aluno == null) {
 			throw new IllegalArgumentException(
 					"Erro na definicao de papel: Tutor nao encontrado");
@@ -130,7 +130,7 @@ public class AlunoController {
 	 * @return dados do tutor
 	 */
 	public String recuperaTutor(String matricula) {
-		Aluno aluno = procuraAluno(matricula);
+		Aluno aluno = this.procuraAluno(matricula);
 		if (aluno == null) {
 			throw new IllegalArgumentException(
 					"Erro na busca por tutor: Tutor nao encontrado");
@@ -145,7 +145,7 @@ public class AlunoController {
 	 */
 	public String listarTutores() {
 		String lista = "";
-		for (Aluno aluno : alunos) {
+		for (Aluno aluno : this.alunos) {
 			if (aluno.ehTutor()) {
 				if (!lista.equals("")) {
 					lista += ", ";
@@ -186,7 +186,7 @@ public class AlunoController {
 	}
 
 	private Aluno procuraAluno(String matricula) {
-		for (Aluno aluno : alunos) {
+		for (Aluno aluno : this.alunos) {
 			if (aluno.getMatricula().equals(matricula)) {
 				return aluno;
 			}
