@@ -194,14 +194,58 @@ public class AlunoController {
 		aluno.getTutor().adicionaLocal(local);
 	}
 
+	/**
+	 * Verifica se um determinado horario esta
+	 * entre os horarios de atendimento de um tutor.
+	 * 
+	 * @param email
+	 *     email do tutor
+	 * @param horario
+	 *            horario a ser pesquisado
+	 * @param dia
+	 *            dia a ser pesquisado
+	 *            
+	 * @return true, se o horario for um dos horarios de atendimento do tutor,
+	 *     e false caso contrario
+	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
-		return true;
+		Aluno aluno = this.procuraAlunoEmail(email);
+		if (aluno == null || !aluno.ehTutor()) {
+			throw new IllegalArgumentException(
+					"Erro na consulta de horario: tutor nao cadastrado");
+		}
+		return aluno.getTutor().consultaHorario(dia, horario);
 	}
 
+	/**
+	 * Verifica se um determinado local esta entre
+	 * os locais de atendimento de um tutor.
+	 * 
+	 * @param email
+	 *     email do tutor
+	 * @param local
+	 *            local a ser pesquisado
+	 *            
+	 * @return true, se o local for um dos locais de atendimento do tutor,
+	 *     e false caso contrario
+	 */
 	public boolean consultaLocal(String email, String local) {
-		return true;
+		Aluno aluno = this.procuraAlunoEmail(email);
+		if (aluno == null || !aluno.ehTutor()) {
+			throw new IllegalArgumentException(
+					"Erro na consulta de local de atendimento: tutor nao cadastrado");
+		}
+		return aluno.getTutor().consultaLocal(local);
 	}
 
+	/**
+	 * Verifica se um aluno esta cadastrado no sistema, dada sua matricula.
+	 * 
+	 * @param matricula
+	 *     a matricula do aluno
+	 *     
+	 * @return o Aluno caso este esteja cadastrado e null caso contrario
+	 */
 	private Aluno procuraAlunoMatricula(String matricula) {
 		for (Aluno aluno : this.alunos) {
 			if (aluno.getMatricula().equals(matricula)) {
@@ -211,6 +255,14 @@ public class AlunoController {
 		return null;
 	}
 	
+	/**
+	 * Verifica se um aluno esta cadastrado no sistema, dado seu email.
+	 * 
+	 * @param email
+	 *     o email do aluno
+	 *     
+	 * @return o Aluno caso este esteja cadastrado e null caso contrario
+	 */
 	private Aluno procuraAlunoEmail(String email) {
 		for (Aluno aluno : this.alunos) {
 			if (aluno.getEmail().equals(email)) {
