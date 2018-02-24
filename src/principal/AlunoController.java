@@ -42,7 +42,7 @@ public class AlunoController {
 			String codigoCurso, String telefone, String email) {
 		Aluno novoAluno = new Aluno(
 				nome, matricula, codigoCurso, telefone, email);
-		if (this.procuraAluno(matricula) != null) {
+		if (this.procuraAlunoMatricula(matricula) != null) {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
 		}
@@ -58,7 +58,7 @@ public class AlunoController {
 	 * @return informacoes do aluno
 	 */
 	public String recuperaAluno(String matricula) {
-		Aluno aluno = this.procuraAluno(matricula);
+		Aluno aluno = this.procuraAlunoMatricula(matricula);
 		if (aluno == null) {
 			throw new IllegalArgumentException(
 					"Erro na busca por aluno: Aluno nao encontrado");
@@ -94,7 +94,7 @@ public class AlunoController {
 	 * @return um dado do aluno
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		Aluno aluno = this.procuraAluno(matricula);
+		Aluno aluno = this.procuraAlunoMatricula(matricula);
 		if (aluno == null) {
 			throw new IllegalArgumentException(
 					"Erro na obtencao de informacao de aluno: Aluno nao encontrado");
@@ -113,7 +113,7 @@ public class AlunoController {
 	 *            nivel de proficiencia para essa disciplina
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-		Aluno aluno = this.procuraAluno(matricula);
+		Aluno aluno = this.procuraAlunoMatricula(matricula);
 		if (aluno == null) {
 			throw new IllegalArgumentException(
 					"Erro na definicao de papel: Tutor nao encontrado");
@@ -130,7 +130,7 @@ public class AlunoController {
 	 * @return dados do tutor
 	 */
 	public String recuperaTutor(String matricula) {
-		Aluno aluno = this.procuraAluno(matricula);
+		Aluno aluno = this.procuraAlunoMatricula(matricula);
 		if (aluno == null) {
 			throw new IllegalArgumentException(
 					"Erro na busca por tutor: Tutor nao encontrado");
@@ -157,7 +157,23 @@ public class AlunoController {
 		return lista;
 	}
 	
+	/**
+	 * Cadastra um horario de atendimento de um tutor.
+	 * 
+	 * @param email
+	 *     o email do tutor
+	 * @param horario
+	 *            horario no referente dia a ser adicionado
+	 * @param dia
+	 *            dia disponivel
+	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
+		Aluno aluno = this.procuraAlunoEmail(email);
+		if (aluno == null || !aluno.ehTutor()) {
+			throw new IllegalArgumentException(
+					"Erro no cadastrar horario: tutor nao cadastrado");
+		}
+		aluno.getTutor().adicionaHorario(dia, horario);
 
 	}
 	
@@ -170,11 +186,12 @@ public class AlunoController {
 	 *     local da tutoria
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		for(Aluno aluno: this.alunos) {
-			if(aluno.getEmail().equals(email)) {
-				aluno.adicionaLocal(local);
-			}
+		Aluno aluno = this.procuraAlunoEmail(email);
+		if (aluno == null || !aluno.ehTutor()) {
+			throw new IllegalArgumentException(
+					"Erro no cadastrar local de atendimento: tutor nao cadastrado");
 		}
+		aluno.getTutor().adicionaLocal(local);
 	}
 
 	public boolean consultaHorario(String email, String horario, String dia) {
@@ -185,9 +202,18 @@ public class AlunoController {
 		return true;
 	}
 
-	private Aluno procuraAluno(String matricula) {
+	private Aluno procuraAlunoMatricula(String matricula) {
 		for (Aluno aluno : this.alunos) {
 			if (aluno.getMatricula().equals(matricula)) {
+				return aluno;
+			}
+		}
+		return null;
+	}
+	
+	private Aluno procuraAlunoEmail(String email) {
+		for (Aluno aluno : this.alunos) {
+			if (aluno.getEmail().equals(email)) {
 				return aluno;
 			}
 		}

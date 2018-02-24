@@ -93,6 +93,15 @@ public class Aluno {
 	public String getEmail() {
 		return this.email;
 	}
+	
+	/**
+	 * Retorna o objeto tutor do aluno
+	 * 
+	 * @return tutor
+	 */
+	public Tutor getTutor() {
+		return this.tutor;
+	}
 
 	/**
 	 * Cria uma nova instancia para tutor, se este for nulo, e adiciona a nova
