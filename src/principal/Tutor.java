@@ -44,17 +44,10 @@ public class Tutor {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * Adiciona um novo local de atendimento
-	 * 
-	 * @param local
-	 *            local de atendimento a ser adicionado
-=======
 	 * Adiciona um local de atendimento.
 	 * 
 	 * @param local
 	 *            local de atendimento
->>>>>>> b6b9380e50afc7ea772de7ecea0227b1f0fafb94
 	 */
 	public void adicionaLocal(String local) {
 		if (local == null || local.trim().equals("")) {
@@ -69,11 +62,7 @@ public class Tutor {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * Adiciona um novo horario para atendimento
-=======
 	 * Adiciona um horario de atendimento.
->>>>>>> b6b9380e50afc7ea772de7ecea0227b1f0fafb94
 	 * 
 	 * @param dia
 	 *            dia disponivel
@@ -81,14 +70,6 @@ public class Tutor {
 	 *            horario no referente dia a ser adicionado
 	 */
 	public void adicionaHorario(String dia, String horario) {
-<<<<<<< HEAD
-		validaDiaHorario(dia, horario);
-		
-	}
-
-	/**
-	 * Valida a disciplina e proficiencia.
-=======
 		this.validaDiaHorario(dia, horario);
 
 		if (!this.horarios.containsKey(dia)) {
@@ -132,7 +113,6 @@ public class Tutor {
 
 	/**
 	 * Valida disciplina e proficiencia.
->>>>>>> b6b9380e50afc7ea772de7ecea0227b1f0fafb94
 	 * 
 	 * @param disciplina
 	 *            disciplina da tutoria
@@ -155,11 +135,7 @@ public class Tutor {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * Valida o dia e horario de atendimento
-=======
 	 * Valida dia e horario de atendimento.
->>>>>>> b6b9380e50afc7ea772de7ecea0227b1f0fafb94
 	 * 
 	 * @param dia
 	 *            dia disponivel
