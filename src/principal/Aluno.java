@@ -118,17 +118,6 @@ public class Aluno {
 		}
 		this.tutor.adicionaDisciplina(disciplina, proficiencia);
 	}
-	
-	/**
-	 * Adciona local de tutoria.
-	 * 
-	 * @param local 
-	 *     representacao do local de tutoria
-	 */
-	public void adicionaLocal(String local) {
-		this.tutor.adicionaLocal(local);
-	}
-
 	/**
 	 * Verifica se o aluno eh tutor de alguma disciplina.
 	 * 
