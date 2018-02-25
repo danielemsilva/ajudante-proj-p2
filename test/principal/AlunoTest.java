@@ -199,10 +199,10 @@ public class AlunoTest {
 	 */
 	@Test
 	public void testToStringSemTelefone() {
-		Aluno a = new Aluno(
-				"Joao", "111111", "CC", "", "joaozinho@blizzad.com");
-		assertEquals(a.toString(),
-				"111111 - Joao - CC - joaozinho@blizzad.com");
+		Aluno novoAluno = new Aluno(
+				"Lucas", "1233432","dss2", "","luquinhas@blizzad.com");
+		assertEquals("1233432 - Lucas - dss2 - luquinhas@blizzad.com", 
+				novoAluno.toString());
 	}
 	
 	/**
@@ -210,10 +210,8 @@ public class AlunoTest {
 	 */
 	@Test
 	public void testToStringComTelefone() {
-		Aluno a = new Aluno(
-				"Joao", "111111", "CC", "999999999", "joaozinho@blizzad.com");
-		assertEquals(a.toString(), 
-				"111111 - Joao - CC - 999999999 - joaozinho@blizzad.com");
+		assertEquals(this.aluno.toString(), 
+				"122312 - Joao - cc9 - 8390890923 - joaozinho@blizzad.com");
 	}
 	
 	/**
@@ -239,4 +237,38 @@ public class AlunoTest {
 				"Marcos", "222222", "CC", "888888888", "marquinhos@blizzad.com");
 		assertNotEquals(a, b);
 	}
+	
+	/**
+	 * Verifica se a instancia de tutor de um aluno que nao e tutor e nula.
+	 */
+	@Test
+	public void testGetTutorNulo() {
+		assertEquals(null, this.aluno.getTutor());
+	}
+	
+	/**
+	 * Verifica se um aluno que nao e tutor pode se tornar tutor.
+	 */
+	@Test
+	public void testTornarTutor() {
+		this.aluno.tornarTutor("programacao", 4);
+	}
+	
+	/**
+	 * Verifica se um aluno, que nao e tutor, e tutor.
+	 */
+	@Test
+	public void testEhTutorFalse() {
+		assertEquals(false, this.aluno.ehTutor());
+	}
+	
+	/**
+	 * Verifica se um aluno, que e tutor, e tutor.
+	 */
+	@Test
+	public void testEhTutorTrue() {
+		aluno.tornarTutor("Programcao", 4);
+		assertEquals(true,this.aluno.ehTutor());
+	}
+		
 }

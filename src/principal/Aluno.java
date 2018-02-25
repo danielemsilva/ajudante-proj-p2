@@ -120,16 +120,6 @@ public class Aluno {
 	}
 	
 	/**
-	 * Adciona local de tutoria.
-	 * 
-	 * @param local 
-	 *     representacao do local de tutoria
-	 */
-	public void adicionaLocal(String local) {
-		this.tutor.adicionaLocal(local);
-	}
-
-	/**
 	 * Verifica se o aluno e tutor de alguma disciplina.
 	 * 
 	 * @return true, se o aluno for tutor,

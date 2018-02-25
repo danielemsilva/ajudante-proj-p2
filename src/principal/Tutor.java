@@ -152,4 +152,41 @@ public class Tutor {
 					"Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
 		}
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((disciplinas == null) ? 0 : disciplinas.hashCode());
+		result = prime * result + ((horarios == null) ? 0 : horarios.hashCode());
+		result = prime * result + ((locais == null) ? 0 : locais.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tutor other = (Tutor) obj;
+		if (disciplinas == null) {
+			if (other.disciplinas != null)
+				return false;
+		} else if (!disciplinas.equals(other.disciplinas))
+			return false;
+		if (horarios == null) {
+			if (other.horarios != null)
+				return false;
+		} else if (!horarios.equals(other.horarios))
+			return false;
+		if (locais == null) {
+			if (other.locais != null)
+				return false;
+		} else if (!locais.equals(other.locais))
+			return false;
+		return true;
+	}
 }
