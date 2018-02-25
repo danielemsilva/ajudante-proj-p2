@@ -30,7 +30,7 @@ public class AlunoController {
 	 * @param nome
 	 *            nome do aluno
 	 * @param matricula
-	 *            matricula
+	 *            matricula do aluno
 	 * @param codigoCurso
 	 *            codigo do curso que ele pertence
 	 * @param telefone

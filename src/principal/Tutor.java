@@ -19,7 +19,7 @@ public class Tutor {
 	private List<String> locais;
 
 	/**
-	 * Constroi uma tutoria, inicializando os mapas disciplinas e horarios
+	 * Constroi um tutor, inicializando os mapas disciplinas e horarios
 	 * e a lista locais.
 	 * 
 	 */

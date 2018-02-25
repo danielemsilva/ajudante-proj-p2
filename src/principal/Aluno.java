@@ -130,7 +130,7 @@ public class Aluno {
 	}
 
 	/**
-	 * Verifica se o aluno eh tutor de alguma disciplina.
+	 * Verifica se o aluno e tutor de alguma disciplina.
 	 * 
 	 * @return true, se o aluno for tutor,
 	 *     e false caso contrario
