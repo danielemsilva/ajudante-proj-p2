@@ -94,7 +94,7 @@ public class TutorTest {
 	
 	/**
 	 * Verifica se um horario de atendimento nao cadastrado
-	 * esta entre os locais de atendimentos de um tutor.
+	 * esta entre os horarios de atendimentos de um tutor.
 	 */
 	@Test
 	public void testConsultaHorarioNaoCadastrado() {
@@ -103,12 +103,31 @@ public class TutorTest {
 	
 	/**
 	 * Verifica se um horario de atendimento cadastrado
-	 * esta entre os locais de atendimentos de um tutor.
+	 * esta entre os horarios de atendimentos de um tutor.
 	 */
 	@Test
 	public void testConsultaHorarioCadastrado() {
 		this.tutor.adicionaHorario("seg", "15:00");
 		assert(this.tutor.consultaHorario("seg", "15:00"));
+	}
+	
+	/**
+	 * Verifica se um local de atendimento nao cadastrado
+	 * esta entre os locais de atendimentos de um tutor.
+	 */
+	@Test
+	public void testConsultaLocalNaoCadastrado() {
+		assertFalse(this.tutor.consultaLocal("CAA"));
+	}
+	
+	/**
+	 * Verifica se um local de atendimento cadastrado
+	 * esta entre os locais de atendimentos de um tutor.
+	 */
+	@Test
+	public void testConsultaLocalCadastrado() {
+		this.tutor.adicionaLocal("CAA");
+		assert(this.tutor.consultaLocal("CAA"));
 	}
 
 }
