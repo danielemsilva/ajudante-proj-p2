@@ -142,10 +142,16 @@ public class AlunoControllerTest {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 		assertEquals(novoAluno.toString(), this.alunoController.recuperaTutor("1232423"));
 	}
+	/**
+	 * Espera-se que lance uma excecao, pois o aluno nao foi cadastrado
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void recuperarTutorAlunoNaoCadastradoTest() {
 		this.alunoController.recuperaAluno("232342");
 	}
+	/**
+	 * Espera-se que liste informacoes de todos os Tutores cadastrados
+	 */
 	@Test
 	public void listarTutores() {
 		this.alunoController.cadastrarAluno("Eliza", "345322", "CC44", "84679452353", "elizinha@blizzard.com");
@@ -153,54 +159,96 @@ public class AlunoControllerTest {
 		this.alunoController.tornarTutor("345322", "Calculo I", 3);
 		assertEquals("1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com, 345322 - Eliza - CC44 - 84679452353 - elizinha@blizzard.com",this.alunoController.listarTutores());
 	}
+	/**
+	 * Espera-se que cadastre horario de Tutoria
+	 */
 	@Test
 	public void cadastrarHorarioTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 		this.alunoController.cadastrarHorario("joaozinho@blizzard.com", "17:30", "21/03");
 	}
+	/**
+	 * Espera-se que lance excecao pois o email nao pode ser nulo
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void cadastrarHorarioEmailNuloTest() {
 		this.alunoController.cadastrarHorario(null, "17:30", "21/03");
 	}
+	/**
+	 * Espera-se que lance excecao pois o email nao pode ser vazio
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void cadastrarHorarioEmailVazioTest() {
 		this.alunoController.cadastrarHorario("", "17:30", "21/03");
 	}
+	/**
+	 * Espera-se que lance excecao pois o tutor nao foi cadastrado
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void cadastrarHorarioTutorNCadastradoTest() {
 		this.alunoController.cadastrarHorario("elizinha@blizzard.com", "14:30", "23/03");
 	}
+	/**
+	 * Espera-se que cadastre um local de atentimento da tutoria
+	 */
 	@Test
 	public void cadastrarLocalDeAtendimentoTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 		this.alunoController.cadastrarLocalDeAtendimento("joaozinho@blizzard.com", "LCC3");
 	}
+	/**
+	 * Espera-se que lance excecao pois o email nao pode ser nulo
+	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void cadastrarLocalDeAtendimentoNuloTest() {
+	public void cadastrarLocalDeAtendimentoEmailNuloTest() {
 		this.alunoController.cadastrarLocalDeAtendimento(null, "LCC3");
 	}
+	/**
+	 * Espera-se que lance excecao pois o email nao pode ser vazio
+	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void cadastrarLocalDeAtendimentoVazioTest() {
+	public void cadastrarLocalDeAtendimentoEmailVazioTest() {
 		this.alunoController.cadastrarLocalDeAtendimento("", "LCC3");
 	}
+	/**
+	 * Espera-se que lance excecao pois o tutor nao esta cadastrado
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void cadastrarLocalDeAtendimentoTutorNCadastradoTest() {
 		this.alunoController.cadastrarLocalDeAtendimento("elizinha@blizzard.com", "LCC3");
 	}
+	/**
+	 * Espera-se que retorne true pois o horario de tutoria esta cadastrado
+	 */
 	@Test
 	public void consultaHorarioTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 		this.alunoController.cadastrarHorario("joaozinho@blizzard.com", "17:30", "21/03");
 		assertEquals(true,this.alunoController.consultaHorario("joaozinho@blizzard.com", "17:30", "21/03"));
 	}
+	/**
+	 * Espera-se que retorne false pois o horario de tutoria nao esta cadastrado
+	 */
 	@Test
 	public void consultaHorarioNCadastradoTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 		this.alunoController.cadastrarHorario("joaozinho@blizzard.com", "14:30", "21/03");
 		assertEquals(false,this.alunoController.consultaHorario("joaozinho@blizzard.com", "17:30", "21/03"));
 	}
+	/**
+	 * Espera-se que retorne false pois o tutor nao esta cadastrado
+	 */
 	@Test
 	public void consultaHorarioTutorNCadastradoTest() {
 		assertEquals(false,this.alunoController.consultaHorario("elizinha@blizzard.com", "17:30", "21/03"));
+	}
+	/**
+	 * Espera-se que retorne true pois o local de tutoria esta cadastrado
+	 */
+	@Test
+	public void consultaLocalDeAtendimentoTest() {
+		this.alunoController.tornarTutor("1232423", "Programacao", 4);
+		this.alunoController.cadastrarLocalDeAtendimento("joaozinho@blizzard.com", "UFCG");
+		assertEquals(true,this.alunoController.consultaLocal("joaozinho@blizzard.com", "UFCG"));
 	}
 }
