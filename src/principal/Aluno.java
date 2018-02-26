@@ -61,8 +61,6 @@ public class Aluno {
 			return this.telefone;
 		} else if (atributo.equals("Email")) {
 			return this.email;
-		} else {
-			// lança erro de atributo invalido
 		}
 		return "";
 	}
