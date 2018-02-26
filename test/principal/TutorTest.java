@@ -88,7 +88,27 @@ public class TutorTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAdicionaLocalJaCadastrado() {
-		this.tutor.adicionaLocal(null);
+		this.tutor.adicionaLocal("CAA");
+		this.tutor.adicionaLocal("CAA");
+	}
+	
+	/**
+	 * Verifica se um horario de atendimento nao cadastrado
+	 * esta entre os locais de atendimentos de um tutor.
+	 */
+	@Test
+	public void testConsultaHorarioNaoCadastrado() {
+		assertFalse(this.tutor.consultaHorario("seg", "13:00"));
+	}
+	
+	/**
+	 * Verifica se um horario de atendimento cadastrado
+	 * esta entre os locais de atendimentos de um tutor.
+	 */
+	@Test
+	public void testConsultaHorarioCadastrado() {
+		this.tutor.adicionaHorario("seg", "15:00");
+		assert(this.tutor.consultaHorario("seg", "15:00"));
 	}
 
 }
