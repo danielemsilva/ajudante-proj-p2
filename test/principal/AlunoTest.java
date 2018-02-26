@@ -10,265 +10,245 @@ import org.junit.Test;
  *
  */
 public class AlunoTest {
-	
-	Aluno aluno;
-	
+
+	private Aluno aluno;
+
 	/**
-	 * Cria uma instância de Aluno.
+	 * Cria uma instancia de Aluno.
 	 */
 	@Before
 	public void iniciaAluno() {
-		this.aluno = new Aluno(
-				"Joao", "122312", "cc9", "8390890923", "joaozinho@blizzad.com");
+		this.aluno = new Aluno("Joao", "122312", "cc9", "8390890923", "joaozinho@blizzad.com");
 	}
-	
+
 	/**
 	 * Verifica se um aluno com nome vazio pode ser criado.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoNomeVazio() {
-		Aluno a = new Aluno(
-				"", "122312", "cc9", "8390890923", "joaozinho@blizzad.com");
+		new Aluno("", "122312", "cc9", "8390890923", "joaozinho@blizzad.com");
 	}
-	
+
 	/**
 	 * Verifica se um aluno com nome nulo pode ser criado.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoNomeNulo() {
-		Aluno a = new Aluno(
-				null, "122312", "cc9", "8390890923", "joaozinho@blizzad.com");
+		new Aluno(null, "122312", "cc9", "8390890923", "joaozinho@blizzad.com");
 	}
-	
+
 	/**
 	 * Verifica se um aluno com matricula vazia pode ser criado.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoMatriculaVazia() {
-		Aluno a = new Aluno(
-				"Joao", "", "cc9", "8390890923", "joaozinho@blizzad.com");
+		new Aluno("Joao", "", "cc9", "8390890923", "joaozinho@blizzad.com");
 	}
-	
+
 	/**
 	 * Verifica se um aluno com matricula nula pode ser criado.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoMatriculaNula() {
-		Aluno a = new Aluno(
-				"Joao", null, "cc9", "8390890923", "joaozinho@blizzad.com");
+		new Aluno("Joao", null, "cc9", "8390890923", "joaozinho@blizzad.com");
 	}
-	
+
 	/**
 	 * Verifica se um aluno com codigo do curso vazio pode ser criado.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoCodigoCursoVazio() {
-		Aluno a = new Aluno(
-				"Joao", "111111", "", "8390890923", "joaozinho@blizzad.com");
+		new Aluno("Joao", "111111", "", "8390890923", "joaozinho@blizzad.com");
 	}
-	
+
 	/**
 	 * Verifica se um aluno com codigo do curso nulo pode ser criado.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoCodigoCursoNulo() {
-		Aluno a = new Aluno(
-				"Joao", "111111", null, "8390890923", "joaozinho@blizzad.com");
+		new Aluno("Joao", "111111", null, "8390890923", "joaozinho@blizzad.com");
 	}
-	
+
 	/**
 	 * Verifica se um aluno com email vazio pode ser criado.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoEmailVazio() {
-		Aluno a = new Aluno(
-				"Joao", "111111", "CC", "8390890923", "");
+		new Aluno("Joao", "111111", "CC", "8390890923", "");
 	}
-	
+
 	/**
 	 * Verifica se um aluno com email nulo pode ser criado.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoEmailNulo() {
-		Aluno a = new Aluno(
-				"Joao", "111111", "", "8390890923", null);
+		new Aluno("Joao", "111111", "", "8390890923", null);
 	}
-	
+
 	/**
 	 * Verifica se um aluno com email sem '@' pode ser criado.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoEmailInvalido1() {
-		Aluno a = new Aluno(
-				"Joao", "111111", "CC", "8390890923", "joaozinhoblizzad.com");
+		new Aluno("Joao", "111111", "CC", "8390890923", "joaozinhoblizzad.com");
 	}
-	
+
 	/**
 	 * Verifica se um aluno com email sem conteudo antes do '@' pode ser criado.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoEmailInvalido2() {
-		Aluno a = new Aluno(
-				"Joao", "111111", "CC", "8390890923", "@blizzad.com");
+		new Aluno("Joao", "111111", "CC", "8390890923", "@blizzad.com");
 	}
-	
+
 	/**
 	 * Verifica se um aluno com email sem conteudo depois do '@' pode ser criado.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoEmailInvalido3() {
-		Aluno a = new Aluno(
-				"Joao", "111111", "CC", "8390890923", "joaozinho@");
+		new Aluno("Joao", "111111", "CC", "8390890923", "joaozinho@");
 	}
-	
+
 	/**
 	 * Verifica se um aluno com telefone vazio pode ser criado.
 	 */
 	@Test
 	public void testCriaAlunoTelefoneVazio() {
-		Aluno a = new Aluno(
-				"Joao", "111111", "CC", "", "joaozinho@blizzad.com");
+		new Aluno("Joao", "111111", "CC", "", "joaozinho@blizzad.com");
 	}
-	
+
 	/**
-	 * Verifica se a informacao 'Nome' é retornada como esperado. 
+	 * Verifica se a informacao 'Nome' eh retornada como esperado.
 	 */
 	@Test
 	public void getInfoNomeTest() {
 		assertEquals("Joao", this.aluno.getInfo("Nome"));
 	}
-	
+
 	/**
-	 * Verifica se a informacao 'Matricula' é retornada como esperado. 
+	 * Verifica se a informacao 'Matricula' eh retornada como esperado.
 	 */
 	@Test
 	public void getInfoMatriculaTest() {
 		assertEquals("122312", this.aluno.getInfo("Matricula"));
 	}
-	
+
 	/**
-	 * Verifica se a informacao 'CodigoCurso' é retornada como esperado. 
+	 * Verifica se a informacao 'CodigoCurso' eh retornada como esperado.
 	 */
 	@Test
-	public void getInfocodigoCursoTest() {
+	public void getInfoCodigoCursoTest() {
 		assertEquals("cc9", this.aluno.getInfo("CodigoCurso"));
 	}
-	
+
 	/**
-	 * Verifica se a informacao 'Telefone' é retornada como esperado. 
+	 * Verifica se a informacao 'Telefone' eh retornada como esperado.
 	 */
 	@Test
-	public void getInfotelefoneTest() {
+	public void getInfoTelefoneTest() {
 		assertEquals("8390890923", this.aluno.getInfo("Telefone"));
 	}
-	
+
 	/**
-	 * Verifica se a informacao 'Email' é retornada como esperado. 
+	 * Verifica se a informacao 'Email' eh retornada como esperado.
 	 */
 	@Test
-	public void getInfoemailTest() {
+	public void getInfoEmailTest() {
 		assertEquals("joaozinho@blizzad.com", this.aluno.getInfo("Email"));
 	}
-	
+
 	/**
-	 * Verifica se a matricula é retornada como esperado. 
+	 * Verifica se a matricula eh retornada como esperado.
 	 */
 	@Test
 	public void getMatricula() {
 		assertEquals("122312", this.aluno.getMatricula());
 	}
-	
+
 	/**
-	 * Verifica se nome é retornado como esperado. 
+	 * Verifica se nome eh retornado como esperado.
 	 */
-	@Test 
+	@Test
 	public void getNomeTest() {
 		assertEquals("Joao", this.aluno.getNome());
 	}
-	
+
 	/**
-	 * Verifica se email é retornado como esperado. 
+	 * Verifica se email eh retornado como esperado.
 	 */
 	@Test
 	public void getEmailTest() {
 		assertEquals("joaozinho@blizzad.com", this.aluno.getEmail());
 	}
-	
+
 	/**
 	 * Verifica a representacao textual de um aluno sem telefone.
 	 */
 	@Test
 	public void testToStringSemTelefone() {
-		Aluno novoAluno = new Aluno(
-				"Lucas", "1233432","dss2", "","luquinhas@blizzad.com");
-		assertEquals("1233432 - Lucas - dss2 - luquinhas@blizzad.com", 
-				novoAluno.toString());
+		Aluno novoAluno = new Aluno("Lucas", "1233432", "dss2", "", "luquinhas@blizzad.com");
+		assertEquals("1233432 - Lucas - dss2 - luquinhas@blizzad.com", novoAluno.toString());
 	}
-	
+
 	/**
 	 * Verifica a representacao textual de um aluno com telefone.
 	 */
 	@Test
 	public void testToStringComTelefone() {
-		assertEquals(this.aluno.toString(), 
-				"122312 - Joao - cc9 - 8390890923 - joaozinho@blizzad.com");
+		assertEquals(this.aluno.toString(), "122312 - Joao - cc9 - 8390890923 - joaozinho@blizzad.com");
 	}
-	
+
 	/**
-	 * Verifica de dois alunos com matriculas iguais sao iguais.
+	 * Verifica se dois alunos com matriculas iguais sao iguais.
 	 */
 	@Test
 	public void testEqualsMatriculasIguais() {
-		Aluno a = new Aluno(
-				"Joao", "111111", "CC", "999999999", "joaozinho@blizzad.com");
-		Aluno b = new Aluno(
-				"Marcos", "111111", "CC", "888888888", "marquinhos@blizzad.com");
-		assertEquals(a, b);
+		Aluno aluno1 = new Aluno("Joao", "111111", "CC", "999999999", "joaozinho@blizzad.com");
+		Aluno aluno2 = new Aluno("Marcos", "111111", "CC", "888888888", "marquinhos@blizzad.com");
+		assertEquals(aluno1, aluno2);
 	}
-	
+
 	/**
-	 * Verifica de dois alunos com matriculas diferentes sao iguais.
+	 * Verifica se dois alunos com matriculas diferentes sao iguais.
 	 */
 	@Test
 	public void testEqualsMatriculasDiferentes() {
-		Aluno a = new Aluno(
-				"Joao", "111111", "CC", "999999999", "joaozinho@blizzad.com");
-		Aluno b = new Aluno(
-				"Marcos", "222222", "CC", "888888888", "marquinhos@blizzad.com");
-		assertNotEquals(a, b);
+		Aluno aluno1 = new Aluno("Joao", "111111", "CC", "999999999", "joaozinho@blizzad.com");
+		Aluno aluno2 = new Aluno("Marcos", "222222", "CC", "888888888", "marquinhos@blizzad.com");
+		assertNotEquals(aluno1, aluno2);
 	}
-	
+
 	/**
-	 * Verifica se a instancia de tutor de um aluno que nao e tutor e nula.
+	 * Verifica a instancia de tutor de um aluno que nao eh tutor.
 	 */
 	@Test
 	public void testGetTutorNulo() {
 		assertEquals(null, this.aluno.getTutor());
 	}
-	
+
 	/**
-	 * Verifica se um aluno que nao e tutor pode se tornar tutor.
+	 * Verifica se um aluno que nao eh tutor pode se tornar tutor.
 	 */
 	@Test
 	public void testTornarTutor() {
-		this.aluno.tornarTutor("programacao", 4);
+		this.aluno.tornarTutor("Programacao", 4);
 	}
-	
+
 	/**
-	 * Verifica se um aluno, que nao e tutor, e tutor.
+	 * Verifica se um aluno, que nao eh tutor, nao eh informado como tutor.
 	 */
 	@Test
 	public void testEhTutorFalse() {
 		assertEquals(false, this.aluno.ehTutor());
 	}
-	
+
 	/**
-	 * Verifica se um aluno, que e tutor, e tutor.
+	 * Verifica se um aluno, que eh tutor, eh informado como tutor.
 	 */
 	@Test
 	public void testEhTutorTrue() {
-		aluno.tornarTutor("Programcao", 4);
-		assertEquals(true,this.aluno.ehTutor());
+		aluno.tornarTutor("Programacao", 4);
+		assertEquals(true, this.aluno.ehTutor());
 	}
-		
+
 }
