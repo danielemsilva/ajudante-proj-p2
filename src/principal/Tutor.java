@@ -19,8 +19,8 @@ public class Tutor {
 	private List<String> locais;
 
 	/**
-	 * Constroi um tutor, inicializando os mapas disciplinas e horarios
-	 * e a lista locais.
+	 * Constroi um tutor, inicializando os mapas disciplinas e horarios e a lista
+	 * locais.
 	 * 
 	 */
 	public Tutor() {
@@ -35,8 +35,8 @@ public class Tutor {
 	 * @param disciplina
 	 *            nome da disciplina
 	 * @param proficiencia
-	 *            nivel de proficiencia nessa disciplina.
-	 *            Os valores possíveis pertencem ao conjunto [1, 5]
+	 *            nivel de proficiencia nessa disciplina. Os valores possíveis
+	 *            pertencem ao conjunto [1, 5]
 	 */
 	public void adicionaDisciplina(String disciplina, int proficiencia) {
 		this.validaDados(disciplina, proficiencia);
@@ -54,7 +54,7 @@ public class Tutor {
 			throw new IllegalArgumentException(
 					"Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
 		}
-		if (locais.contains(local)) {
+		if (this.locais.contains(local)) {
 			throw new IllegalArgumentException(
 					"Erro no cadastrar local de atendimento: Local ja cadastrado");
 		}
@@ -79,30 +79,29 @@ public class Tutor {
 	}
 
 	/**
-	 * Verifica se um determinado local esta entre
-	 * os locais onde o tutor atende.
+	 * Verifica se um determinado local esta entre os locais onde o tutor atende.
 	 * 
 	 * @param local
 	 *            local a ser pesquisado
-	 *            
-	 * @return true, se o local for um dos locais de atendimento do tutor,
-	 *     e false caso contrario
+	 * 
+	 * @return true, se o local for um dos locais de atendimento do tutor, e false
+	 *         caso contrario
 	 */
 	public boolean consultaLocal(String local) {
 		return this.locais.contains(local);
 	}
 
 	/**
-	 * Verifica se um determinado horario esta
-	 * entre os horarios de atendimento do tutor.
+	 * Verifica se um determinado horario esta entre os horarios de atendimento do
+	 * tutor.
 	 * 
 	 * @param dia
 	 *            dia a ser pesquisado
 	 * @param horario
 	 *            horario a ser pesquisado
-	 *            
-	 * @return true, se o horario for um dos horarios de atendimento do tutor,
-	 *     e false caso contrario
+	 * 
+	 * @return true, se o horario for um dos horarios de atendimento do tutor, e
+	 *         false caso contrario
 	 */
 	public boolean consultaHorario(String dia, String horario) {
 		if (!this.horarios.containsKey(dia)) {
@@ -124,7 +123,7 @@ public class Tutor {
 			throw new IllegalArgumentException(
 					"Erro na definicao de papel: Disciplina nao pode ser nula ou vazia");
 		}
-		if (disciplinas.containsKey(disciplina)) {
+		if (this.disciplinas.containsKey(disciplina)) {
 			throw new IllegalArgumentException(
 					"Erro na definicao de papel: Ja eh tutor dessa disciplina");
 		}
@@ -153,40 +152,55 @@ public class Tutor {
 		}
 	}
 
+	/**
+	 * Implementacao do hashcode de identificacao de tutor, baseado em disciplinas,
+	 * horarios e locais de atendimento.
+	 * 
+	 * @return hashcode
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((disciplinas == null) ? 0 : disciplinas.hashCode());
-		result = prime * result + ((horarios == null) ? 0 : horarios.hashCode());
-		result = prime * result + ((locais == null) ? 0 : locais.hashCode());
+		result = prime * result + ((this.disciplinas == null) ? 0 : this.disciplinas.hashCode());
+		result = prime * result + ((this.horarios == null) ? 0 : this.horarios.hashCode());
+		result = prime * result + ((this.locais == null) ? 0 : this.locais.hashCode());
 		return result;
 	}
 
+	/**
+	 * Compara dois objetos do tipo Tutor, caracterizados pelas disciplinas que
+	 * ensinam, horarios e locais de atendimento.
+	 * 
+	 * @param obj
+	 *            objeto a ser comparado
+	 * 
+	 * @return true, se os objetos forem iguais, e false caso contrario
+	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		Tutor outroTutor = (Tutor) obj;
+		if (this.disciplinas == null && outroTutor.disciplinas != null) {
 			return false;
-		Tutor other = (Tutor) obj;
-		if (disciplinas == null) {
-			if (other.disciplinas != null)
-				return false;
-		} else if (!disciplinas.equals(other.disciplinas))
+		} else if (!this.disciplinas.equals(outroTutor.disciplinas)) {
 			return false;
-		if (horarios == null) {
-			if (other.horarios != null)
-				return false;
-		} else if (!horarios.equals(other.horarios))
+		}
+		if (this.horarios == null && outroTutor.horarios != null) {
 			return false;
-		if (locais == null) {
-			if (other.locais != null)
-				return false;
-		} else if (!locais.equals(other.locais))
+		} else if (!this.horarios.equals(outroTutor.horarios)) {
 			return false;
+		}
+		if (this.locais == null && outroTutor.locais != null) {
+			return false;
+		} else if (!this.locais.equals(outroTutor.locais)) {
+			return false;
+		}
 		return true;
 	}
 }

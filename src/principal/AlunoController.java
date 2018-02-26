@@ -86,9 +86,9 @@ public class AlunoController {
 	 * @param matricula
 	 *            matricula do aluno
 	 * @param atributo
-	 *            categoria do dado
+	 *            categoria da informacao desejada
 	 * 
-	 * @return um dado do aluno
+	 * @return dado especifico do aluno
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
