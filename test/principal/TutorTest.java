@@ -56,5 +56,39 @@ public class TutorTest {
 	public void testAdicionaHorarioValido() {
 		this.tutor.adicionaHorario("seg", "15:00");
 	}
+	
+	/**
+	 * Verifica se um local de atendimento vazio pode ser adicionado a um tutor.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAdicionaLocalVazio() {
+		this.tutor.adicionaLocal("");
+	}
+	
+	/**
+	 * Verifica se um local de atendimento nulo pode ser adicionado a um tutor.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAdicionaLocalNulo() {
+		this.tutor.adicionaLocal(null);
+	}
+	
+	/**
+	 * Verifica se um local de atendimento nao cadastrado
+	 * pode ser adicionado a um tutor.
+	 */
+	@Test
+	public void testAdicionaLocalNaoCadastrado() {
+		this.tutor.adicionaLocal("CAA");
+	}
+	
+	/**
+	 * Verifica se um local de atendimento ja cadastrado
+	 * pode ser adicionado a um tutor.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAdicionaLocalJaCadastrado() {
+		this.tutor.adicionaLocal(null);
+	}
 
 }
