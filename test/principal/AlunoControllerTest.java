@@ -5,6 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Classe responsavel por testar as funcionalidades da classe AlunoController.
+ *
+ */
 public class AlunoControllerTest {
 
 	private AlunoController alunoController;
@@ -22,15 +26,17 @@ public class AlunoControllerTest {
 	 */
 	@Before
 	public void CadastraAlunoTest() {
-		this.alunoController.cadastrarAluno("Joao", "1232423", "DD34", "8467989023", "joaozinho@blizzard.com");
+		this.alunoController.cadastrarAluno(
+				"Joao", "1232423", "DD34", "8467989023", "joaozinho@blizzard.com");
 	}
 
 	/**
-	 * Verifica se o cadastro de um aluno sem telefone funciona como esperado.
+	 * Verifica se o cadastro de um aluno sem telefone pode ser realizado.
 	 */
 	@Test
 	public void cadastraAlunoSemTelefoneTest() {
-		this.alunoController.cadastrarAluno("Lucas", "1232428", "EER4", "", "luquinhas@blizzard.com");
+		this.alunoController.cadastrarAluno(
+				"Lucas", "1232428", "EER4", "", "luquinhas@blizzard.com");
 	}
 
 	/**
@@ -39,7 +45,8 @@ public class AlunoControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void cadastraAlunoMatriculaJaExistenteTest() {
-		this.alunoController.cadastrarAluno("Lucas", "1232423", "EER4", "832334521", "luquinhas@blizzard.com");
+		this.alunoController.cadastrarAluno(
+				"Lucas", "1232423", "EER4", "832334521", "luquinhas@blizzard.com");
 	}
 
 	/**
@@ -59,15 +66,25 @@ public class AlunoControllerTest {
 	public void recuperarAlunoNaoCadastrado() {
 		this.alunoController.recuperaAluno("1347895");
 	}
-
+	
 	/**
-	 * Verifica a lista retornada de todos os alunos cadastrados
+	 * Verifica a listagem dos alunos quando um aluno foi cadastrado.
 	 */
 	@Test
-	public void listarAlunos() {
-		this.alunoController.cadastrarAluno("Lucas", "1232428", "EER4", "", "luquinhas@blizzard.com");
-		assertEquals(
-				"1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com, 1232428 - Lucas - EER4 - luquinhas@blizzard.com",
+	public void testListarAlunosUmCadastrado() {
+		assertEquals("1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com",
+				this.alunoController.listarAlunos());
+	}
+
+	/**
+	 * Verifica a listagem dos alunos quando dois alunos foram cadastrados.
+	 */
+	@Test
+	public void testListarAlunosDoisCadastrados() {
+		this.alunoController.cadastrarAluno(
+				"Lucas", "1232428", "EER4", "", "luquinhas@blizzard.com");
+		assertEquals("1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com,"
+				+ " 1232428 - Lucas - EER4 - luquinhas@blizzard.com",
 				this.alunoController.listarAlunos());
 	}
 
@@ -76,7 +93,8 @@ public class AlunoControllerTest {
 	 */
 	@Test
 	public void getInfoMatriculaTest() {
-		assertEquals("1232423", this.alunoController.getInfoAluno("1232423", "Matricula"));
+		assertEquals("1232423", 
+				this.alunoController.getInfoAluno("1232423", "Matricula"));
 	}
 
 	/**
@@ -84,7 +102,8 @@ public class AlunoControllerTest {
 	 */
 	@Test
 	public void getInfoNomeTest() {
-		assertEquals("Joao", this.alunoController.getInfoAluno("1232423", "Nome"));
+		assertEquals("Joao", 
+				this.alunoController.getInfoAluno("1232423", "Nome"));
 	}
 
 	/**
@@ -92,7 +111,8 @@ public class AlunoControllerTest {
 	 */
 	@Test
 	public void getInfoCodigoCursoTest() {
-		assertEquals("DD34", this.alunoController.getInfoAluno("1232423", "CodigoCurso"));
+		assertEquals("DD34", 
+				this.alunoController.getInfoAluno("1232423", "CodigoCurso"));
 	}
 
 	/**
@@ -100,7 +120,8 @@ public class AlunoControllerTest {
 	 */
 	@Test
 	public void getInfoTelefoneTest() {
-		assertEquals("8467989023", this.alunoController.getInfoAluno("1232423", "Telefone"));
+		assertEquals("8467989023", 
+				this.alunoController.getInfoAluno("1232423", "Telefone"));
 	}
 
 	/**
@@ -108,142 +129,172 @@ public class AlunoControllerTest {
 	 */
 	@Test
 	public void getInfoEmailTest() {
-		assertEquals("joaozinho@blizzard.com", this.alunoController.getInfoAluno("1232423", "Email"));
+		assertEquals("joaozinho@blizzard.com", 
+				this.alunoController.getInfoAluno("1232423", "Email"));
 	}
 
 	/**
-	 * Espera-se excecao ao tentar consultar informacao de um aluno com matricula
-	 * nao cadastrada.
+	 * Verifica se uma informacao pode ser obtida de um aluno nao cadastrado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void getInfoAlunoNaoCadastradoTest() {
 		this.alunoController.getInfoAluno("234523", "Nome");
 	}
+	
 	/**
-	 * Espera-se que torne o Aluno um tutor
+	 * Verifica se um aluno cadastrado pode se tornar tutor de uma disciplina.
 	 */
 	@Test
 	public void tornarTutorTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 	}
+	
 	/**
-	 * Espera-se que lance uma excecao, pois o aluno nao foi cadastrado
+	 * Verifica se um aluno nao cadastrado pode se tornar tutor de uma 
+	 * disciplina.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void tornarTutorAlunoNaoCadastradoTest() {
 		this.alunoController.tornarTutor("237890", "Calculo I", 3);
 	}
+	
 	/**
-	 * Espera-se que recupere o Tutor que foi cadastrado
+	 * Verifica se um tutor cadastrado pode ser recuperado.
 	 */
 	@Test
 	public void recuperaTutorTest() {
-		Aluno novoAluno = new Aluno("Joao", "1232423", "DD34", "8467989023", "joaozinho@blizzard.com");
+		Aluno novoAluno = new Aluno("Joao", "1232423", "DD34", "8467989023",
+				"joaozinho@blizzard.com");
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
-		assertEquals(novoAluno.toString(), this.alunoController.recuperaTutor("1232423"));
+		assertEquals(novoAluno.toString(), this.alunoController.recuperaTutor(
+				"1232423"));
 	}
+	
 	/**
-	 * Espera-se que lance uma excecao, pois o aluno nao foi cadastrado
+	 * Verifica se um tutor nao cadastrado pode ser recuperado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void recuperarTutorAlunoNaoCadastradoTest() {
 		this.alunoController.recuperaAluno("232342");
 	}
+	
 	/**
-	 * Espera-se que liste informacoes de todos os Tutores cadastrados
-	 */
-	@Test
-	public void listarTutores() {
-		this.alunoController.cadastrarAluno("Eliza", "345322", "CC44", "84679452353", "elizinha@blizzard.com");
-		this.alunoController.tornarTutor("1232423", "Programacao", 4);
-		this.alunoController.tornarTutor("345322", "Calculo I", 3);
-		assertEquals("1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com, 345322 - Eliza - CC44 - 84679452353 - elizinha@blizzard.com",this.alunoController.listarTutores());
-	}
-	/**
-	 * Espera-se que cadastre horario de Tutoria
+	 * Verifica se um horario de atendimento pode ser cadastrado
+	 * para um email valido de tutor.
 	 */
 	@Test
 	public void cadastrarHorarioTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
-		this.alunoController.cadastrarHorario("joaozinho@blizzard.com", "17:30", "21/03");
+		this.alunoController.cadastrarHorario("joaozinho@blizzard.com",
+				"17:30", "21/03");
 	}
+	
 	/**
-	 * Espera-se que lance excecao pois o email nao pode ser nulo
+	 * Verifica se um horario de atendimento pode ser cadastrado
+	 * para um email nulo de tutor.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void cadastrarHorarioEmailNuloTest() {
 		this.alunoController.cadastrarHorario(null, "17:30", "21/03");
 	}
+	
 	/**
-	 * Espera-se que lance excecao pois o email nao pode ser vazio
+	 * Verifica se um horario de atendimento pode ser cadastrado
+	 * para um email vazio de tutor.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void cadastrarHorarioEmailVazioTest() {
 		this.alunoController.cadastrarHorario("", "17:30", "21/03");
 	}
+	
 	/**
-	 * Espera-se que lance excecao pois o tutor nao foi cadastrado
+	 * Verifica se um horario de atendimento pode ser cadastrado
+	 * para um email de tutor nao cadastrado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void cadastrarHorarioTutorNCadastradoTest() {
-		this.alunoController.cadastrarHorario("elizinha@blizzard.com", "14:30", "23/03");
+		this.alunoController.cadastrarHorario("elizinha@blizzard.com", "14:30",
+				"23/03");
 	}
+	
 	/**
-	 * Espera-se que cadastre um local de atentimento da tutoria
+	 * Verifica se um local de atendimento pode ser cadastrado
+	 * para um email valido de tutor.
 	 */
 	@Test
 	public void cadastrarLocalDeAtendimentoTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
-		this.alunoController.cadastrarLocalDeAtendimento("joaozinho@blizzard.com", "LCC3");
+		this.alunoController.cadastrarLocalDeAtendimento(
+				"joaozinho@blizzard.com", "LCC3");
 	}
+	
 	/**
-	 * Espera-se que lance excecao pois o email nao pode ser nulo
+	 * Verifica se um local de atendimento pode ser cadastrado
+	 * para um email nulo de tutor.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void cadastrarLocalDeAtendimentoEmailNuloTest() {
 		this.alunoController.cadastrarLocalDeAtendimento(null, "LCC3");
 	}
+	
 	/**
-	 * Espera-se que lance excecao pois o email nao pode ser vazio
+	 * Verifica se um local de atendimento pode ser cadastrado
+	 * para um email vazio de tutor.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void cadastrarLocalDeAtendimentoEmailVazioTest() {
 		this.alunoController.cadastrarLocalDeAtendimento("", "LCC3");
 	}
+	
 	/**
-	 * Espera-se que lance excecao pois o tutor nao esta cadastrado
+	 * Verifica se um local de atendimento pode ser cadastrado
+	 * para um email de tutor nao cadastrado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void cadastrarLocalDeAtendimentoTutorNCadastradoTest() {
-		this.alunoController.cadastrarLocalDeAtendimento("elizinha@blizzard.com", "LCC3");
+		this.alunoController.cadastrarLocalDeAtendimento(
+				"elizinha@blizzard.com", "LCC3");
 	}
+	
 	/**
-	 * Espera-se que retorne true pois o horario de tutoria esta cadastrado
+	 * Verifica se um horario de atendimento cadastrado de um tutor
+	 * esta entre seus horarios de atendimento.
 	 */
 	@Test
 	public void consultaHorarioTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
-		this.alunoController.cadastrarHorario("joaozinho@blizzard.com", "17:30", "21/03");
-		assertEquals(true,this.alunoController.consultaHorario("joaozinho@blizzard.com", "17:30", "21/03"));
+		this.alunoController.cadastrarHorario("joaozinho@blizzard.com",
+				"17:30", "21/03");
+		assertEquals(true,this.alunoController.consultaHorario(
+				"joaozinho@blizzard.com", "17:30", "21/03"));
 	}
+	
 	/**
-	 * Espera-se que retorne false pois o horario de tutoria nao esta cadastrado
+	 * Verifica se um horario de atendimento nao cadastrado de um tutor
+	 * esta entre seus horarios de atendimento.
 	 */
 	@Test
 	public void consultaHorarioNCadastradoTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
-		this.alunoController.cadastrarHorario("joaozinho@blizzard.com", "14:30", "21/03");
-		assertEquals(false,this.alunoController.consultaHorario("joaozinho@blizzard.com", "17:30", "21/03"));
+		this.alunoController.cadastrarHorario("joaozinho@blizzard.com",
+				"14:30", "21/03");
+		assertEquals(false, this.alunoController.consultaHorario(
+				"joaozinho@blizzard.com", "17:30", "21/03"));
 	}
+	
 	/**
-	 * Espera-se que retorne false pois o tutor nao esta cadastrado
+	 * Verifica se um horario de atendimento de um tutor nao cadastrado
+	 * esta entre seus horarios de atendimento.
 	 */
 	@Test
 	public void consultaHorarioTutorNCadastradoTest() {
-		assertEquals(false,this.alunoController.consultaHorario("elizinha@blizzard.com", "17:30", "21/03"));
+		assertEquals(false, this.alunoController.consultaHorario(
+				"elizinha@blizzard.com", "17:30", "21/03"));
 	}
+	
 	/**
-	 * Espera-se que retorne true pois o local de tutoria esta cadastrado
+	 * Verifica se um local de atendimento cadastrado de um tutor
+	 * esta entre seus locais de atendimento.
 	 */
 	@Test
 	public void consultaLocalDeAtendimentoTest() {
@@ -251,4 +302,26 @@ public class AlunoControllerTest {
 		this.alunoController.cadastrarLocalDeAtendimento("joaozinho@blizzard.com", "UFCG");
 		assertEquals(true,this.alunoController.consultaLocal("joaozinho@blizzard.com", "UFCG"));
 	}
+	
+	/**
+	 * Testa a listagem dos tutores quando nenhum tutor foi cadastrado.
+	 */
+	@Test
+	public void listarTutoresSemTutores() {
+		assertEquals(this.alunoController.listarTutores(), "");
+	}
+	
+	/**
+	 * Testa a listagem dos tutores quando um tutor foi cadastrado.
+	 */
+	@Test
+	public void listarTutoresComUmTutor() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.tornarTutor("111111", "TG", 4);
+		assertEquals(this.alunoController.listarTutores(),
+				"111111 - Beatriz - CC - 99999999 - bia@ccc.com");
+	}
+
 }
+

@@ -5,6 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Classe responsavel por testar as funcionalidades da classe Tutor.
+ *
+ */
 public class TutorTest {
 
 	private Tutor tutor;
@@ -56,8 +60,6 @@ public class TutorTest {
 	public void testAdicionaHorarioValido() {
 		this.tutor.adicionaHorario("seg", "15:00");
 	}
-<<<<<<< HEAD
-=======
 	
 	/**
 	 * Verifica se um local de atendimento vazio pode ser adicionado a um tutor.
@@ -131,6 +133,5 @@ public class TutorTest {
 		this.tutor.adicionaLocal("CAA");
 		assert(this.tutor.consultaLocal("CAA"));
 	}
->>>>>>> 4445a8281238c327b3c0baee4004e6eedacebda0
 
 }

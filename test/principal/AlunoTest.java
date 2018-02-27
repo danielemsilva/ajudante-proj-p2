@@ -18,7 +18,8 @@ public class AlunoTest {
 	 */
 	@Before
 	public void iniciaAluno() {
-		this.aluno = new Aluno("Joao", "122312", "cc9", "8390890923", "joaozinho@blizzad.com");
+		this.aluno = new Aluno("Joao", "122312", "cc9", "8390890923",
+				"joaozinho@blizzad.com");
 	}
 
 	/**
@@ -66,7 +67,8 @@ public class AlunoTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoCodigoCursoNulo() {
-		new Aluno("Joao", "111111", null, "8390890923", "joaozinho@blizzad.com");
+		new Aluno("Joao", "111111", null, "8390890923",
+				"joaozinho@blizzad.com");
 	}
 
 	/**
@@ -90,11 +92,13 @@ public class AlunoTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoEmailInvalido1() {
-		new Aluno("Joao", "111111", "CC", "8390890923", "joaozinhoblizzad.com");
+		new Aluno("Joao", "111111", "CC", "8390890923",
+				"joaozinhoblizzad.com");
 	}
 
 	/**
-	 * Verifica se um aluno com email sem conteudo antes do '@' pode ser criado.
+	 * Verifica se um aluno com email sem conteudo antes do '@' pode ser
+	 * criado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoEmailInvalido2() {
@@ -102,7 +106,8 @@ public class AlunoTest {
 	}
 
 	/**
-	 * Verifica se um aluno com email sem conteudo depois do '@' pode ser criado.
+	 * Verifica se um aluno com email sem conteudo depois do '@' pode ser
+	 * criado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCriaAlunoEmailInvalido3() {
@@ -186,8 +191,10 @@ public class AlunoTest {
 	 */
 	@Test
 	public void testToStringSemTelefone() {
-		Aluno novoAluno = new Aluno("Lucas", "1233432", "dss2", "", "luquinhas@blizzad.com");
-		assertEquals("1233432 - Lucas - dss2 - luquinhas@blizzad.com", novoAluno.toString());
+		Aluno novoAluno = new Aluno("Lucas", "1233432", "dss2", "",
+				"luquinhas@blizzad.com");
+		assertEquals("1233432 - Lucas - dss2 - luquinhas@blizzad.com",
+				novoAluno.toString());
 	}
 
 	/**
@@ -195,7 +202,8 @@ public class AlunoTest {
 	 */
 	@Test
 	public void testToStringComTelefone() {
-		assertEquals(this.aluno.toString(), "122312 - Joao - cc9 - 8390890923 - joaozinho@blizzad.com");
+		assertEquals(this.aluno.toString(), "122312 - Joao - cc9 - 8390890923"
+				+ " - joaozinho@blizzad.com");
 	}
 
 	/**
@@ -203,8 +211,10 @@ public class AlunoTest {
 	 */
 	@Test
 	public void testEqualsMatriculasIguais() {
-		Aluno aluno1 = new Aluno("Joao", "111111", "CC", "999999999", "joaozinho@blizzad.com");
-		Aluno aluno2 = new Aluno("Marcos", "111111", "CC", "888888888", "marquinhos@blizzad.com");
+		Aluno aluno1 = new Aluno("Joao", "111111", "CC", "999999999",
+				"joaozinho@blizzad.com");
+		Aluno aluno2 = new Aluno("Marcos", "111111", "CC", "888888888",
+				"marquinhos@blizzad.com");
 		assertEquals(aluno1, aluno2);
 	}
 
@@ -213,8 +223,10 @@ public class AlunoTest {
 	 */
 	@Test
 	public void testEqualsMatriculasDiferentes() {
-		Aluno aluno1 = new Aluno("Joao", "111111", "CC", "999999999", "joaozinho@blizzad.com");
-		Aluno aluno2 = new Aluno("Marcos", "222222", "CC", "888888888", "marquinhos@blizzad.com");
+		Aluno aluno1 = new Aluno("Joao", "111111", "CC", "999999999",
+				"joaozinho@blizzad.com");
+		Aluno aluno2 = new Aluno("Marcos", "222222", "CC", "888888888",
+				"marquinhos@blizzad.com");
 		assertNotEquals(aluno1, aluno2);
 	}
 
