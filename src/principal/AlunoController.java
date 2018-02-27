@@ -7,7 +7,7 @@ import java.util.List;
 import base.AlunoComparator;
 
 /**
- * Esta classe eh responsavel pelo gerenciamento dos alunos.
+ * Esta classe e responsavel pelo gerenciamento dos alunos.
  *
  */
 public class AlunoController {
