@@ -4,13 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-/**
- * 
- * Classe responsavel por testar as funcionalidades da classe AlunoController.
- *
- */
 
 /**
+ * 
  * Classe responsavel por testar as funcionalidades da classe AlunoController.
  *
  */
