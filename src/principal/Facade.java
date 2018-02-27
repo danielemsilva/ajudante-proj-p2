@@ -1,7 +1,11 @@
 package principal;
 
 import easyaccept.EasyAccept;
-
+/**
+ * Classe sem logica de negocio, apenas atribui tarefas a AlunoController.
+ * 
+ *
+ */
 public class Facade {
 
 	private AlunoController alunoController = new AlunoController();
