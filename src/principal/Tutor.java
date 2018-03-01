@@ -13,10 +13,15 @@ import java.util.Map;
  *
  */
 public class Tutor {
-
+	
+	private int id;
+	private String nivel;
+	private int dinheiro;
+	private double pontuacao;
 	private Map<String, Integer> disciplinas;
 	private Map<String, List<String>> horarios;
 	private List<String> locais;
+	
 
 	/**
 	 * Constroi um tutor, inicializando os mapas disciplinas e horarios e a lista
@@ -27,6 +32,7 @@ public class Tutor {
 		this.disciplinas = new HashMap<>();
 		this.locais = new ArrayList<>();
 		this.horarios = new HashMap<>();
+		
 	}
 
 	/**
@@ -38,9 +44,10 @@ public class Tutor {
 	 *            nivel de proficiencia nessa disciplina. Os valores possíveis
 	 *            pertencem ao conjunto [1, 5]
 	 */
-	public void adicionaDisciplina(String disciplina, int proficiencia) {
+	public void adicionaDisciplina(String disciplina, int proficiencia, int id) {
 		this.validaDados(disciplina, proficiencia);
 		this.disciplinas.put(disciplina, proficiencia);
+		this.id = id;
 	}
 
 	/**
@@ -109,7 +116,62 @@ public class Tutor {
 		}
 		return this.horarios.get(dia).contains(horario);
 	}
-
+	/**
+	 * Metodo que atualiza a pontuacao do Tutor
+	 * @param nota representacao da nota do Tutor
+	 */
+	public void setPontuacao(int nota) {
+		this.pontuacao = ((this.pontuacao * 5) + nota)/6;
+		this.setNivel();
+	}
+	/**
+	 * atualiza o Nivel do Tutor de acordo com a pontuacao 
+	 */
+	private void setNivel() {
+		if(this.pontuacao > 4.5) {
+			this.nivel = "TOP";
+		}else if(this.pontuacao > 3.0 || this.pontuacao <= 4.5) {
+			this.nivel = "Tutor";
+		}else if(this.pontuacao > 0 || this.pontuacao <= 3.0){
+			this.nivel = "Aprendiz";
+		}
+		
+	}
+	/**
+	 * Atualiza a valor do dinheiro do Tutor
+	 * @param dinheiro representacao do dinheiro adicionado
+	 */
+	public void setDinheiro(int dinheiro) {
+		this.dinheiro += dinheiro;
+	}
+	/**
+	 * retorna a pontuacao do Tutor
+	 * @return
+	 */
+	public double getPontuacao() {
+		return this.pontuacao;
+	}
+	/**
+	 * retorna o nivel do Tutor
+	 * @return
+	 */
+	public String getNivel() {
+		return this.nivel;
+	}
+	/**
+	 * retorna o dinheiro do Tutor
+	 * @return
+	 */
+	public int getDinheiro() {
+		return this.dinheiro;
+	}
+	/**
+	 * retorna o id do Tutor
+	 * @return
+	 */
+	public int getId() {
+		return this.id;
+	}
 	/**
 	 * Valida disciplina e proficiencia.
 	 * 

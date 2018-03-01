@@ -14,6 +14,7 @@ public class AlunoController {
 
 	private List<Aluno> alunos;
 	private Comparator<Aluno> comparator;
+	private int id;
 
 	/**
 	 * Constroi um novo controlar, inicializando a lista de alunos e o comparator.
@@ -114,7 +115,8 @@ public class AlunoController {
 		if (aluno == null) {
 			throw new IllegalArgumentException("Erro na definicao de papel: Tutor nao encontrado");
 		}
-		aluno.tornarTutor(disciplina, proficiencia);
+		aluno.tornarTutor(disciplina, proficiencia, id);
+		id++;
 	}
 
 	/**
@@ -132,7 +134,15 @@ public class AlunoController {
 		}
 		return aluno.toString();
 	}
-
+	/**
+	 * Retorna o objeto tutor do aluno
+	 * 
+	 * @return tutor
+	 */
+	public Tutor getTutor(String matricula) {
+		Aluno aluno = this.procuraAlunoMatricula(matricula);
+		return aluno.getTutor();
+	}
 	/**
 	 * Lista todos os alunos que sao tutores.
 	 * 

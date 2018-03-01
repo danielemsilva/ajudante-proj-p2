@@ -109,12 +109,13 @@ public class Aluno {
 	 *            disciplina a ser acrescentada
 	 * @param proficiencia
 	 *            proficiencia em relacao a nova disciplina
+	 * @param id 
 	 */
-	public void tornarTutor(String disciplina, int proficiencia) {
+	public void tornarTutor(String disciplina, int proficiencia, int id) {
 		if (tutor == null) {
 			this.tutor = new Tutor();
 		}
-		this.tutor.adicionaDisciplina(disciplina, proficiencia);
+		this.tutor.adicionaDisciplina(disciplina, proficiencia, id);
 	}
 	
 	/**
