@@ -9,7 +9,7 @@ public class Ajuda {
 
 	private int id;
 	private String matrAluno;
-	private String matrTutor;
+	protected String matrTutor;
 	protected String disciplina;
 	private boolean avaliada;
 
@@ -66,5 +66,10 @@ public class Ajuda {
 	 */
 	public boolean foiAvaliada() {
 		return this.avaliada;
+	}
+	
+	@Override
+	public String toString() {
+		return "Tutor - " + this.matrTutor + ", disciplina - " + this.disciplina;
 	}
 }
