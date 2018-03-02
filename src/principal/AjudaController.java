@@ -26,16 +26,16 @@ public class AjudaController {
 	}
 
 	public String pegarTutor(int idAjuda) {
-		return this.ajudas.get(idAjuda).pegarTutor();
+		return this.ajudas.get(idAjuda - 1).toString();
 	}
 
 	public String getInfoAjuda(int idAjuda, String atributo) {
-		return this.ajudas.get(idAjuda).getInfoAjuda(atributo);
+		return this.ajudas.get(idAjuda - 1).getInfoAjuda(atributo);
 	}
 
 	public void avaliar(int idAjuda) {
 		if (!(this.ajudas.get(idAjuda).foiAvaliada())) {
-			this.ajudas.get(idAjuda).avaliar();
+			this.ajudas.get(idAjuda - 1).avaliar();
 		}
 	}
 }

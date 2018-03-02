@@ -182,5 +182,13 @@ public class QuemMeAjudaController {
 		return ajudaCtrl.pedirAjudaPrecencial(matrAluno, matrTutor, disciplina, 
 				horario, dia, localInteresse);
 	}
+	
+	public String pegarTutor(int idAjuda) {
+		return ajudaCtrl.pegarTutor(idAjuda);
+	}
+	
+	public String getInfoAjuda(int idAjuda, String atributo) {
+		return ajudaCtrl.getInfoAjuda(idAjuda, atributo);
+	}
 
 }

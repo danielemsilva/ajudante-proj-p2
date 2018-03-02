@@ -6,6 +6,7 @@ package principal;
  *
  */
 public class AjudaPresencial extends Ajuda {
+
 	private String local;
 	private String dia;
 	private String horario;
@@ -46,7 +47,7 @@ public class AjudaPresencial extends Ajuda {
 	public String getInfoAjuda(String atributo) {
 		if (atributo.equals("dia")) {
 			return this.dia;
-		} else if (atributo.equals("local")) {
+		} else if (atributo.equals("localInteresse")) {
 			return this.local;
 		} else if (atributo.equals("horario")) {
 			return this.horario;
@@ -55,10 +56,16 @@ public class AjudaPresencial extends Ajuda {
 		}
 		return "atributo invalido";
 	}
-	
+
+	/**
+	 * Representacao textual de uma ajuda presencial.
+	 * 
+	 * @return String com a matricula do tutor, horario, dia, local e disciplina da
+	 *         ajuda.
+	 */
 	@Override
 	public String toString() {
-		return "Tutor - " + super.matrTutor + ", horario - " + this.horario + ", dia - " + 
+		return "Tutor - " + super.matrTutor + ", horario - " + this.horario + ", dia - " +  
 				this.dia + ", local - " + this.local + ", disciplina - " + this.disciplina;
 	}
 }
