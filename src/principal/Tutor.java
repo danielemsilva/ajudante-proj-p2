@@ -114,6 +114,32 @@ public class Tutor {
 		}
 		return this.horarios.get(dia).contains(horario);
 	}
+	
+	/**
+	 * Verifica se uma determinada disciplina esta entre as disciplinas da lista.
+	 * 
+	 * @param disciplina
+	 *            nome da disciplina a ser consultado
+	 * 
+	 * @return true, se a disciplina for uma das que o tutor ensina, e
+	 *         false caso contrario
+	 */
+	public boolean consultaDisciplina(String disciplina) {
+		return this.disciplinas.containsKey(disciplina);
+	}
+	
+	/**
+	 * Verifica se uma determinada disciplina tem proficiencia alta (maior ou
+	 * igual a 3)
+	 * 
+	 * @param disciplina
+	 *            nome da disciplina a ser consultado
+	 * 
+	 * @return true, se a proficiencia for alta, e false caso contrario
+	 */
+	public boolean consultaProficiencia(String disciplina) {
+		return this.disciplinas.get(disciplina) >= 3;
+	}
 
 	/**
 	 * Metodo que atualiza a pontuacao do Tutor

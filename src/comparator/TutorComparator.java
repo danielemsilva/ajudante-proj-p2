@@ -7,7 +7,7 @@ import principal.Aluno;
  * Implementacao do comparator para ordenar tutores pelo cadastro
  * 
  */
-public class CadastroComparator implements Comparator<Aluno> {
+public class TutorComparator implements Comparator<Aluno> {
 
 	/**
 	 * Compara os ids dos dois alunos tutores e retorna a diferenca entre eles
@@ -17,7 +17,11 @@ public class CadastroComparator implements Comparator<Aluno> {
 	 */
 	@Override
 	public int compare(Aluno aluno1, Aluno aluno2) {
-		return aluno1.getTutor().getId() - aluno2.getTutor().getId();
+		int diferenca = aluno1.getTutor().getId() - aluno2.getTutor().getId();
+		if(diferenca == 0) {
+			diferenca = aluno1.getTutor().getPontuacao() - aluno2.getTutor().getPontuacao();
+		}
+		return diferenca;
 	}
 
 }

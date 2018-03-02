@@ -13,12 +13,14 @@ public class AjudaPresencial extends Ajuda {
 	/**
 	 * Construtor da representacao de AjudaPresencial, utiliza o contrutor de Ajuda.
 	 * 
-	 * @param disciplina
-	 *            disciplina estudada
-	 * @param tutor
-	 *            tutor que ensinou nessa ajuda
 	 * @param id
 	 *            representacao de ajuda
+	 * @param matrAluno
+	 *            matricula do aluno que pediu a ajuda
+	 * @param matrTutor
+	 *            matricula do tutor que ensinou nessa ajuda
+	 * @param disciplina
+	 *            disciplina estudada
 	 * @param local
 	 *            local do ocorrido
 	 * @param dia
@@ -26,9 +28,9 @@ public class AjudaPresencial extends Ajuda {
 	 * @param horario
 	 *            horario da ajuda
 	 */
-	public AjudaPresencial(String disciplina, String tutor, int id, 
-			String local, String dia, String horario) {
-		super(disciplina, tutor, id);
+	public AjudaPresencial(int id, String matrAluno, String matrTutor, 
+			String disciplina, String local, String dia, String horario) {
+		super(id, matrAluno, matrTutor, disciplina);
 		this.local = local;
 		this.dia = dia;
 		this.horario = horario;

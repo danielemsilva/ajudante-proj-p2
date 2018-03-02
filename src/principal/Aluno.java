@@ -28,8 +28,7 @@ public class Aluno {
 	 * @param email
 	 *            email do aluno
 	 */
-	public Aluno(String nome, String matricula, String codigoCurso,
-			String telefone, String email) {
+	public Aluno(String nome, String matricula, String codigoCurso, String telefone, String email) {
 		this.validaDados(nome, matricula, codigoCurso, email);
 		this.validaEmail(email);
 
@@ -42,8 +41,8 @@ public class Aluno {
 	}
 
 	/**
-	 * Retorna um dado de um aluno requisitado por parametro.
-	 * Os dados possiveis sao: nome, matricula, codigoCurso, telefone e email.
+	 * Retorna um dado de um aluno requisitado por parametro. Os dados possiveis
+	 * sao: nome, matricula, codigoCurso, telefone e email.
 	 * 
 	 * @param atributo
 	 *            categoria do dado requerido
@@ -91,7 +90,7 @@ public class Aluno {
 	public String getEmail() {
 		return this.email;
 	}
-	
+
 	/**
 	 * Retorna o objeto tutor do aluno
 	 * 
@@ -109,7 +108,7 @@ public class Aluno {
 	 *            disciplina a ser acrescentada
 	 * @param proficiencia
 	 *            proficiencia em relacao a nova disciplina
-	 * @param id 
+	 * @param id
 	 */
 	public void tornarTutor(String disciplina, int proficiencia, int id) {
 		if (tutor == null) {
@@ -117,15 +116,34 @@ public class Aluno {
 		}
 		this.tutor.adicionaDisciplina(disciplina, proficiencia, id);
 	}
-	
+
 	/**
 	 * Verifica se o aluno e tutor de alguma disciplina.
 	 * 
-	 * @return true, se o aluno for tutor,
-	 *     e false caso contrario
+	 * @return true, se o aluno for tutor, e false caso contrario
 	 */
 	public boolean ehTutor() {
 		return this.tutor != null;
+	}
+
+	/**
+	 * Verifica se o aluno eh tutor da disciplina informada, atende no dia e horario
+	 * informados e no local interessado.
+	 * 
+	 * @param disciplina
+	 *            disciplina a ser consultada
+	 * @param horario
+	 *            horario a ser pesquisado
+	 * @param dia
+	 *            dia a ser pesquisado
+	 * @param local
+	 *            local a ser consultado
+	 * @return true se o tutor ensina essa disciplina e atende no local, horario e
+	 *         dia informados.
+	 */
+	public boolean tutoriaDisponivel(String disciplina, String horario, String dia, String local) {
+		return this.tutor.consultaDisciplina(disciplina) && this.tutor.consultaHorario(dia, horario)
+				&& tutor.consultaLocal(local);
 	}
 
 	/**
@@ -158,10 +176,9 @@ public class Aluno {
 	 * Compara dois objetos do tipo Aluno, identificados pela matricula.
 	 * 
 	 * @param obj
-	 *     objeto a ser comparado
+	 *            objeto a ser comparado
 	 * 
-	 * @return true, se os objetos forem iguais,
-	 *     e false caso contrario
+	 * @return true, se os objetos forem iguais, e false caso contrario
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -184,16 +201,16 @@ public class Aluno {
 	 * Valida os dados matricula, nome, codigo e email.
 	 * 
 	 * @param matricula
-	 *     matricula a ser validada
+	 *            matricula a ser validada
 	 * @param nome
-	 *     nome a ser validado
+	 *            nome a ser validado
 	 * @param codigo
-	 *     codigo do curso a ser validado
+	 *            codigo do curso a ser validado
 	 * @param email
-	 *      email a ser validado
-	 *            
+	 *            email a ser validado
+	 * 
 	 * @exception IllegalArgumentException
-	 *      caso algum dos argumentos informados seja nulo ou vazio.
+	 *                caso algum dos argumentos informados seja nulo ou vazio.
 	 */
 	private void validaDados(String nome, String matricula, String codigo, String email) {
 		if (nome == null || nome.trim().equals("")) {
@@ -219,13 +236,12 @@ public class Aluno {
 	 * depois dele.
 	 * 
 	 * @param email
-	 *     String que representa um email.
+	 *            String que representa um email.
 	 */
 	private void validaEmail(String email) {
-		if (!email.contains("@") || email.indexOf("@") == 0
-				|| email.indexOf("@") == email.length() - 1) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de aluno: Email invalido");
+		if (!email.contains("@") || email.indexOf("@") == 0 || 
+				email.indexOf("@") == email.length() - 1) {
+			throw new IllegalArgumentException("Erro no cadastro de aluno: Email invalido");
 		}
 	}
 

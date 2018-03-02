@@ -159,6 +159,11 @@ public class Facade {
 		return qmaCtrl.consultaLocal(email, local);
 	}
 	
+	public int pedirAjudaPresencial (String matrAluno, String disciplina, 
+			String horario, String dia, String localInteresse) {
+		return qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
+	}
+
 	/**
 	 * Executa chamada de testes de aceitacao
 	 * @param args

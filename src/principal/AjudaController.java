@@ -11,18 +11,18 @@ public class AjudaController {
 		ajudas = new HashMap<Integer, Ajuda>();
 	}
 
-	public int pedirAjudaPrecencial(String disciplina, String tutor, 
+	public int pedirAjudaPrecencial(String matrAluno, String matrTutor, String disciplina, 
 			String horario, String dia, String localInteresse) {
-		Ajuda ajuda = new AjudaPresencial(disciplina, tutor, 
-				this.ajudas.size(), localInteresse, dia, horario);
+		Ajuda ajuda = new AjudaPresencial(this.ajudas.size() + 1, matrAluno, matrTutor, 
+				disciplina, localInteresse, dia, horario);
 		this.ajudas.put(ajudas.size(), ajuda);
-		return this.ajudas.size() - 1;
+		return this.ajudas.size();
 	}
 
-	public int pedirAjudaOnline(String disciplina, String tutor) {
-		Ajuda ajuda = new Ajuda(disciplina, tutor, this.ajudas.size() + 1);
+	public int pedirAjudaOnline(String matrAluno, String matrTutor, String disciplina) {
+		Ajuda ajuda = new Ajuda(this.ajudas.size() + 1, matrAluno, matrTutor, disciplina);
 		this.ajudas.put(this.ajudas.size() + 1, ajuda);
-		return this.ajudas.size();
+		return this.ajudas.size() - 1;
 	}
 
 	public String pegarTutor(int idAjuda) {

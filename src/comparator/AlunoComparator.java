@@ -7,7 +7,7 @@ import principal.Aluno;
  * Implementacao do comparator para ordenar alfabeticamente os alunos
  * 
  */
-public class NomeComparator implements Comparator<Aluno> {
+public class AlunoComparator implements Comparator<Aluno> {
 
 	/**
 	 * Compara os nomes de dois alunos e retorna a diferença entre eles

@@ -5,7 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import comparator.NomeComparator;
+import comparator.TutorComparator;
+import comparator.AlunoComparator;
 
 /**
  * Esta classe e responsavel pelo gerenciamento dos alunos.
@@ -22,7 +23,7 @@ public class AlunoController {
 	 */
 	public AlunoController() {
 		this.alunos = new ArrayList<>();
-		this.comparator = new NomeComparator();
+		this.comparator = new AlunoComparator();
 	}
 
 	/**
@@ -248,7 +249,31 @@ public class AlunoController {
 		}
 		return aluno.getTutor().consultaLocal(local);
 	}
-
+	
+	/**
+	 * Verifica se um determinado local esta entre os locais de atendimento de um
+	 * tutor.
+	 * 
+	 * @param email
+	 *            email do tutor
+	 * @param local
+	 *            local a ser pesquisado
+	 * 
+	 * @return true, se o local for um dos locais de atendimento do tutor, e false
+	 *         caso contrario
+	 */
+	public String buscarTutor(String disciplina, String horario, String dia, String local) {
+		List<Aluno> alunosBuscados = new ArrayList<>();
+		for (Aluno aluno : alunos) {
+			if(aluno.ehTutor() && aluno.tutoriaDisponivel(disciplina, horario, dia, local)){
+				alunosBuscados.add(aluno);
+			}
+		}
+		Comparator<Aluno> comparator = new TutorComparator();
+		Collections.sort(alunosBuscados, comparator);
+		return alunosBuscados.get(0).getMatricula();
+	}
+	
 	/**
 	 * Verifica se um aluno esta cadastrado no sistema, dada sua matricula.
 	 * 

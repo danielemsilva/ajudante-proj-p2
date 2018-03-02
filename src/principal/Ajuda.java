@@ -8,7 +8,8 @@ package principal;
 public class Ajuda {
 
 	private int id;
-	private String tutor;
+	private String matrAluno;
+	private String matrTutor;
 	protected String disciplina;
 	private boolean avaliada;
 
@@ -22,10 +23,11 @@ public class Ajuda {
 	 * @param id
 	 *            identificacao
 	 */
-	public Ajuda(String disciplina, String tutor, int id) {
-		this.disciplina = disciplina;
-		this.tutor = tutor;
+	public Ajuda(int id, String matrAluno, String matrTutor, String disciplina) {
 		this.id = id;
+		this.disciplina = disciplina;
+		this.matrAluno = matrAluno;
+		this.matrTutor = matrTutor;
 		this.avaliada = false;
 	}
 
@@ -35,7 +37,7 @@ public class Ajuda {
 	 * @return matricula do tutor
 	 */
 	public String pegarTutor() {
-		return this.tutor;
+		return this.matrTutor;
 	}
 
 	/**
