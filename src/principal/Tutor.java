@@ -16,7 +16,7 @@ public class Tutor {
 
 	private int id;
 	private int dinheiro;
-	private double pontuacao;
+	private int pontuacao;
 	private String nivel;
 	private List<String> locais;
 	private Map<String, Integer> disciplinas;
@@ -154,7 +154,7 @@ public class Tutor {
 	 * 
 	 * @return
 	 */
-	public double getPontuacao() {
+	public int getPontuacao() {
 		return this.pontuacao;
 	}
 
