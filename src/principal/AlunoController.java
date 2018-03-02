@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import base.AlunoComparator;
+
+import comparator.NomeComparator;
 
 /**
  * Esta classe e responsavel pelo gerenciamento dos alunos.
@@ -21,7 +22,7 @@ public class AlunoController {
 	 */
 	public AlunoController() {
 		this.alunos = new ArrayList<>();
-		this.comparator = new AlunoComparator();
+		this.comparator = new NomeComparator();
 	}
 
 	/**

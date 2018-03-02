@@ -1,22 +1,22 @@
 package principal;
 
-import easyaccept.EasyAccept;
-/**
- * Classe sem logica de negocio, apenas atribui tarefas a qmaCtrl.
- * 
- *
- */
-public class Facade {
+public class QuemMeAjudaController {
 
-	private QuemMeAjudaController qmaCtrl = new QuemMeAjudaController();
+	private AlunoController alunoCtrl;
+	private AjudaController ajudaCtrl;
+
+	public QuemMeAjudaController() {
+		alunoCtrl = new AlunoController();
+		ajudaCtrl = new AjudaController();
+	}
 
 	/**
-	 * Cadastro de um aluno
+	 * Cadastra um novo aluno
 	 * 
 	 * @param nome
 	 *            nome do aluno
 	 * @param matricula
-	 *            matricula de identificacao
+	 *            matricula do aluno
 	 * @param codigoCurso
 	 *            codigo do curso que ele pertence
 	 * @param telefone
@@ -26,11 +26,11 @@ public class Facade {
 	 */
 	public void cadastrarAluno(String nome, String matricula, String codigoCurso, 
 			String telefone, String email) {
-		qmaCtrl.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
+		alunoCtrl.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
 	/**
-	 * Recupera os dados de um aluno atraves de sua matricula.
+	 * Retorna os dados de um aluno.
 	 * 
 	 * @param matricula
 	 *            matricula do aluno requisitado
@@ -38,30 +38,30 @@ public class Facade {
 	 * @return informacoes do aluno
 	 */
 	public String recuperaAluno(String matricula) {
-		return qmaCtrl.recuperaAluno(matricula);
+		return alunoCtrl.recuperaAluno(matricula);
 	}
 
 	/**
-	 * Lista todos os alunos cadastrados.
+	 * Lista os alunos ordenados alfabeticamente.
 	 * 
 	 * @return lista de alunos
 	 */
 	public String listarAlunos() {
-		return qmaCtrl.listarAlunos();
+		return alunoCtrl.listarAlunos();
 	}
 
 	/**
-	 * Retorna uma informacao especifica de um aluno cadastrado.
+	 * Retorna uma informacao especifica do aluno.
 	 * 
 	 * @param matricula
 	 *            matricula do aluno
 	 * @param atributo
-	 *            categoria do informacao desejada
+	 *            categoria da informacao desejada
 	 * 
 	 * @return dado especifico do aluno
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		return qmaCtrl.getInfoAluno(matricula, atributo);
+		return alunoCtrl.getInfoAluno(matricula, atributo);
 	}
 
 	/**
@@ -75,11 +75,11 @@ public class Facade {
 	 *            nivel de proficiencia para essa disciplina
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-		qmaCtrl.tornarTutor(matricula, disciplina, proficiencia);
+		alunoCtrl.tornarTutor(matricula, disciplina, proficiencia);
 	}
 
 	/**
-	 * Recupera as informacoes de um aluno tutor.
+	 * Retorna as informacoes de um aluno tutor.
 	 * 
 	 * @param matricula
 	 *            matricula do aluno
@@ -87,7 +87,7 @@ public class Facade {
 	 * @return dados do tutor
 	 */
 	public String recuperaTutor(String matricula) {
-		return qmaCtrl.recuperaTutor(matricula);
+		return alunoCtrl.recuperaTutor(matricula);
 	}
 
 	/**
@@ -96,21 +96,21 @@ public class Facade {
 	 * @return lista com os dados dos tutores
 	 */
 	public String listarTutores() {
-		return qmaCtrl.listarTutores();
+		return alunoCtrl.listarTutores();
 	}
 
 	/**
 	 * Cadastra um horario de atendimento de um tutor.
 	 * 
 	 * @param email
-	 *            email do tutor
+	 *            o email do tutor
 	 * @param horario
 	 *            horario no referente dia a ser adicionado
 	 * @param dia
 	 *            dia disponivel
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
-		qmaCtrl.cadastrarHorario(email, horario, dia);
+		alunoCtrl.cadastrarHorario(email, horario, dia);
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class Facade {
 	 *            local da tutoria
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		qmaCtrl.cadastrarLocalDeAtendimento(email, local);
+		alunoCtrl.cadastrarLocalDeAtendimento(email, local);
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class Facade {
 	 *         false caso contrario
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
-		return qmaCtrl.consultaHorario(email, horario, dia);
+		return alunoCtrl.consultaHorario(email, horario, dia);
 	}
 
 	/**
@@ -156,18 +156,8 @@ public class Facade {
 	 *         caso contrario
 	 */
 	public boolean consultaLocal(String email, String local) {
-		return qmaCtrl.consultaLocal(email, local);
+		return alunoCtrl.consultaLocal(email, local);
 	}
-	
-	/**
-	 * Executa chamada de testes de aceitacao
-	 * @param args
-	 *            casos de testes do EasyAccept
-	 */
-	public static void main(String[] args) {
-		args = new String[] { "principal.Facade", "acceptance_test/us1_test.txt", 
-				"acceptance_test/us2_test.txt", "acceptance_test/us3_test.txt",
-				"acceptance_test/us4_test.txt"};
-		EasyAccept.main(args);
-	}
+
+
 }
