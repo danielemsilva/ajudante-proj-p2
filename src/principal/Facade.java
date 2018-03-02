@@ -1,6 +1,7 @@
 package principal;
 
 import easyaccept.EasyAccept;
+
 /**
  * Classe sem logica de negocio, apenas atribui tarefas a qmaCtrl.
  * 
@@ -24,8 +25,7 @@ public class Facade {
 	 * @param email
 	 *            email
 	 */
-	public void cadastrarAluno(String nome, String matricula, String codigoCurso, 
-			String telefone, String email) {
+	public void cadastrarAluno(String nome, String matricula, String codigoCurso, String telefone, String email) {
 		qmaCtrl.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
@@ -158,21 +158,36 @@ public class Facade {
 	public boolean consultaLocal(String email, String local) {
 		return qmaCtrl.consultaLocal(email, local);
 	}
-	
-	public int pedirAjudaPresencial (String matrAluno, String disciplina, 
-			String horario, String dia, String localInteresse) {
+
+	/**
+	 * Delega para ajudaController a responsabilidade de criar uma ajuda presencial.
+	 * 
+	 * @param matrAluno
+	 *            matricula do aluno que pediu a ajuda
+	 * @param disciplina
+	 *            disciplina estudada
+	 * @param horario
+	 *            horario do atendimento
+	 * @param dia
+	 *            dia desejado para o atendimento
+	 * @param localInteresse
+	 *            local de interesse do aluno
+	 * @return identificacao da ajuda
+	 */
+	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
+			String localInteresse) {
 		return qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
 	}
 
 	/**
 	 * Executa chamada de testes de aceitacao
+	 * 
 	 * @param args
 	 *            casos de testes do EasyAccept
 	 */
 	public static void main(String[] args) {
-		args = new String[] { "principal.Facade", "acceptance_test/us1_test.txt", 
-				"acceptance_test/us2_test.txt", "acceptance_test/us3_test.txt",
-				"acceptance_test/us4_test.txt"};
+		args = new String[] { "principal.Facade", "acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt",
+				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt" };
 		EasyAccept.main(args);
 	}
 }
