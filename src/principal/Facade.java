@@ -25,7 +25,8 @@ public class Facade {
 	 * @param email
 	 *            email
 	 */
-	public void cadastrarAluno(String nome, String matricula, String codigoCurso, String telefone, String email) {
+	public void cadastrarAluno(String nome, String matricula, String codigoCurso,
+			String telefone, String email) {
 		qmaCtrl.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
@@ -160,7 +161,8 @@ public class Facade {
 	}
 
 	/**
-	 * Delega para ajudaController a responsabilidade de criar uma ajuda presencial.
+	 * Delega para ajudaController a responsabilidade de criar uma ajuda 
+	 * presencial.
 	 * 
 	 * @param matrAluno
 	 *            matricula do aluno que pediu a ajuda
@@ -174,9 +176,25 @@ public class Facade {
 	 *            local de interesse do aluno
 	 * @return identificacao da ajuda
 	 */
-	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
-			String localInteresse) {
-		return qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
+	public int pedirAjudaPresencial(String matrAluno, String disciplina,
+			String horario, String dia, String localInteresse) {
+		return qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario,
+				dia, localInteresse);
+	}
+	
+	/**
+	 * Delega para ajudaController a responsabilidade de criar uma ajuda 
+	 * online.
+	 * 
+	 * @param matrAluno
+	 *            matricula do aluno que pediu a ajuda
+	 * @param disciplina
+	 *            disciplina estudada
+	 *
+	 * @return identificacao da ajuda
+	 */
+	public int pedirAjudaOnline(String matrAluno, String disciplina) {
+		return qmaCtrl.pedirAjudaOnline(matrAluno, disciplina);
 	}
 	
 	public String pegarTutor(int idAjuda) {
@@ -194,8 +212,9 @@ public class Facade {
 	 *            casos de testes do EasyAccept
 	 */
 	public static void main(String[] args) {
-		args = new String[] { "principal.Facade", "acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt",
-				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt" };
+		args = new String[] { "principal.Facade", 
+				"acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt",
+				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt"};
 		EasyAccept.main(args);
 	}
 }

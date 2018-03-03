@@ -183,6 +183,22 @@ public class QuemMeAjudaController {
 				horario, dia, localInteresse);
 	}
 	
+	/**
+	 * Encontra o tutor mais apto a ajudar da disciplina informada e realiza
+	 * o pedido de ajuda online.
+	 * 
+	 * @param matrAluno
+	 *            matricula do aluno que pediu a ajuda
+	 * @param disciplina
+	 *            disciplina da ajuda
+	 *            
+	 * @return id da ajuda cadastrada
+	 */
+	public int pedirAjudaOnline(String matrAluno, String disciplina) {
+		String matrTutor = alunoCtrl.buscarTutor(disciplina);
+		return ajudaCtrl.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
+	}
+	
 	public String pegarTutor(int idAjuda) {
 		return ajudaCtrl.pegarTutor(idAjuda);
 	}

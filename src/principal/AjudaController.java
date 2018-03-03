@@ -40,10 +40,10 @@ public class AjudaController {
 			String horario, String dia, String localInteresse) {
 		this.validarDadosAjudaPresencial(matrAluno, disciplina, horario, dia,
 				localInteresse);
-		Ajuda ajuda = new AjudaPresencial(this.ajudas.size() + 1, matrAluno,
+		Ajuda ajuda = new AjudaPresencial(this.ajudas.keySet().size() + 1, matrAluno,
 				matrTutor, disciplina, localInteresse, dia, horario);
-		this.ajudas.put(ajudas.size(), ajuda);
-		return this.ajudas.size();
+		this.ajudas.put(this.ajudas.keySet().size() + 1, ajuda);
+		return this.ajudas.keySet().size();
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class AjudaController {
 		this.validarDadosAjudaOnline(matrAluno, disciplina);
 		Ajuda ajuda = new Ajuda(this.ajudas.size() + 1, matrAluno, matrTutor, disciplina);
 		this.ajudas.put(this.ajudas.size() + 1, ajuda);
-		return this.ajudas.size() - 1;
+		return this.ajudas.keySet().size();
 	}
 
 	/**

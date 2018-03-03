@@ -251,27 +251,90 @@ public class AlunoController {
 	}
 	
 	/**
-	 * Verifica se um determinado local esta entre os locais de atendimento de um
-	 * tutor.
+	 * Busca os tutores disponiveis para as especificacoes informadas.
 	 * 
-	 * @param email
-	 *            email do tutor
+	 * @param disciplina
+	 *     a disciplina que sera debatida
+	 * @param horario
+	 *     o horario da ajuda
+	 * @param dia
+	 *     o dia da ajuda
 	 * @param local
-	 *            local a ser pesquisado
-	 * 
-	 * @return true, se o local for um dos locais de atendimento do tutor, e false
-	 *         caso contrario
+	 *     o local da ajuda
+	 *     
+	 * @return uma lista de tutores que satisfazem as especificacoes
 	 */
-	public String buscarTutor(String disciplina, String horario, String dia, String local) {
-		List<Aluno> alunosBuscados = new ArrayList<>();
+	private List<Aluno> buscarTutoresCandidatos(String disciplina, 
+			String horario, String dia, String local) {
+		List<Aluno> tutoresCandidatos = new ArrayList<>();
 		for (Aluno aluno : alunos) {
-			if(aluno.ehTutor() && aluno.tutoriaDisponivel(disciplina, horario, dia, local)){
-				alunosBuscados.add(aluno);
+			if(aluno.ehTutor() && aluno.tutoriaDisponivel(disciplina, horario,
+					dia, local)){
+				tutoresCandidatos.add(aluno);
 			}
 		}
+		return tutoresCandidatos;
+	}
+	
+	/**
+	 * Encontra o tutor da disciplina informada, que antende nos horario,
+	 * dia e local informados, e possui maior pontuacao na disciplina. 
+	 * Caso dois tutores se encontrem nesta situacao, o tutor que foi 
+	 * cadastrado primeiro e retornado.
+	 * 
+	 * @param disciplina
+	 *     a disciplina que sera debatida
+	 * @param horario
+	 *     o horario da ajuda
+	 * @param dia
+	 *     o dia da ajuda
+	 * @param local
+	 *     o local da ajuda
+	 * 
+	 * @return o tutor mais apto a ajudar.
+	 */
+	public String buscarTutor(String disciplina, String horario, String dia,
+			String local) {
+		List<Aluno> tutoresCandidatos = this.buscarTutoresCandidatos(
+				disciplina, horario, dia, local);
 		Comparator<Aluno> comparator = new TutorComparator();
-		Collections.sort(alunosBuscados, comparator);
-		return alunosBuscados.get(0).getMatricula();
+		Collections.sort(tutoresCandidatos, comparator);
+		return tutoresCandidatos.get(0).getMatricula();
+	}
+	
+	/**
+	 * Busca os tutores disponiveis para a disciplina informada.
+	 * 
+	 * @param disciplina
+	 *      a disciplina que sera debatida
+	 *      
+	 * @return uma lista de tutores que satisfazem a especificacao
+	 */
+	public List<Aluno> buscarTutoresDisciplina(String disciplina) {
+		List<Aluno> tutoresDisciplina = new ArrayList<>();
+		for (Aluno aluno : alunos) {
+			if(aluno.ehTutor() && aluno.getTutor().consultaDisciplina(disciplina)) {
+				tutoresDisciplina.add(aluno);
+			}
+		}
+		return tutoresDisciplina;
+	}
+	
+	/**
+	 * Encontra o tutor da disciplina informada que possui maior pontucao nesta.
+	 * Caso dois tutores se encontrem nesta situacao, o tutor que foi 
+	 * cadastrado primeiro e retornado.
+	 * 
+	 * @param disciplina
+	 *     a disciplina que sera debatida
+	 *     
+	 * @return o tutor mais apto a ajudar
+	 */
+	public String buscarTutor(String disciplina) {
+		List<Aluno> tutoresCandidatos = this.buscarTutoresDisciplina(disciplina);
+		Comparator<Aluno> comparator = new TutorComparator();
+		Collections.sort(tutoresCandidatos, comparator);
+		return tutoresCandidatos.get(0).getMatricula();
 	}
 	
 	/**

@@ -16,12 +16,15 @@ public class Ajuda {
 	/**
 	 * Constroi uma nova ajuda
 	 * 
+	 * @param id
+	 *            identificacao da ajuda
+	 * @param matrAluno
+	 *            matricula do aluno que pede ajuda
+	 * @param matrTutor
+	 *            matricula do aluno que ensina nessa ajuda
 	 * @param disciplina
 	 *            disciplina debatida
-	 * @param tutor
-	 *            tutor que ensina nessa ajuda
-	 * @param id
-	 *            identificacao
+	
 	 */
 	public Ajuda(int id, String matrAluno, String matrTutor, String disciplina) {
 		this.id = id;
@@ -78,4 +81,25 @@ public class Ajuda {
 	public String toString() {
 		return "Tutor - " + this.matrTutor + ", disciplina - " + this.disciplina;
 	}
+	
+//	/**
+//	 * Valida os dados do construtor.
+//	 * 
+//	 * @param id
+//	 *            identificacao da ajuda
+//	 * @param matrAluno
+//	 *            matricula do aluno que pede ajuda
+//	 * @param matrTutor
+//	 *            matricula do aluno que ensina nessa ajuda
+//	 * @param disciplina
+//	 *            disciplina debatida
+//	 */
+//	private void validarDadosAjuda(int id, String matrAluno, String matrTutor,
+//			String disciplina) {
+//		if (id < 0) {
+//			throw new IllegalArgumentException("Erro no cadastro de ajuda: "
+//					+ "id nao pode ser menor que zero");
+//		}
+//		
+//	}
 }

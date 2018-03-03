@@ -127,8 +127,8 @@ public class Aluno {
 	}
 
 	/**
-	 * Verifica se o aluno eh tutor da disciplina informada, atende no dia e horario
-	 * informados e no local interessado.
+	 * Verifica se o aluno eh tutor da disciplina informada, atende no dia e 
+	 * horario informados e no local interessado.
 	 * 
 	 * @param disciplina
 	 *            disciplina a ser consultada
@@ -138,11 +138,14 @@ public class Aluno {
 	 *            dia a ser pesquisado
 	 * @param local
 	 *            local a ser consultado
-	 * @return true se o tutor ensina essa disciplina e atende no local, horario e
-	 *         dia informados.
+	 *            
+	 * @return true se o tutor ensina essa disciplina e atende no local, 
+	 *     horario e dia informados.
 	 */
-	public boolean tutoriaDisponivel(String disciplina, String horario, String dia, String local) {
-		return this.tutor.consultaDisciplina(disciplina) && this.tutor.consultaHorario(dia, horario)
+	public boolean tutoriaDisponivel(String disciplina, String horario, 
+			String dia, String local) {
+		return this.tutor.consultaDisciplina(disciplina) 
+				&& this.tutor.consultaHorario(dia, horario)
 				&& tutor.consultaLocal(local);
 	}
 
