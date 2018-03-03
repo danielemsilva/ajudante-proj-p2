@@ -178,6 +178,14 @@ public class Facade {
 			String localInteresse) {
 		return qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
 	}
+	
+	public String pegarTutor(int idAjuda) {
+		return qmaCtrl.pegarTutor(idAjuda);
+	}
+	
+	public String getInfoAjuda(int idAjuda, String atributo) {
+		return qmaCtrl.getInfoAjuda(idAjuda, atributo);
+	}
 
 	/**
 	 * Executa chamada de testes de aceitacao

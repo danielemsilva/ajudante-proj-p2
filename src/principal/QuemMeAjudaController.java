@@ -179,8 +179,16 @@ public class QuemMeAjudaController {
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
 			String localInteresse) {
 		String matrTutor = alunoCtrl.buscarTutor(disciplina, horario, dia, localInteresse);
-		return ajudaCtrl.pedirAjudaPrecencial(matrAluno, matrTutor, disciplina, 
+		return ajudaCtrl.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, 
 				horario, dia, localInteresse);
+	}
+	
+	public String pegarTutor(int idAjuda) {
+		return ajudaCtrl.pegarTutor(idAjuda);
+	}
+	
+	public String getInfoAjuda(int idAjuda, String atributo) {
+		return ajudaCtrl.getInfoAjuda(idAjuda, atributo);
 	}
 
 }
