@@ -44,7 +44,7 @@ public class Tutor {
 	 *            pertencem ao conjunto [1, 5]
 	 */
 	public void adicionaDisciplina(String disciplina, int proficiencia, int id) {
-		this.validaDados(disciplina, proficiencia);
+		this.validaDisciplinaProficiencia(disciplina, proficiencia);
 		this.disciplinas.put(disciplina, proficiencia);
 		this.id = id;
 	}
@@ -56,14 +56,7 @@ public class Tutor {
 	 *            local de atendimento
 	 */
 	public void adicionaLocal(String local) {
-		if (local == null || local.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
-		}
-		if (this.locais.contains(local)) {
-			throw new IllegalArgumentException(
-					"Erro no cadastrar local de atendimento: Local ja cadastrado");
-		}
+		this.validaLocal(local);
 		this.locais.add(local);
 	}
 
@@ -115,23 +108,23 @@ public class Tutor {
 		}
 		return this.horarios.get(dia).contains(horario);
 	}
-	
+
 	/**
 	 * Verifica se uma determinada disciplina esta entre as disciplinas da lista.
 	 * 
 	 * @param disciplina
 	 *            nome da disciplina a ser consultado
 	 * 
-	 * @return true, se a disciplina for uma das que o tutor ensina, e
-	 *         false caso contrario
+	 * @return true, se a disciplina for uma das que o tutor ensina, e false caso
+	 *         contrario
 	 */
 	public boolean consultaDisciplina(String disciplina) {
 		return this.disciplinas.containsKey(disciplina);
 	}
-	
+
 	/**
-	 * Verifica se uma determinada disciplina tem proficiencia alta (maior ou
-	 * igual a 3)
+	 * Verifica se uma determinada disciplina tem proficiencia alta (maior ou igual
+	 * a 3)
 	 * 
 	 * @param disciplina
 	 *            nome da disciplina a ser consultado
@@ -143,10 +136,10 @@ public class Tutor {
 	}
 
 	/**
-	 * Metodo que atualiza a pontuacao do Tutor
+	 * Atualiza a pontuacao do tutor.
 	 * 
 	 * @param nota
-	 *            representacao da nota do Tutor
+	 *            nota da avaliacao utilizada no calculo da pontuacao
 	 */
 	public void setPontuacao(int nota) {
 		this.pontuacao = ((this.pontuacao * 5) + nota) / 6;
@@ -154,7 +147,7 @@ public class Tutor {
 	}
 
 	/**
-	 * atualiza o Nivel do Tutor de acordo com a pontuacao
+	 * Atualiza o nivel do tutor de acordo com a pontuacao
 	 */
 	private void setNivel() {
 		if (this.pontuacao > 4.5) {
@@ -170,43 +163,43 @@ public class Tutor {
 	 * Atualiza a valor do dinheiro do Tutor
 	 * 
 	 * @param dinheiro
-	 *            representacao do dinheiro adicionado
+	 *            dinheiro dado ao tutor
 	 */
 	public void setDinheiro(int dinheiro) {
 		this.dinheiro += dinheiro;
 	}
 
 	/**
-	 * retorna a pontuacao do Tutor
+	 * Retorna a pontuacao do tutor.
 	 * 
-	 * @return
+	 * @return pontuacao
 	 */
 	public int getPontuacao() {
 		return this.pontuacao;
 	}
 
 	/**
-	 * retorna o nivel do Tutor
+	 * Retorna o nivel do tutor.
 	 * 
-	 * @return
+	 * @return nivel do tutor de acordo com a sua pontuacao.
 	 */
 	public String getNivel() {
 		return this.nivel;
 	}
 
 	/**
-	 * retorna o dinheiro do Tutor
+	 * Retorna o dinheiro ja dado ao tutor.
 	 * 
-	 * @return
+	 * @return dinheiro total do tutor
 	 */
 	public int getDinheiro() {
 		return this.dinheiro;
 	}
 
 	/**
-	 * retorna o id do Tutor
+	 * Retorna o id de cadastro do tutor.
 	 * 
-	 * @return
+	 * @return identificacao de cadastro
 	 */
 	public int getId() {
 		return this.id;
@@ -220,7 +213,7 @@ public class Tutor {
 	 * @param proficiencia
 	 *            nivel de proficiencia para a disciplina
 	 */
-	private void validaDados(String disciplina, int proficiencia) {
+	private void validaDisciplinaProficiencia(String disciplina, int proficiencia) {
 		if (disciplina == null || disciplina.trim().equals("")) {
 			throw new IllegalArgumentException(
 					"Erro na definicao de papel: Disciplina nao pode ser nula ou vazia");
@@ -251,6 +244,23 @@ public class Tutor {
 		if (horario == null || horario.trim().equals("")) {
 			throw new IllegalArgumentException(
 					"Erro no cadastrar horario: horario nao pode ser vazio ou em branco");
+		}
+	}
+
+	/**
+	 * Valida local de atendimento.
+	 * 
+	 * @param local
+	 *            local do atendimento.
+	 */
+	private void validaLocal(String local) {
+		if (local == null || local.trim().equals("")) {
+			throw new IllegalArgumentException(
+					"Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+		}
+		if (this.locais.contains(local)) {
+			throw new IllegalArgumentException(
+					"Erro no cadastrar local de atendimento: Local ja cadastrado");
 		}
 	}
 

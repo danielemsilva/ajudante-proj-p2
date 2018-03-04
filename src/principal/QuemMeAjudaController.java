@@ -208,5 +208,10 @@ public class QuemMeAjudaController {
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return ajudaCtrl.getInfoAjuda(idAjuda, atributo);
 	}
+	
+	public void avaliarTutor(int idAjuda, int nota) {
+		String matricula = ajudaCtrl.avaliar(idAjuda);
+		alunoCtrl.avaliarTutor(matricula, nota);
+	}
 
 }

@@ -68,4 +68,5 @@ public class AjudaPresencial extends Ajuda {
 		return "Tutor - " + super.matrTutor + ", horario - " + this.horario + ", dia - " +  
 				this.dia + ", local - " + this.local + ", disciplina - " + this.disciplina;
 	}
+	
 }

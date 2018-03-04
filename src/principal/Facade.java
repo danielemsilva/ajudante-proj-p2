@@ -204,6 +204,10 @@ public class Facade {
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return qmaCtrl.getInfoAjuda(idAjuda, atributo);
 	}
+	
+	public void avaliarTutor(int idAjuda, int nota) {
+		qmaCtrl.avaliarTutor(idAjuda, nota);
+	}
 
 	/**
 	 * Executa chamada de testes de aceitacao
@@ -214,7 +218,8 @@ public class Facade {
 	public static void main(String[] args) {
 		args = new String[] { "principal.Facade", 
 				"acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt",
-				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt"};
+				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt",
+				"acceptance_test/us5_test.txt"};
 		EasyAccept.main(args);
 	}
 }

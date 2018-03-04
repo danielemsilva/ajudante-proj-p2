@@ -61,6 +61,15 @@ public class Ajuda {
 	public boolean foiAvaliada() {
 		return this.avaliada;
 	}
+	
+	/**
+	 * Retorna a matricula do tutor que deu a ajuda
+	 * 
+	 * @return matricula do tutor
+	 */
+	public String getMatriculaTutor() {
+		return this.matrTutor;
+	}
 
 	/**
 	 * Representacao textual da ajuda.

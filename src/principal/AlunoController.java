@@ -250,31 +250,7 @@ public class AlunoController {
 		return aluno.getTutor().consultaLocal(local);
 	}
 	
-	/**
-	 * Busca os tutores disponiveis para as especificacoes informadas.
-	 * 
-	 * @param disciplina
-	 *     a disciplina que sera debatida
-	 * @param horario
-	 *     o horario da ajuda
-	 * @param dia
-	 *     o dia da ajuda
-	 * @param local
-	 *     o local da ajuda
-	 *     
-	 * @return uma lista de tutores que satisfazem as especificacoes
-	 */
-	private List<Aluno> buscarTutoresCandidatos(String disciplina, 
-			String horario, String dia, String local) {
-		List<Aluno> tutoresCandidatos = new ArrayList<>();
-		for (Aluno aluno : alunos) {
-			if(aluno.ehTutor() && aluno.tutoriaDisponivel(disciplina, horario,
-					dia, local)){
-				tutoresCandidatos.add(aluno);
-			}
-		}
-		return tutoresCandidatos;
-	}
+	
 	
 	/**
 	 * Encontra o tutor da disciplina informada, que antende nos horario,
@@ -303,24 +279,6 @@ public class AlunoController {
 	}
 	
 	/**
-	 * Busca os tutores disponiveis para a disciplina informada.
-	 * 
-	 * @param disciplina
-	 *      a disciplina que sera debatida
-	 *      
-	 * @return uma lista de tutores que satisfazem a especificacao
-	 */
-	private List<Aluno> buscarTutoresDisciplina(String disciplina) {
-		List<Aluno> tutoresDisciplina = new ArrayList<>();
-		for (Aluno aluno : alunos) {
-			if(aluno.ehTutor() && aluno.getTutor().consultaDisciplina(disciplina)) {
-				tutoresDisciplina.add(aluno);
-			}
-		}
-		return tutoresDisciplina;
-	}
-	
-	/**
 	 * Encontra o tutor da disciplina informada que possui maior pontucao nesta.
 	 * Caso dois tutores se encontrem nesta situacao, o tutor que foi 
 	 * cadastrado primeiro e retornado.
@@ -335,6 +293,11 @@ public class AlunoController {
 		Comparator<Aluno> comparator = new TutorComparator();
 		Collections.sort(tutoresCandidatos, comparator);
 		return tutoresCandidatos.get(0).getMatricula();
+	}
+	
+	public void avaliarTutor(String matricula, int nota) {
+		Aluno aluno = this.procuraAlunoMatricula(matricula);
+		aluno.getTutor().setPontuacao(nota);
 	}
 	
 	/**
@@ -371,4 +334,47 @@ public class AlunoController {
 		return null;
 	}
 	
+	/**
+	 * Busca os tutores disponiveis para as especificacoes informadas.
+	 * 
+	 * @param disciplina
+	 *     a disciplina que sera debatida
+	 * @param horario
+	 *     o horario da ajuda
+	 * @param dia
+	 *     o dia da ajuda
+	 * @param local
+	 *     o local da ajuda
+	 *     
+	 * @return uma lista de tutores que satisfazem as especificacoes
+	 */
+	private List<Aluno> buscarTutoresCandidatos(String disciplina, 
+			String horario, String dia, String local) {
+		List<Aluno> tutoresCandidatos = new ArrayList<>();
+		for (Aluno aluno : alunos) {
+			if(aluno.ehTutor() && aluno.tutoriaDisponivel(disciplina, horario,
+					dia, local)){
+				tutoresCandidatos.add(aluno);
+			}
+		}
+		return tutoresCandidatos;
+	}
+
+	/**
+	 * Busca os tutores disponiveis para a disciplina informada.
+	 * 
+	 * @param disciplina
+	 *      a disciplina que sera debatida
+	 *      
+	 * @return uma lista de tutores que satisfazem a especificacao
+	 */
+	private List<Aluno> buscarTutoresDisciplina(String disciplina) {
+		List<Aluno> tutoresDisciplina = new ArrayList<>();
+		for (Aluno aluno : alunos) {
+			if(aluno.ehTutor() && aluno.getTutor().consultaDisciplina(disciplina)) {
+				tutoresDisciplina.add(aluno);
+			}
+		}
+		return tutoresDisciplina;
+	}
 }
