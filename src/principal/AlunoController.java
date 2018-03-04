@@ -61,7 +61,8 @@ public class AlunoController {
 	public String recuperaAluno(String matricula) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
 		if (aluno == null) {
-			throw new IllegalArgumentException("Erro na busca por aluno: Aluno nao encontrado");
+			throw new IllegalArgumentException(
+					"Erro na busca por aluno: Aluno nao encontrado");
 		}
 		return aluno.toString();
 	}
@@ -115,7 +116,8 @@ public class AlunoController {
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
 		if (aluno == null) {
-			throw new IllegalArgumentException("Erro na definicao de papel: Tutor nao encontrado");
+			throw new IllegalArgumentException(
+					"Erro na definicao de papel: Tutor nao encontrado");
 		}
 		aluno.tornarTutor(disciplina, proficiencia, id);
 		id++;
@@ -132,10 +134,12 @@ public class AlunoController {
 	public String recuperaTutor(String matricula) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
 		if (aluno == null) {
-			throw new IllegalArgumentException("Erro na busca por tutor: Tutor nao encontrado");
+			throw new IllegalArgumentException(
+					"Erro na busca por tutor: Tutor nao encontrado");
 		}
 		return aluno.toString();
 	}
+
 	/**
 	 * Retorna o objeto tutor do aluno
 	 * 
@@ -145,6 +149,7 @@ public class AlunoController {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
 		return aluno.getTutor();
 	}
+
 	/**
 	 * Lista todos os alunos que sao tutores.
 	 * 
@@ -181,7 +186,8 @@ public class AlunoController {
 		}
 		Aluno aluno = this.procuraAlunoEmail(email);
 		if (aluno == null || !aluno.ehTutor()) {
-			throw new IllegalArgumentException("Erro no cadastrar horario: tutor nao cadastrado");
+			throw new IllegalArgumentException(
+					"Erro no cadastrar horario: tutor nao cadastrado");
 		}
 		aluno.getTutor().adicionaHorario(dia, horario);
 
@@ -249,28 +255,27 @@ public class AlunoController {
 		}
 		return aluno.getTutor().consultaLocal(local);
 	}
-	
+
 	/**
-	 * Encontra o tutor da disciplina informada, que antende nos horario,
-	 * dia e local informados, e possui maior pontuacao na disciplina. 
-	 * Caso dois tutores se encontrem nesta situacao, o tutor que foi 
-	 * cadastrado primeiro e retornado.
+	 * Encontra o tutor da disciplina informada, que antende nos horario, dia e
+	 * local informados, e possui maior pontuacao na disciplina. Caso dois tutores
+	 * se encontrem nesta situacao, o tutor que foi cadastrado primeiro e retornado.
 	 * 
 	 * @param disciplina
-	 *     a disciplina que sera debatida
+	 *            a disciplina que sera debatida
 	 * @param horario
-	 *     o horario da ajuda
+	 *            o horario da ajuda
 	 * @param dia
-	 *     o dia da ajuda
+	 *            o dia da ajuda
 	 * @param local
-	 *     o local da ajuda
+	 *            o local da ajuda
 	 * 
 	 * @return o tutor mais apto a ajudar.
 	 */
-	public String buscarTutor(String disciplina, String horario, String dia,
+	public String buscarTutor(String disciplina, String horario, String dia, 
 			String local) {
-		List<Aluno> tutoresCandidatos = this.buscarTutoresCandidatos(
-				disciplina, horario, dia, local);
+		List<Aluno> tutoresCandidatos = this.buscarTutoresCandidatos(disciplina, 
+				horario, dia, local);
 		Comparator<Aluno> comparator = new TutorComparator();
 		Collections.sort(tutoresCandidatos, comparator);
 		if (!tutoresCandidatos.isEmpty()) {
@@ -278,15 +283,15 @@ public class AlunoController {
 		}
 		return "";
 	}
-	
+
 	/**
 	 * Encontra o tutor da disciplina informada que possui maior pontucao nesta.
-	 * Caso dois tutores se encontrem nesta situacao, o tutor que foi 
-	 * cadastrado primeiro e retornado.
+	 * Caso dois tutores se encontrem nesta situacao, o tutor que foi cadastrado
+	 * primeiro e retornado.
 	 * 
 	 * @param disciplina
-	 *     a disciplina que sera debatida
-	 *     
+	 *            a disciplina que sera debatida
+	 * 
 	 * @return o tutor mais apto a ajudar
 	 */
 	public String buscarTutor(String disciplina) {
@@ -298,12 +303,45 @@ public class AlunoController {
 		}
 		return "";
 	}
-	
+
+	/**
+	 * Recupera o aluno por meio de sua matricula e chama o metodo que altera a
+	 * pontuacao.
+	 * 
+	 * @param matricula
+	 *            matricula do aluno
+	 * @param nota
+	 *            nota a ser atribuida
+	 */
 	public void avaliarTutor(String matricula, int nota) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
 		aluno.getTutor().setPontuacao(nota);
 	}
-	
+
+	/**
+	 * Retorna a pontuacao do tutor.
+	 * 
+	 * @param matricula
+	 *            matricula do aluno
+	 * @return nota
+	 */
+	public int getNota(String matricula) {
+		Aluno aluno = this.procuraAlunoMatricula(matricula);
+		return aluno.getTutor().getPontuacao();
+	}
+
+	/**
+	 * Retorna o nivel do tutor de acordo com a sua pontuacao.
+	 * 
+	 * @param matricula
+	 *            matricula do aluno
+	 * @return nivel do tutor
+	 */
+	public String getNivel(String matricula) {
+		Aluno aluno = this.procuraAlunoMatricula(matricula);
+		return aluno.getTutor().getNivel();
+	}
+
 	/**
 	 * Verifica se um aluno esta cadastrado no sistema, dada sua matricula.
 	 * 
@@ -337,27 +375,27 @@ public class AlunoController {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Busca os tutores disponiveis para as especificacoes informadas.
 	 * 
 	 * @param disciplina
-	 *     a disciplina que sera debatida
+	 *            a disciplina que sera debatida
 	 * @param horario
-	 *     o horario da ajuda
+	 *            o horario da ajuda
 	 * @param dia
-	 *     o dia da ajuda
+	 *            o dia da ajuda
 	 * @param local
-	 *     o local da ajuda
-	 *     
+	 *            o local da ajuda
+	 * 
 	 * @return uma lista de tutores que satisfazem as especificacoes
 	 */
-	private List<Aluno> buscarTutoresCandidatos(String disciplina, 
-			String horario, String dia, String local) {
+	private List<Aluno> buscarTutoresCandidatos(String disciplina, String horario, 
+			String dia, String local) {
 		List<Aluno> tutoresCandidatos = new ArrayList<>();
 		for (Aluno aluno : alunos) {
-			if(aluno.ehTutor() && aluno.tutoriaDisponivel(disciplina, horario,
-					dia, local)){
+			if (aluno.ehTutor() && aluno.tutoriaDisponivel(disciplina, horario, 
+					dia, local)) {
 				tutoresCandidatos.add(aluno);
 			}
 		}
@@ -368,14 +406,14 @@ public class AlunoController {
 	 * Busca os tutores disponiveis para a disciplina informada.
 	 * 
 	 * @param disciplina
-	 *      a disciplina que sera debatida
-	 *      
+	 *            a disciplina que sera debatida
+	 * 
 	 * @return uma lista de tutores que satisfazem a especificacao
 	 */
 	private List<Aluno> buscarTutoresDisciplina(String disciplina) {
 		List<Aluno> tutoresDisciplina = new ArrayList<>();
 		for (Aluno aluno : alunos) {
-			if(aluno.ehTutor() && aluno.getTutor().consultaDisciplina(disciplina)) {
+			if (aluno.ehTutor() && aluno.getTutor().consultaDisciplina(disciplina)) {
 				tutoresDisciplina.add(aluno);
 			}
 		}

@@ -1,10 +1,19 @@
 package principal;
 
+/**
+ * Esta classe eh responsavel por manipular os controllers de Ajuda e Aluno e
+ * intermediar informacoes entre eles.
+ *
+ */
 public class QuemMeAjudaController {
 
 	private AlunoController alunoCtrl;
 	private AjudaController ajudaCtrl;
 
+	/**
+	 * Constroi um novo controller do sistema, inicializando tambem os controllers
+	 * de ajuda e aluno.
+	 */
 	public QuemMeAjudaController() {
 		alunoCtrl = new AlunoController();
 		ajudaCtrl = new AjudaController();
@@ -160,10 +169,9 @@ public class QuemMeAjudaController {
 	}
 
 	/**
-	 * Pesquisa a matricula do tutor que ensina essa disciplina, atende no
-	 * horario e dia informados e no local de interesse, e entrega para 
-	 * AjudaController as informacoes necessarias para criar uma nova instancia
-	 * de ajuda presencial.
+	 * Pesquisa a matricula do tutor que ensina essa disciplina, atende no horario e
+	 * dia informados e no local de interesse, e entrega para AjudaController as
+	 * informacoes necessarias para criar uma nova instancia de ajuda presencial.
 	 * 
 	 * @param matrAluno
 	 *            matricula do aluno que pediu a ajuda
@@ -175,27 +183,27 @@ public class QuemMeAjudaController {
 	 *            dia desejado para o atendimento
 	 * @param localInteresse
 	 *            local de interesse para o atendimento
-	 *            
+	 * 
 	 * @return id da ajuda cadastrada.
 	 */
-	public int pedirAjudaPresencial(String matrAluno, String disciplina,
-			String horario, String dia, String localInteresse) {
-		this.validarDadosAjudaPresencial(matrAluno, disciplina,
-				horario, dia, localInteresse);
+	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, 
+			String dia, String localInteresse) {
+		this.validarDadosAjudaPresencial(matrAluno, disciplina, horario, dia, 
+				localInteresse);
 		String matrTutor = alunoCtrl.buscarTutor(disciplina, horario, dia, localInteresse);
 		return ajudaCtrl.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, 
 				horario, dia, localInteresse);
 	}
-	
+
 	/**
-	 * Encontra o tutor mais apto a ajudar da disciplina informada e realiza
-	 * o pedido de ajuda online.
+	 * Encontra o tutor mais apto a ajudar da disciplina informada e realiza o
+	 * pedido de ajuda online.
 	 * 
 	 * @param matrAluno
 	 *            matricula do aluno que pediu a ajuda
 	 * @param disciplina
 	 *            disciplina da ajuda
-	 *            
+	 * 
 	 * @return id da ajuda cadastrada
 	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
@@ -203,23 +211,47 @@ public class QuemMeAjudaController {
 		String matrTutor = alunoCtrl.buscarTutor(disciplina);
 		return ajudaCtrl.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
 	}
-	
+
+	/**
+	 * Retorna os dados do tutor de uma determinada ajuda.
+	 * 
+	 * @param idAjuda
+	 *            identificacao da ajuda
+	 * @return dados do tutor que deu a ajuda
+	 */
 	public String pegarTutor(int idAjuda) {
 		this.validarDadosPegarTutor(idAjuda);
 		return ajudaCtrl.pegarTutor(idAjuda);
 	}
-	
+
+	/**
+	 * Retorna alguma informacao especifica da ajuda.
+	 * 
+	 * @param idAjuda
+	 *            identificacao da ajuda
+	 * @param atributo
+	 *            categoria do dado requisitado
+	 * @return dado requisitado
+	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		this.validarDadosGetInfoAjuda(idAjuda, atributo);
 		return ajudaCtrl.getInfoAjuda(idAjuda, atributo);
 	}
-	
+
+	/**
+	 * Avalia com uma pontuacao o tutor que deu uma determinada ajuda.
+	 * 
+	 * @param idAjuda
+	 *            identificacao da ajuda
+	 * @param nota
+	 *            nota a ser atribuida ao tutor
+	 */
 	public void avaliarTutor(int idAjuda, int nota) {
 		this.validarDadosAvaliar(idAjuda, nota);
 		String matricula = ajudaCtrl.avaliar(idAjuda, nota);
 		alunoCtrl.avaliarTutor(matricula, nota);
 	}
-	
+
 	/**
 	 * Valida os dados passados ao metodo pegarTutor.
 	 * 
@@ -232,7 +264,7 @@ public class QuemMeAjudaController {
 					"Erro ao tentar recuperar tutor : id nao pode menor que zero ");
 		}
 	}
-	
+
 	/**
 	 * Valida os dados passados ao metodo pedirAjudaOnline.
 	 * 
@@ -243,18 +275,20 @@ public class QuemMeAjudaController {
 	 */
 	private void validarDadosAjudaOnline(String matrAluno, String disciplina) {
 		if (matrAluno == null || matrAluno.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no pedido de ajuda online:"
-					+ " matricula de aluno nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+					"Erro no pedido de ajuda online:" 
+							+ " matricula de aluno nao pode ser vazio ou em branco");
 		}
 		if (disciplina == null || disciplina.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no pedido de ajuda online:"
-					+ " disciplina nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+					"Erro no pedido de ajuda online:" 
+							+ " disciplina nao pode ser vazio ou em branco");
 		}
 	}
-	
+
 	/**
-	 * Valida os dados passados ao metodo pedirAjudaPresencial
-	 * exceto a matricula do tutor.
+	 * Valida os dados passados ao metodo pedirAjudaPresencial exceto a matricula do
+	 * tutor.
 	 * 
 	 * @param matrAluno
 	 *            a matricula do aluno que solicita a ajuda
@@ -268,27 +302,32 @@ public class QuemMeAjudaController {
 	 *            o local onde a ajuda vai acontecer
 	 */
 
-	private void validarDadosAjudaPresencial(String matrAluno, String disciplina,
-			String horario, String dia, String localInteresse) {
+	private void validarDadosAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
+			String localInteresse) {
 		if (matrAluno == null || matrAluno.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
-					+ " matricula de aluno nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+					"Erro no pedido de ajuda presencial:" 
+							+ " matricula de aluno nao pode ser vazio ou em branco");
 		}
 		if (disciplina == null || disciplina.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
-					+ " disciplina nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+					"Erro no pedido de ajuda presencial:" 
+							+ " disciplina nao pode ser vazio ou em branco");
 		}
 		if (horario == null || horario.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
-					+ " horario nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+					"Erro no pedido de ajuda presencial:"
+							+ " horario nao pode ser vazio ou em branco");
 		}
 		if (dia == null || dia.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
-					+ " dia nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+					"Erro no pedido de ajuda presencial:"
+							+ " dia nao pode ser vazio ou em branco");
 		}
 		if (localInteresse == null || localInteresse.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
-					+ " local de interesse nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+					"Erro no pedido de ajuda presencial:" 
+							+ " local de interesse nao pode ser vazio ou em branco");
 		}
 	}
 
