@@ -180,7 +180,7 @@ public class QuemMeAjudaController {
 	 */
 	public int pedirAjudaPresencial(String matrAluno, String disciplina,
 			String horario, String dia, String localInteresse) {
-		this.ajudaCtrl.validarDadosAjudaPresencial(matrAluno, disciplina,
+		this.validarDadosAjudaPresencial(matrAluno, disciplina,
 				horario, dia, localInteresse);
 		String matrTutor = alunoCtrl.buscarTutor(disciplina, horario, dia, localInteresse);
 		return ajudaCtrl.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, 
@@ -199,22 +199,139 @@ public class QuemMeAjudaController {
 	 * @return id da ajuda cadastrada
 	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
-		this.ajudaCtrl.validarDadosAjudaOnline(matrAluno, disciplina);
+		this.validarDadosAjudaOnline(matrAluno, disciplina);
 		String matrTutor = alunoCtrl.buscarTutor(disciplina);
 		return ajudaCtrl.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
 	}
 	
 	public String pegarTutor(int idAjuda) {
+		this.validarDadosPegarTutor(idAjuda);
 		return ajudaCtrl.pegarTutor(idAjuda);
 	}
 	
 	public String getInfoAjuda(int idAjuda, String atributo) {
+		this.validarDadosGetInfoAjuda(idAjuda, atributo);
 		return ajudaCtrl.getInfoAjuda(idAjuda, atributo);
 	}
 	
 	public void avaliarTutor(int idAjuda, int nota) {
-		String matricula = ajudaCtrl.avaliar(idAjuda);
+		this.validarDadosAvaliar(idAjuda, nota);
+		String matricula = ajudaCtrl.avaliar(idAjuda, nota);
 		alunoCtrl.avaliarTutor(matricula, nota);
+	}
+	
+	/**
+	 * Valida os dados passados ao metodo pegarTutor.
+	 * 
+	 * @param idAjuda
+	 *            o identificador da ajuda
+	 */
+	private void validarDadosPegarTutor(int idAjuda) {
+		if (idAjuda <= 0) {
+			throw new IllegalArgumentException(
+					"Erro ao tentar recuperar tutor : id nao pode menor que zero ");
+		}
+	}
+	
+	/**
+	 * Valida os dados passados ao metodo pedirAjudaOnline.
+	 * 
+	 * @param matrAluno
+	 *            a matricula do aluno que solicita a ajuda
+	 * @param disciplina
+	 *            a disciplina que o aluno necessita de ajuda
+	 */
+	private void validarDadosAjudaOnline(String matrAluno, String disciplina) {
+		if (matrAluno == null || matrAluno.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no pedido de ajuda online:"
+					+ " matricula de aluno nao pode ser vazio ou em branco");
+		}
+		if (disciplina == null || disciplina.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no pedido de ajuda online:"
+					+ " disciplina nao pode ser vazio ou em branco");
+		}
+	}
+	
+	/**
+	 * Valida os dados passados ao metodo pedirAjudaPresencial
+	 * exceto a matricula do tutor.
+	 * 
+	 * @param matrAluno
+	 *            a matricula do aluno que solicita a ajuda
+	 * @param disciplina
+	 *            a disciplina que o aluno necessita de ajuda
+	 * @param horario
+	 *            o horario em que ajuda vai acontecer
+	 * @param dia
+	 *            o dia em que a ajuda vai acontecer
+	 * @param localInteresse
+	 *            o local onde a ajuda vai acontecer
+	 */
+
+	private void validarDadosAjudaPresencial(String matrAluno, String disciplina,
+			String horario, String dia, String localInteresse) {
+		if (matrAluno == null || matrAluno.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+					+ " matricula de aluno nao pode ser vazio ou em branco");
+		}
+		if (disciplina == null || disciplina.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+					+ " disciplina nao pode ser vazio ou em branco");
+		}
+		if (horario == null || horario.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+					+ " horario nao pode ser vazio ou em branco");
+		}
+		if (dia == null || dia.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+					+ " dia nao pode ser vazio ou em branco");
+		}
+		if (localInteresse == null || localInteresse.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+					+ " local de interesse nao pode ser vazio ou em branco");
+		}
+	}
+
+	/**
+	 * Valida os dados passados ao metodo getInfoAjuda.
+	 * 
+	 * @param idAjuda
+	 *            o identificador da ajuda
+	 * @param atributo
+	 *            um dos atributos de uma ajuda
+	 */
+	private void validarDadosGetInfoAjuda(int idAjuda, String atributo) {
+		if (idAjuda < 0) {
+			throw new IllegalArgumentException(
+					"Erro ao tentar recuperar info da ajuda : id nao pode menor que zero ");
+		}
+		if (atributo == null || atributo.trim().equals("")) {
+			throw new IllegalArgumentException(
+					"Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
+		}
+	}
+
+	/**
+	 * Valida os dados passados no metodo avaliar.
+	 * 
+	 * @param id
+	 *            o identificador da ajuda
+	 * @param nota
+	 *            nota a ser atribuida ao tutor
+	 */
+	private void validarDadosAvaliar(int id, int nota) {
+		if (nota < 0) {
+			throw new IllegalArgumentException(
+					"Erro na avaliacao de tutor: nota nao pode ser menor que 0");
+		}
+		if (nota > 5) {
+			throw new IllegalArgumentException(
+					"Erro na avaliacao de tutor: nota nao pode ser maior que 5");
+		}
+		if (id < 0) {
+			throw new IllegalArgumentException(
+					"Erro na avaliacao de tutor: id nao encontrado ");
+		}
 	}
 
 }
