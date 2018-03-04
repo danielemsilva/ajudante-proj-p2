@@ -5,10 +5,6 @@ package principal;
  * tutor e aluno e disciplina.
  */
 public class AjudaOnline extends Ajuda {
-
-	private String matrAluno;
-	private String matrTutor;
-	private String disciplina;
 	
 	public AjudaOnline(int id, String matrAluno, String matrTutor,
 			String disciplina) {

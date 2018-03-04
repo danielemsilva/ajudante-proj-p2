@@ -6,9 +6,6 @@ package principal;
  */
 public class AjudaPresencial extends Ajuda {
 
-	private String matrAluno;
-	private String matrTutor;
-	private String disciplina;
 	private String local;
 	private String dia;
 	private String horario;

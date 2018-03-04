@@ -7,6 +7,9 @@ public abstract class Ajuda {
 
 	private int id;
 	private boolean avaliada;
+	protected String matrAluno;
+	protected String matrTutor;
+	protected String disciplina;
 
 	/**
 	 * Constroi uma nova ajuda
