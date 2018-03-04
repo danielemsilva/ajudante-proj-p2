@@ -123,23 +123,36 @@ public class QuemMeAjudaControllerTest {
 	}
 	
 	/**
-	 * Verifica se a primeira ajuda cadastrada possui indice 1.
+	 * Verifica se uma ajuda presencial que nao possui monitor disponivel pode
+	 * ser cadastrada.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPedirAjudaPresencialSemMonitor() {
+		this.quemMeAjudaController.pedirAjudaPresencial(
+				"11111111", "P2", "13:00", "seg", "LCC2");
+	}
+	
+	/**
+	 * Verifica se a primeira ajuda presencial cadastrada possui indice 1.
 	 */
 	@Test
-	public void testPedirPrimeiraAjudaValida() {
-		this.quemMeAjudaController.cadastrarAluno("Mario", "22222", "CC", "", "mario@ccc.edu.br");
+	public void testPedirPrimeiraAjudaPresencialValida() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
 		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
-		this.quemMeAjudaController.cadastrarHorario("mario@ccc.edu.br", "13:00", "seg");
-		this.quemMeAjudaController.cadastrarLocalDeAtendimento("mario@ccc.edu.br", "LCC2");
+		this.quemMeAjudaController.cadastrarHorario("mario@ccc.edu.br",
+				"13:00", "seg");
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento(
+				"mario@ccc.edu.br", "LCC2");
 		assertEquals(1, this.quemMeAjudaController.pedirAjudaPresencial(
 				"11111111", "P2", "13:00", "seg", "LCC2"));
 	}
 	
 	/**
-	 * Verifica se a segunda ajuda cadastrada possui indice 2.
+	 * Verifica se a segunda ajuda presencial cadastrada possui indice 2.
 	 */
 	@Test
-	public void testPedirSegundaAjudaValida() {
+	public void testPedirSegundaAjudaPresencialValida() {
 		this.quemMeAjudaController.cadastrarAluno("Mario", "22222", "CC", "",
 				"mario@ccc.edu.br");
 		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
@@ -153,6 +166,76 @@ public class QuemMeAjudaControllerTest {
 				"15:00", "sex", "LCC2");
 		assertEquals(2, this.quemMeAjudaController.pedirAjudaPresencial(
 				"11111111", "P2", "13:00", "seg", "LCC2"));
+	}
+	
+	/**
+	 * Verifica se uma ajuda online pode ser pedida quando a matricula do
+	 * aluno e vazia.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPedirAjudaOnlineMatrAlunoVazia() {
+		this.quemMeAjudaController.pedirAjudaOnline("", "P2");
+	}
+	
+	/**
+	 * Verifica se uma ajuda online pode ser pedida quando a matricula do
+	 * aluno e em branco.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPedirAjudaOnlineMatrAlunoEmBranco() {
+		this.quemMeAjudaController.pedirAjudaOnline("    ", "P2");
+	}
+	
+	/**
+	 * Verifica se uma ajuda online pode ser pedida quando a disciplina
+	 * de interesse e vazia.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPedirAjudaOnlineDisciplinaVazia() {
+		this.quemMeAjudaController.pedirAjudaOnline("11111111", "");
+	}
+	
+	/**
+	 * Verifica se uma ajuda online pode ser pedida quando a disciplina
+	 * de interesse e em branco.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPedirAjudaOnlineDisciplinaEmBranco() {
+		this.quemMeAjudaController.pedirAjudaOnline("11111111", "  ");
+	}
+	
+	/**
+	 * Verifica se uma ajuda online que nao possui monitor disponivel pode
+	 * ser cadastrada.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPedirAjudaOnlineSemMonitor() {
+		this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2");
+	}
+	
+	/**
+	 * Verifica se a primeira ajuda online cadastrada possui indice 1.
+	 */
+	@Test
+	public void testPedirPrimeiraAjudaOnlineValida() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		assertEquals(1, this.quemMeAjudaController.pedirAjudaOnline("11111111",
+				"P2"));
+	}
+	
+	/**
+	 * Verifica se a segunda ajuda online cadastrada possui indice 2.
+	 */
+	@Test
+	public void testPedirSegundaAjudaOnlineValida() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.pedirAjudaOnline("22222222", "P2");
+		assertEquals(2, this.quemMeAjudaController.pedirAjudaOnline("11111111",
+				"P2"));
 	}
 	
 
