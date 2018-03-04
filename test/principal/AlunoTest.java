@@ -251,7 +251,7 @@ public class AlunoTest {
 	 */
 	@Test
 	public void testEhTutorFalse() {
-		assertEquals(false, this.aluno.ehTutor());
+		assertFalse(this.aluno.ehTutor());
 	}
 
 	/**
@@ -260,7 +260,102 @@ public class AlunoTest {
 	@Test
 	public void testEhTutorTrue() {
 		aluno.tornarTutor("Programacao", 4, 1);
-		assertEquals(true, this.aluno.ehTutor());
+		assert(this.aluno.ehTutor());
+	}
+	
+	/**
+	 * Verifica se a consulta de tutoria pode ser realizada com a disciplina vazia.
+	 */
+	@Test(expected=IllegalArgumentException.class)
+	public void testTutoriaDisciplinaVazia() {
+		aluno.tornarTutor("Programacao", 4, 1);
+		aluno.tutoriaDisponivel("  ", "14:00", "qua", "LCC2");
+	}
+	
+	/**
+	 * Verifica se a consulta de tutoria pode ser realizada com o horario vazio.
+	 */
+	@Test(expected=IllegalArgumentException.class)
+	public void testTutoriaHorarioVazio() {
+		aluno.tornarTutor("Programacao", 4, 1);
+		aluno.tutoriaDisponivel("Programacao", "   ", "qua", "LCC2");
+	}
+	
+	/**
+	 * Verifica se a consulta de tutoria pode ser realizada com o dia vazio.
+	 */
+	@Test(expected=IllegalArgumentException.class)
+	public void testTutoriaDiaVazio() {
+		aluno.tornarTutor("Programacao", 4, 1);
+		aluno.tutoriaDisponivel("Programacao", "14:00", "  ", "LCC2");
+	}
+	
+	/**
+	 * Verifica se a consulta de tutoria pode ser realizada com o local vazio.
+	 */
+	@Test(expected=IllegalArgumentException.class)
+	public void testTutoriaLocalVazio() {
+		aluno.tornarTutor("Programacao", 4, 1);
+		aluno.tutoriaDisponivel("Programacao", "14:00", "qua", "   ");
+	}
+	
+	/**
+	 * Verifica se a consulta de tutoria pode ser realizada passando dados validos.
+	 */
+	@Test
+	public void testTutoria() {
+		aluno.tornarTutor("Programacao", 4, 1);
+		aluno.getTutor().adicionaHorario("qua", "14:00");
+		aluno.getTutor().adicionaLocal("LCC2");
+		assert(this.aluno.tutoriaDisponivel("Programacao", "14:00", "qua", "LCC2"));
+	}
+	
+	/**
+	 * Verifica se a consulta de tutoria pode ser realizada com uma disciplina
+	 * incorreta.
+	 */
+	@Test
+	public void testTutoriaDisciplinaFalsa() {
+		aluno.tornarTutor("Programacao", 4, 1);
+		aluno.getTutor().adicionaHorario("qua", "14:00");
+		aluno.getTutor().adicionaLocal("LCC2");
+		assertFalse(this.aluno.tutoriaDisponivel("Algoritmos Avancados", "14:00", "qua", "LCC2"));
+	}
+	
+	/**
+	 * Verifica se a consulta de tutoria pode ser realizada com o horario
+	 * de atendimento incorreto.
+	 */
+	@Test
+	public void testTutoriaHorarioFalso() {
+		aluno.tornarTutor("Programacao", 4, 1);
+		aluno.getTutor().adicionaHorario("qua", "14:00");
+		aluno.getTutor().adicionaLocal("LCC2");
+		assertFalse(this.aluno.tutoriaDisponivel("Programacao", "10:00", "qua", "LCC2"));
+	}
+	
+	/**
+	 * Verifica se a consulta de tutoria pode ser realizada com o dia
+	 * incorreto.
+	 */
+	@Test
+	public void testTutoriaDiaFalso() {
+		aluno.tornarTutor("Programacao", 4, 1);
+		aluno.getTutor().adicionaHorario("qua", "14:00");
+		aluno.getTutor().adicionaLocal("LCC2");
+		assertFalse(this.aluno.tutoriaDisponivel("Programacao", "14:00", "seg", "LCC2"));
+	}
+	
+	/**
+	 * Verifica se a consulta de tutoria pode ser realizada com o local
+	 * de atendimento incorreto.
+	 */
+	@Test
+	public void testTutoriaLocalFalso() {
+		aluno.tornarTutor("Programacao", 4, 1);
+		aluno.getTutor().adicionaHorario("qua", "14:00");
+		aluno.getTutor().adicionaLocal("LCC2");
+		assertFalse(this.aluno.tutoriaDisponivel("Programacao", "14:00", "qua", "CAA404"));
 	}
 
 }

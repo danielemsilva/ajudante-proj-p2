@@ -144,6 +144,7 @@ public class Aluno {
 	 */
 	public boolean tutoriaDisponivel(String disciplina, String horario, 
 			String dia, String local) {
+		this.validaDadosTutoria(disciplina, horario, dia, local);
 		return this.tutor.consultaDisciplina(disciplina) 
 				&& this.tutor.consultaProficiencia(disciplina)
 				&& this.tutor.consultaHorario(dia, horario) 
@@ -246,6 +247,25 @@ public class Aluno {
 		if (!email.contains("@") || email.indexOf("@") == 0 || 
 				email.indexOf("@") == email.length() - 1) {
 			throw new IllegalArgumentException("Erro no cadastro de aluno: Email invalido");
+		}
+	}
+	
+	private void validaDadosTutoria(String disciplina, String horario, String dia, String local) {
+		if (disciplina == null || disciplina.trim().equals("")) {
+			throw new IllegalArgumentException(
+					"Erro ao checar tutoria: Disciplina nao pode ser vazia ou nula");
+		}
+		if (horario == null || horario.trim().equals("")) {
+			throw new IllegalArgumentException(
+					"Erro ao checar tutoria: Horario nao pode ser vazio ou nulo");
+		}
+		if (dia == null || dia.trim().equals("")) {
+			throw new IllegalArgumentException(
+					"Erro ao checar tutoria: Dia do curso nao pode ser vazio ou nulo");
+		}
+		if (local == null || local.trim().equals("")) {
+			throw new IllegalArgumentException(
+					"Erro ao checar tutoria: Local nao pode ser vazio ou nulo");
 		}
 	}
 
