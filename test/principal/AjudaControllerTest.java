@@ -142,23 +142,78 @@ public class AjudaControllerTest {
 	}
 	
 	/**
-	 * Verifica se a primeira ajuda cadastrada possui indice 1.
+	 * Verifica se a primeira ajuda presencial cadastrada possui indice 1.
 	 */
 	@Test
-	public void testPedirPrimeiraAjudaValida() {
+	public void testPedirPrimeiraAjudaPresencialValida() {
 		assertEquals(1, this.ajudaController.pedirAjudaPresencial("22222222",
 				"11111111", "P2", "13:00", "seg", "LCC2"));
 	}
 	
 	/**
-	 * Verifica se a segunda ajuda cadastrada possui indice 2.
+	 * Verifica se a segunda ajuda presencial cadastrada possui indice 2.
 	 */
 	@Test
-	public void testPedirSegundaAjudaValida() {
+	public void testPedirSegundaAjudaPresencialValida() {
 		this.ajudaController.pedirAjudaPresencial("22222222", "11111111", "P2",
 				"15:00", "sex", "LCC2");
 		assertEquals(2, this.ajudaController.pedirAjudaPresencial("22222222",
 				"11111111", "P2", "13:00", "seg", "LCC2"));
+	}
+	
+	/**
+	 * Verifica se uma ajuda online pode ser pedida quando a matricula do
+	 * aluno e vazia.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPedirAjudaOnlineMatrAlunoVazia() {
+		this.ajudaController.pedirAjudaOnline("", "111111111", "P2");
+	}
+	
+	/**
+	 * Verifica se uma ajuda online pode ser pedida quando a matricula do
+	 * aluno e em branco.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPedirAjudaOnlineMatrAlunoEmBranco() {
+		this.ajudaController.pedirAjudaOnline("    ", "111111111", "P2");
+	}
+	
+	/**
+	 * Verifica se uma ajuda online pode ser pedida quando a disciplina
+	 * de interesse e vazia.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPedirAjudaOnlineDisciplinaVazia() {
+		this.ajudaController.pedirAjudaOnline("11111111", "22222222", "");
+	}
+	
+	/**
+	 * Verifica se uma ajuda online pode ser pedida quando a disciplina
+	 * de interesse e em branco.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPedirAjudaOnlineDisciplinaEmBranco() {
+		this.ajudaController.pedirAjudaOnline("11111111", "22222222", "  ");
+	}
+	
+	/**
+	 * Verifica se a primeira ajuda online cadastrada possui indice 1.
+	 */
+	@Test
+	public void testPedirPrimeiraAjudaOnlineValida() {
+		assertEquals(1, this.ajudaController.pedirAjudaOnline("22222222",
+				"11111111", "P2"));
+	}
+	
+	/**
+	 * Verifica se a segunda ajuda online cadastrada possui indice 2.
+	 */
+	@Test
+	public void testPedirSegundaAjudaOnlineValida() {
+		this.ajudaController.pedirAjudaOnline("11111111", "22222222", "P2");
+		assertEquals(2, this.ajudaController.pedirAjudaOnline("22222222",
+				"11111111", "P2"));
 	}
 
 }

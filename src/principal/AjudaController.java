@@ -59,7 +59,7 @@ public class AjudaController {
 	 * @return o inteiro que identifica a ajuda
 	 */
 	public int pedirAjudaOnline(String matrAluno, String matrTutor, String disciplina) {
-		this.validarDadosAjudaOnline(matrAluno, disciplina);
+		this.validarDadosAjudaOnline(matrAluno, matrTutor, disciplina);
 		Ajuda ajuda = new AjudaOnline(this.ajudas.size() + 1, matrAluno, matrTutor, disciplina);
 		this.ajudas.put(this.ajudas.size() + 1, ajuda);
 		return this.ajudas.keySet().size();
@@ -124,26 +124,75 @@ public class AjudaController {
 	}
 
 	/**
-	 * Valida os dados passados ao metodo pedirAjudaOnline.
+	 * Valida os dados passados ao metodo pedirAjudaOnline
+	 * exceto a matricula do tutor.
 	 * 
 	 * @param matrAluno
 	 *            a matricula do aluno que solicita a ajuda
+	 *            
 	 * @param disciplina
 	 *            a disciplina que o aluno necessita de ajuda
 	 */
 	public void validarDadosAjudaOnline(String matrAluno, String disciplina) {
 		if (matrAluno == null || matrAluno.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no pedido de ajuda online: matricula de aluno nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("Erro no pedido de ajuda online:"
+					+ " matricula de aluno nao pode ser vazio ou em branco");
 		}
 		if (disciplina == null || disciplina.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no pedido de ajuda online: disciplina nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("Erro no pedido de ajuda online:"
+					+ " disciplina nao pode ser vazio ou em branco");
+		}
+	}
+	
+	/**
+	 * Valida os dados passados ao metodo pedirAjudaOnline.
+	 * 
+	 * @param matrAluno
+	 *            a matricula do aluno que solicita a ajuda
+	 * @param matrTutor
+	 *            a matricula do tutor que ajudara
+	 * @param disciplina
+	 *            a disciplina que o aluno necessita de ajuda
+	 */
+	public void validarDadosAjudaOnline(String matrAluno, String matrTutor, 
+			String disciplina) {
+		this.validarDadosAjudaOnline(matrAluno, disciplina);
+		if (matrTutor == null || matrTutor.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no pedido de ajuda online:"
+					+ " matricula de tutor nao pode ser vazio ou em branco");
 		}
 	}
 
 	/**
 	 * Valida os dados passados ao metodo pedirAjudaPresencial.
+	 * 
+	 * @param matrAluno
+	 *            a matricula do aluno que solicita a ajuda
+	 * @param matrTutor
+	 *            a matricula do tutor que ajudara
+	 * @param disciplina
+	 *            a disciplina que o aluno necessita de ajuda
+	 * @param horario
+	 *            o horario em que ajuda vai acontecer
+	 * @param dia
+	 *            o dia em que a ajuda vai acontecer
+	 * @param localInteresse
+	 *            o local onde a ajuda vai acontecer
+	 */
+
+	public void validarDadosAjudaPresencial(String matrAluno, String matrTutor,
+			String disciplina, String horario, String dia, String localInteresse) {
+		this.validarDadosAjudaPresencial(matrAluno, disciplina, horario, dia,
+				localInteresse);
+		if (matrTutor == null || matrTutor.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+					+ " matricula de tutor nao pode ser vazio ou em branco");
+		}
+	}
+	
+	/**
+	 * Valida os dados passados ao metodo pedirAjudaPresencial
+	 * exceto a matricula do tutor.
 	 * 
 	 * @param matrAluno
 	 *            a matricula do aluno que solicita a ajuda
@@ -157,31 +206,27 @@ public class AjudaController {
 	 *            o local onde a ajuda vai acontecer
 	 */
 
-	public void validarDadosAjudaPresencial(String matrAluno, String matrTutor,
-			String disciplina, String horario, String dia, String localInteresse) {
+	public void validarDadosAjudaPresencial(String matrAluno, String disciplina,
+			String horario, String dia, String localInteresse) {
 		if (matrAluno == null || matrAluno.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no pedido de ajuda presencial: matricula de aluno nao pode ser vazio ou em branco");
-		}
-		if (matrTutor == null || matrTutor.trim().equals("")) {
 			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
-					+ " matricula de tutor nao pode ser vazio ou em branco");
+					+ " matricula de aluno nao pode ser vazio ou em branco");
 		}
 		if (disciplina == null || disciplina.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no pedido de ajuda presencial: disciplina nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+					+ " disciplina nao pode ser vazio ou em branco");
 		}
 		if (horario == null || horario.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no pedido de ajuda presencial: horario nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+					+ " horario nao pode ser vazio ou em branco");
 		}
 		if (dia == null || dia.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no pedido de ajuda presencial: dia nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+					+ " dia nao pode ser vazio ou em branco");
 		}
 		if (localInteresse == null || localInteresse.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro no pedido de ajuda presencial: local de interesse nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+					+ " local de interesse nao pode ser vazio ou em branco");
 		}
 	}
 

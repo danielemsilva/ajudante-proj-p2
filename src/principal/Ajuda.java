@@ -59,4 +59,5 @@ public abstract class Ajuda {
 	public int getId() {
 		return this.id;
 	}
+		
 }
