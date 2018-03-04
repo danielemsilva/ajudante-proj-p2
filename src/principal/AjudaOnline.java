@@ -56,7 +56,7 @@ public class AjudaOnline extends Ajuda {
 	 */
 	@Override
 	public String toString() {
-		return "Tutor - " + this.matrTutor + ", disciplina -" + this.disciplina;
+		return "Tutor - " + this.matrTutor + ", disciplina- " + this.disciplina;
 	}	
 
 	/**

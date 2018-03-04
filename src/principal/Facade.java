@@ -4,8 +4,6 @@ import easyaccept.EasyAccept;
 
 /**
  * Classe sem logica de negocio, apenas atribui tarefas a qmaCtrl.
- * 
- *
  */
 public class Facade {
 
@@ -25,8 +23,7 @@ public class Facade {
 	 * @param email
 	 *            email
 	 */
-	public void cadastrarAluno(String nome, String matricula, String codigoCurso,
-			String telefone, String email) {
+	public void cadastrarAluno(String nome, String matricula, String codigoCurso, String telefone, String email) {
 		qmaCtrl.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
@@ -161,8 +158,7 @@ public class Facade {
 	}
 
 	/**
-	 * Delega para ajudaController a responsabilidade de criar uma ajuda 
-	 * presencial.
+	 * Delega para ajudaController a responsabilidade de criar uma ajuda presencial.
 	 * 
 	 * @param matrAluno
 	 *            matricula do aluno que pediu a ajuda
@@ -176,15 +172,13 @@ public class Facade {
 	 *            local de interesse do aluno
 	 * @return identificacao da ajuda
 	 */
-	public int pedirAjudaPresencial(String matrAluno, String disciplina,
-			String horario, String dia, String localInteresse) {
-		return qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario,
-				dia, localInteresse);
+	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
+			String localInteresse) {
+		return qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
 	}
-	
+
 	/**
-	 * Delega para ajudaController a responsabilidade de criar uma ajuda 
-	 * online.
+	 * Delega para ajudaController a responsabilidade de criar uma ajuda online.
 	 * 
 	 * @param matrAluno
 	 *            matricula do aluno que pediu a ajuda
@@ -196,15 +190,39 @@ public class Facade {
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
 		return qmaCtrl.pedirAjudaOnline(matrAluno, disciplina);
 	}
-	
+
+	/**
+	 * Retorna os dados do tutor da referente ajuda.
+	 * 
+	 * @param idAjuda
+	 *            identificacao de ajuda
+	 * @return dados do tutor
+	 */
 	public String pegarTutor(int idAjuda) {
 		return qmaCtrl.pegarTutor(idAjuda);
 	}
-	
+
+	/**
+	 * Retorna uma informacao especifica de ajuda.
+	 * 
+	 * @param idAjuda
+	 *            identificacao de ajuda
+	 * @param atributo
+	 *            categoria da informacao desejada
+	 * @return dado requerido
+	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return qmaCtrl.getInfoAjuda(idAjuda, atributo);
 	}
-	
+
+	/**
+	 * Atribiu uma pontuacao ao tutor de uma ajuda,
+	 * 
+	 * @param idAjuda
+	 *            identificacao de ajuda
+	 * @param nota
+	 *            nota a ser atribuida ao tutor
+	 */
 	public void avaliarTutor(int idAjuda, int nota) {
 		qmaCtrl.avaliarTutor(idAjuda, nota);
 	}
@@ -218,8 +236,9 @@ public class Facade {
 	public static void main(String[] args) {
 		args = new String[] { "principal.Facade", 
 				"acceptance_test/us1_test.txt", "acceptance_test/us2_test.txt",
-				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt",
-				"acceptance_test/us5_test.txt"};
+				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt", 
+				"acceptance_test/us5_test.txt", "acceptance_test/us6_test.txt" };
 		EasyAccept.main(args);
 	}
+	
 }
