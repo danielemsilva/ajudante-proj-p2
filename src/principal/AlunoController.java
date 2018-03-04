@@ -250,8 +250,6 @@ public class AlunoController {
 		return aluno.getTutor().consultaLocal(local);
 	}
 	
-	
-	
 	/**
 	 * Encontra o tutor da disciplina informada, que antende nos horario,
 	 * dia e local informados, e possui maior pontuacao na disciplina. 
