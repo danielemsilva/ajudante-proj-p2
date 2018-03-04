@@ -38,9 +38,16 @@ public class AjudaController {
 	 */
 	public int pedirAjudaPresencial(String matrAluno, String matrTutor, String disciplina, 
 			String horario, String dia, String localInteresse) {
+<<<<<<< HEAD
 		this.validarDadosAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
 		Ajuda ajuda = new AjudaPresencial(this.ajudas.keySet().size() + 1, matrAluno, matrTutor, 
 				disciplina, localInteresse, dia, horario);
+=======
+		this.validarDadosAjudaPresencial(matrAluno, matrTutor, disciplina, horario, dia,
+				localInteresse);
+		Ajuda ajuda = new AjudaPresencial(this.ajudas.keySet().size() + 1, matrAluno,
+				matrTutor, disciplina, localInteresse, dia, horario);
+>>>>>>> 8dfcaf92708afd342a9f08dd2a08ac88927ae5ef
 		this.ajudas.put(this.ajudas.keySet().size() + 1, ajuda);
 		return this.ajudas.keySet().size();
 	}
@@ -155,11 +162,20 @@ public class AjudaController {
 	 * @param localInteresse
 	 *            o local onde a ajuda vai acontecer
 	 */
+<<<<<<< HEAD
 	public void validarDadosAjudaPresencial(String matrAluno, String disciplina, 
 			String horario, String dia, String localInteresse) {
+=======
+	public void validarDadosAjudaPresencial(String matrAluno, String matrTutor,
+			String disciplina, String horario, String dia, String localInteresse) {
+>>>>>>> 8dfcaf92708afd342a9f08dd2a08ac88927ae5ef
 		if (matrAluno == null || matrAluno.trim().equals("")) {
 			throw new IllegalArgumentException(
 					"Erro no pedido de ajuda presencial: matricula de aluno nao pode ser vazio ou em branco");
+		}
+		if (matrTutor == null || matrTutor.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+					+ " matricula de tutor nao pode ser vazio ou em branco");
 		}
 		if (disciplina == null || disciplina.trim().equals("")) {
 			throw new IllegalArgumentException(

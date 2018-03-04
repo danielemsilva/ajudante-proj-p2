@@ -15,7 +15,7 @@ public class AlunoControllerTest {
 	private AlunoController alunoController;
 
 	/**
-	 * Cria uma instancia de alunoController.
+	 * Inicializa alunoController.
 	 */
 	@Before
 	public void iniciaAlunoController() {

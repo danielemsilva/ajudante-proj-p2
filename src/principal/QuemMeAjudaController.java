@@ -160,9 +160,10 @@ public class QuemMeAjudaController {
 	}
 
 	/**
-	 * Pesquisa a matricula do tutor que ensina essa disciplina, atende no horario e
-	 * dia informados e no local de interesse, e entrega para AjudaController as
-	 * informacoes necessarias para criar uma nova instancia de ajuda presencial.
+	 * Pesquisa a matricula do tutor que ensina essa disciplina, atende no
+	 * horario e dia informados e no local de interesse, e entrega para 
+	 * AjudaController as informacoes necessarias para criar uma nova instancia
+	 * de ajuda presencial.
 	 * 
 	 * @param matrAluno
 	 *            matricula do aluno que pediu a ajuda
@@ -174,11 +175,11 @@ public class QuemMeAjudaController {
 	 *            dia desejado para o atendimento
 	 * @param localInteresse
 	 *            local de interesse para o atendimento
+	 *            
 	 * @return id da ajuda cadastrada.
 	 */
-	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
-			String localInteresse) {
-		ajudaCtrl.validarDadosAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
+	public int pedirAjudaPresencial(String matrAluno, String disciplina,
+			String horario, String dia, String localInteresse) {
 		String matrTutor = alunoCtrl.buscarTutor(disciplina, horario, dia, localInteresse);
 		return ajudaCtrl.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, 
 				horario, dia, localInteresse);

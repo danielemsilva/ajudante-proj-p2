@@ -275,7 +275,10 @@ public class AlunoController {
 				disciplina, horario, dia, local);
 		Comparator<Aluno> comparator = new TutorComparator();
 		Collections.sort(tutoresCandidatos, comparator);
-		return tutoresCandidatos.get(0).getMatricula();
+		if (!tutoresCandidatos.isEmpty()) {
+			return tutoresCandidatos.get(0).getMatricula();
+		}
+		return "";
 	}
 	
 	/**
