@@ -38,7 +38,7 @@ public class AjudaController {
 	 */
 	public int pedirAjudaPresencial(String matrAluno, String matrTutor, String disciplina, 
 			String horario, String dia, String localInteresse) {
-		this.validarDadosAjudaPresencial(matrAluno, disciplina, horario, dia,
+		this.validarDadosAjudaPresencial(matrAluno, matrTutor, disciplina, horario, dia,
 				localInteresse);
 		Ajuda ajuda = new AjudaPresencial(this.ajudas.keySet().size() + 1, matrAluno,
 				matrTutor, disciplina, localInteresse, dia, horario);
@@ -150,11 +150,15 @@ public class AjudaController {
 	 * @param localInteresse
 	 *     o local onde a ajuda vai acontecer
 	 */
-	public void validarDadosAjudaPresencial(String matrAluno, String disciplina,
-			String horario, String dia, String localInteresse) {
+	public void validarDadosAjudaPresencial(String matrAluno, String matrTutor,
+			String disciplina, String horario, String dia, String localInteresse) {
 		if (matrAluno == null || matrAluno.trim().equals("")) {
 			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
 					+ " matricula de aluno nao pode ser vazio ou em branco");
+		}
+		if (matrTutor == null || matrTutor.trim().equals("")) {
+			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+					+ " matricula de tutor nao pode ser vazio ou em branco");
 		}
 		if (disciplina == null || disciplina.trim().equals("")) {
 			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
