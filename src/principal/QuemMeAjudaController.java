@@ -178,6 +178,7 @@ public class QuemMeAjudaController {
 	 */
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
 			String localInteresse) {
+		ajudaCtrl.validarDadosAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
 		String matrTutor = alunoCtrl.buscarTutor(disciplina, horario, dia, localInteresse);
 		return ajudaCtrl.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, 
 				horario, dia, localInteresse);
@@ -195,6 +196,7 @@ public class QuemMeAjudaController {
 	 * @return id da ajuda cadastrada
 	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
+		ajudaCtrl.validarDadosAjudaOnline(matrAluno, disciplina);
 		String matrTutor = alunoCtrl.buscarTutor(disciplina);
 		return ajudaCtrl.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
 	}

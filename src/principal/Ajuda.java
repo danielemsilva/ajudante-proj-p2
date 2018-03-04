@@ -33,16 +33,6 @@ public class Ajuda {
 		this.matrTutor = matrTutor;
 		this.avaliada = false;
 	}
-	
-	/**
-	 * Retorna a matricula do tutor
-	 * 
-	 * @return matricula do tutor
-	 */
-	/*public String pegarTutor() {
-		return this.matrTutor;
-	}
-	*/
 
 	/**
 	 * Retorna o dado desejado na descricao

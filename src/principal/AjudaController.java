@@ -74,7 +74,8 @@ public class AjudaController {
 	 * @return a matricula do tutor
 	 */
 	public String pegarTutor(int idAjuda) {
-		return this.ajudas.get(idAjuda - 1).toString();
+		this.validarDadosPegarTutor(idAjuda);
+		return this.ajudas.get(idAjuda).toString();
 	}
 
 	/**
@@ -100,6 +101,23 @@ public class AjudaController {
 	}
 	
 	/**
+	 * Valida os dados passados ao metodo pegarTutor.
+	 * 
+	 * @param idAjuda
+	 *     o identificador da ajuda  
+	 */
+	private void validarDadosPegarTutor(int idAjuda) {
+		if (idAjuda <= 0) {
+			throw new IllegalArgumentException(
+					"Erro ao tentar recuperar tutor : id nao pode menor que zero ");
+		}
+		if (idAjuda > this.ajudas.keySet().size()) {
+			throw new IllegalArgumentException(
+					"Erro ao tentar recuperar tutor : id nao encontrado ");
+		}
+	}
+	
+	/**
 	 * Valida os dados passados ao metodo pedirAjudaOnline.
 	 * 
 	 * @param matrAluno
@@ -107,7 +125,7 @@ public class AjudaController {
 	 * @param disciplina
 	 *      a disciplina que o aluno necessita de ajuda  
 	 */
-	private void validarDadosAjudaOnline(String matrAluno, String disciplina) {
+	public void validarDadosAjudaOnline(String matrAluno, String disciplina) {
 		if (matrAluno == null || matrAluno.trim().equals("")) {
 			throw new IllegalArgumentException("Erro no pedido de ajuda online:"
 					+ " matricula de aluno nao pode ser vazio ou em branco");
@@ -132,7 +150,7 @@ public class AjudaController {
 	 * @param localInteresse
 	 *     o local onde a ajuda vai acontecer
 	 */
-	private void validarDadosAjudaPresencial(String matrAluno, String disciplina,
+	public void validarDadosAjudaPresencial(String matrAluno, String disciplina,
 			String horario, String dia, String localInteresse) {
 		if (matrAluno == null || matrAluno.trim().equals("")) {
 			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"

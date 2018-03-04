@@ -243,7 +243,7 @@ public class AlunoTest {
 	 */
 	@Test
 	public void testTornarTutor() {
-		this.aluno.tornarTutor("Programacao", 4);
+		this.aluno.tornarTutor("Programacao", 4, 1);
 	}
 
 	/**
@@ -259,7 +259,7 @@ public class AlunoTest {
 	 */
 	@Test
 	public void testEhTutorTrue() {
-		aluno.tornarTutor("Programacao", 4);
+		aluno.tornarTutor("Programacao", 4, 1);
 		assertEquals(true, this.aluno.ehTutor());
 	}
 

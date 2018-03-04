@@ -31,6 +31,7 @@ public class Tutor {
 		this.locais = new ArrayList<>();
 		this.disciplinas = new HashMap<>();
 		this.horarios = new HashMap<>();
+		this.pontuacao = 4;
 	}
 
 	/**

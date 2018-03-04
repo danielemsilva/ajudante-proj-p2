@@ -310,7 +310,7 @@ public class AlunoController {
 	 *      
 	 * @return uma lista de tutores que satisfazem a especificacao
 	 */
-	public List<Aluno> buscarTutoresDisciplina(String disciplina) {
+	private List<Aluno> buscarTutoresDisciplina(String disciplina) {
 		List<Aluno> tutoresDisciplina = new ArrayList<>();
 		for (Aluno aluno : alunos) {
 			if(aluno.ehTutor() && aluno.getTutor().consultaDisciplina(disciplina)) {
@@ -370,4 +370,5 @@ public class AlunoController {
 		}
 		return null;
 	}
+	
 }

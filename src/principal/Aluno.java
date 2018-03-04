@@ -145,8 +145,9 @@ public class Aluno {
 	public boolean tutoriaDisponivel(String disciplina, String horario, 
 			String dia, String local) {
 		return this.tutor.consultaDisciplina(disciplina) 
-				&& this.tutor.consultaHorario(dia, horario)
-				&& tutor.consultaLocal(local);
+				&& this.tutor.consultaProficiencia(disciplina)
+				&& this.tutor.consultaHorario(dia, horario) 
+				&& this.tutor.consultaLocal(local);
 	}
 
 	/**
