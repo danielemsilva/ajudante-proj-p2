@@ -60,7 +60,7 @@ public class AjudaController {
 	 */
 	public int pedirAjudaOnline(String matrAluno, String matrTutor, String disciplina) {
 		this.validarDadosAjudaOnline(matrAluno, disciplina);
-		Ajuda ajuda = new Ajuda(this.ajudas.size() + 1, matrAluno, matrTutor, disciplina);
+		Ajuda ajuda = new AjudaOnline(this.ajudas.size() + 1, matrAluno, matrTutor, disciplina);
 		this.ajudas.put(this.ajudas.size() + 1, ajuda);
 		return this.ajudas.keySet().size();
 	}

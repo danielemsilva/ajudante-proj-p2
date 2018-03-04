@@ -1,16 +1,11 @@
 package principal;
 
 /**
- * Essa classe representa uma ajuda, contendo id, tutor, disciplina e estado da
- * avaliacao.
- *
+ * Essa classe representa uma ajuda, contendo id e estado de avaliacao.
  */
-public class Ajuda {
+public abstract class Ajuda {
 
 	private int id;
-	private String matrAluno;
-	protected String matrTutor;
-	protected String disciplina;
 	private boolean avaliada;
 
 	/**
@@ -18,32 +13,10 @@ public class Ajuda {
 	 * 
 	 * @param id
 	 *            identificacao da ajuda
-	 * @param matrAluno
-	 *            matricula do aluno que pede ajuda
-	 * @param matrTutor
-	 *            matricula do aluno que ensina nessa ajuda
-	 * @param disciplina
-	 *            disciplina debatida
-	
 	 */
-	public Ajuda(int id, String matrAluno, String matrTutor, String disciplina) {
+	public Ajuda(int id) {
 		this.id = id;
-		this.disciplina = disciplina;
-		this.matrAluno = matrAluno;
-		this.matrTutor = matrTutor;
 		this.avaliada = false;
-	}
-
-	/**
-	 * Retorna o dado desejado na descricao
-	 * 
-	 * @return atributo requerido
-	 */
-	public String getInfoAjuda(String atributo) {
-		if (atributo.equals("disciplina")) {
-			return this.disciplina;
-		}
-		return "atributo invalido";
 	}
 
 	/**
@@ -63,22 +36,27 @@ public class Ajuda {
 	}
 	
 	/**
-	 * Retorna a matricula do tutor que deu a ajuda
+	 * Metodo abstrato para o retorno de informacoes de ajuda.
+	 * 
+	 * @param atributo categoria do dado desejado
+	 * @return dado especificado.
+	 */
+	public abstract String getInfoAjuda(String atributo);
+	
+	/**
+	 * Metodo abstrato para o retorno da matricula do tutor que ensina
+	 * na ajuda.
 	 * 
 	 * @return matricula do tutor
 	 */
-	public String getMatriculaTutor() {
-		return this.matrTutor;
-	}
-
-	/**
-	 * Representacao textual da ajuda.
-	 * 
-	 * @return String com a matricula do tutor e a disciplina
-	 */
-	@Override
-	public String toString() {
-		return "Tutor - " + this.matrTutor + ", disciplina -" + this.disciplina;
-	}
+	public abstract String getMatriculaTutor();
 	
+	/**
+	 * Retorna a identificacao da ajuda.
+	 * 
+	 * @return id
+	 */
+	public int getId() {
+		return this.id;
+	}
 }
