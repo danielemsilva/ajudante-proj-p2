@@ -68,14 +68,14 @@ public class AjudaOnline extends Ajuda {
 	private void validarDados(String matrAluno, String matrTutor, String disciplina) {
 		if (matrAluno == null || matrAluno.trim().equals("")) {
 			throw new IllegalArgumentException(
-					"Erro no pedido de ajuda presencial: matricula de aluno nao pode ser vazio ou em branco");
+					"Erro no pedido de ajuda online: matricula de aluno nao pode ser vazio ou em branco");
 		}
 		if (disciplina == null || disciplina.trim().equals("")) {
 			throw new IllegalArgumentException(
-					"Erro no pedido de ajuda presencial: disciplina nao pode ser vazio ou em branco");
+					"Erro no pedido de ajuda online: disciplina nao pode ser vazio ou em branco");
 		}
 		if (matrTutor == null || matrTutor.trim().equals("")) {
-			throw new IllegalArgumentException("Erro no pedido de ajuda presencial:"
+			throw new IllegalArgumentException("Erro no pedido de ajuda online:"
 					+ " matricula de tutor nao pode ser vazio ou em branco");
 		}
 	}
