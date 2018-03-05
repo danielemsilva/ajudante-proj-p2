@@ -18,6 +18,7 @@ public abstract class Ajuda {
 	 *            identificacao da ajuda
 	 */
 	public Ajuda(int id) {
+		this.validarId(id);
 		this.id = id;
 		this.avaliada = false;
 	}
@@ -61,6 +62,19 @@ public abstract class Ajuda {
 	 */
 	public int getId() {
 		return this.id;
+	}
+	
+	/**
+	 * Valida a identificacao passada ao construtor.
+	 * 
+	 * @param id
+	 *     a identificacao da ajuda
+	 */
+	private void validarId(int id) {
+		if (id < 0) {
+			throw new IllegalArgumentException(
+					"Erro no pedido de ajuda: id nao pode ser menor que zero.");
+		}
 	}
 		
 }

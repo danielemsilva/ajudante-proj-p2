@@ -14,6 +14,36 @@ public class AjudaPresencialTest {
 	private AjudaPresencial ajudaPresencial;
 	
 	/**
+	 * Verifica se uma ajuda presencial pode ser criada quando o id informado
+	 * e negativo.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPedirAjudaPresencialIdNegativo() {
+		this.ajudaPresencial = new AjudaPresencial(-1, "22222222", "11111111",
+				"P2", "13:00", "seg", "LCC2");
+	}
+	
+	/**
+	 * Verifica se uma ajuda presencial pode ser criada quando o id informado
+	 * e zero.
+	 */
+	@Test
+	public void testPedirAjudaPresencialIdZero() {
+		this.ajudaPresencial = new AjudaPresencial(0, "22222222", "11111111",
+				"P2", "13:00", "seg", "LCC2");
+	}
+	
+	/**
+	 * Verifica se uma ajuda presencial pode ser criada quando o id informado
+	 * e positivo.
+	 */
+	@Test
+	public void testPedirAjudaPresencialIdPositivo() {
+		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
+				"P2", "13:00", "seg", "LCC2");
+	}
+	
+	/**
 	 * Verifica se uma ajuda presencial pode ser criada quando a matricula do
 	 * aluno e vazia.
 	 */

@@ -13,6 +13,33 @@ public class AjudaOnlineTest {
 	private AjudaOnline ajudaOnline;
 	
 	/**
+	 * Verifica se uma ajuda online pode ser criada quando o id informado
+	 * e negativo.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPedirAjudaOnlineIdNegativo() {
+		this.ajudaOnline = new AjudaOnline(-1, "22222222", "11111111", "P2");
+	}
+	
+	/**
+	 * Verifica se uma ajuda online pode ser criada quando o id informado
+	 * e zero.
+	 */
+	@Test
+	public void testPedirAjudaOnlineIdZero() {
+		this.ajudaOnline = new AjudaOnline(0, "22222222", "11111111", "P2");
+	}
+	
+	/**
+	 * Verifica se uma ajuda online pode ser criada quando o id informado
+	 * e positivo.
+	 */
+	@Test
+	public void testPedirAjudaOnlineIdPositivo() {
+		this.ajudaOnline = new AjudaOnline(1, "22222222", "11111111", "P2");
+	}
+	
+	/**
 	 * Verifica se uma ajuda online pode ser criada quando a matricula do
 	 * aluno e vazia.
 	 */
