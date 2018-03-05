@@ -238,5 +238,43 @@ public class QuemMeAjudaControllerTest {
 				"P2"));
 	}
 	
+	/**
+	 * Verifica se a matricula de um tutor de uma ajuda de id negativo pode ser
+	 * retornada.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarTutorAjudaIdNegativo() {
+		this.quemMeAjudaController.pegarTutor(-1);
+	}
+	
+	/**
+	 * Verifica se a matricula de um tutor de uma ajuda de id zero pode ser
+	 * retornada.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarTutorAjudaIdZero() {
+	    this.quemMeAjudaController.pegarTutor(0);
+	}
+	
+	/**
+	 * Verifica se a matricula de um tutor de uma ajuda online de id positivo
+	 * pode ser retornada.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarTutorAjudaOnlineIdPositivo() {
+		this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2");
+	    this.quemMeAjudaController.pegarTutor(1);
+	}
+	
+	/**
+	 * Verifica se a matricula de um tutor de uma ajuda presencial de id
+	 * positivo pode ser retornada.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarTutorAjudaPresencialIdPositivo() {
+		this.quemMeAjudaController.pedirAjudaPresencial("11111111", "P2",
+				"15:00", "sex", "LCC2");
+	    this.quemMeAjudaController.pegarTutor(1);
+	}
 
 }

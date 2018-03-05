@@ -93,4 +93,13 @@ public class AjudaOnlineTest {
 		this.ajudaOnline = new AjudaOnline(1, "11111111", "22222222", "  ");
 	}
 	
+	/**
+	 * Verifica se uma matricula de um tutor e retornada.
+	 */
+	@Test
+	public void testGetMatriculaTutor() {
+		this.ajudaOnline = new AjudaOnline(1, "22222222", "11111111", "P2");
+		assertEquals("11111111", this.ajudaOnline.getMatriculaTutor());
+	}
+	
 }

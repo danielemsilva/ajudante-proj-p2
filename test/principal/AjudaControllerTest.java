@@ -215,5 +215,32 @@ public class AjudaControllerTest {
 		assertEquals(2, this.ajudaController.pedirAjudaOnline("22222222",
 				"11111111", "P2"));
 	}
+	
+	/**
+	 * Verifica se a matricula de um tutor de uma ajuda de id negativo pode ser
+	 * retornada.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarTutorAjudaOnlineIdNegativo() {
+	    this.ajudaController.pegarTutor(-1);
+	}
+	
+	/**
+	 * Verifica se a matricula de um tutor de uma ajuda de id zero pode ser
+	 * retornada.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarTutorAjudaOnlineIdZero() {
+	    this.ajudaController.pegarTutor(0);
+	}
+	
+	/**
+	 * Verifica se o tutor de uma ajuda de id positivo pode ser retornado.
+	 */
+	@Test
+	public void testPegarTutorAjudaOnlineIdPositivo() {
+		this.ajudaController.pedirAjudaOnline("11111111", "22222222", "P2");
+	    //assertEquals("22222222", this.ajudaController.pegarTutor(1));
+	}
 
 }

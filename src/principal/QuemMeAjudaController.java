@@ -287,8 +287,8 @@ public class QuemMeAjudaController {
 	}
 
 	/**
-	 * Valida os dados passados ao metodo pedirAjudaPresencial exceto a matricula do
-	 * tutor.
+	 * Valida os dados passados ao metodo pedirAjudaPresencial exceto a
+	 * matricula do tutor.
 	 * 
 	 * @param matrAluno
 	 *            a matricula do aluno que solicita a ajuda
@@ -302,8 +302,8 @@ public class QuemMeAjudaController {
 	 *            o local onde a ajuda vai acontecer
 	 */
 
-	private void validarDadosAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
-			String localInteresse) {
+	private void validarDadosAjudaPresencial(String matrAluno, String disciplina,
+			String horario, String dia, String localInteresse) {
 		if (matrAluno == null || matrAluno.trim().equals("")) {
 			throw new IllegalArgumentException(
 					"Erro no pedido de ajuda presencial:" 

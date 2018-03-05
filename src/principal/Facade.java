@@ -23,7 +23,8 @@ public class Facade {
 	 * @param email
 	 *            email
 	 */
-	public void cadastrarAluno(String nome, String matricula, String codigoCurso, String telefone, String email) {
+	public void cadastrarAluno(String nome, String matricula, 
+			String codigoCurso, String telefone, String email) {
 		qmaCtrl.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
@@ -158,7 +159,8 @@ public class Facade {
 	}
 
 	/**
-	 * Delega para ajudaController a responsabilidade de criar uma ajuda presencial.
+	 * Delega para ajudaController a responsabilidade de criar uma ajuda
+	 * presencial.
 	 * 
 	 * @param matrAluno
 	 *            matricula do aluno que pediu a ajuda
@@ -172,9 +174,10 @@ public class Facade {
 	 *            local de interesse do aluno
 	 * @return identificacao da ajuda
 	 */
-	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
-			String localInteresse) {
-		return qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
+	public int pedirAjudaPresencial(String matrAluno, String disciplina, 
+			String horario, String dia, String localInteresse) {
+		return qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario,
+				dia, localInteresse);
 	}
 
 	/**

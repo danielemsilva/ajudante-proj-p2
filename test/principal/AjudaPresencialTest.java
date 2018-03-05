@@ -154,7 +154,7 @@ public class AjudaPresencialTest {
 	}
 	
 	/**
-	 * Verifica se uma ajuda presencial pode ser pedida quando o local de
+	 * Verifica se uma ajuda presencial pode ser criada quando o local de
 	 * interesse e em branco.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -162,6 +162,15 @@ public class AjudaPresencialTest {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
 				"P2", "   ", "seg", "LCC2");
 	}
-
+	
+	/**
+	 * Verifica se uma matricula de um tutor e retornada.
+	 */
+	@Test
+	public void testGetMatriculaTutor() {
+		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
+				"P2", "   ", "seg", "LCC2");
+		assertEquals("11111111", this.ajudaPresencial.getMatriculaTutor());
+	}
 
 }
