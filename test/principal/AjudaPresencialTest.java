@@ -20,7 +20,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialIdNegativo() {
 		this.ajudaPresencial = new AjudaPresencial(-1, "22222222", "11111111",
-				"P2", "13:00", "seg", "LCC2");
+				"P2", "LCC2", "seg", "13:00");
 	}
 	
 	/**
@@ -30,7 +30,7 @@ public class AjudaPresencialTest {
 	@Test
 	public void testPedirAjudaPresencialIdZero() {
 		this.ajudaPresencial = new AjudaPresencial(0, "22222222", "11111111",
-				"P2", "13:00", "seg", "LCC2");
+				"P2", "LCC2", "seg", "13:00");
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public class AjudaPresencialTest {
 	@Test
 	public void testPedirAjudaPresencialIdPositivo() {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
-				"P2", "13:00", "seg", "LCC2");
+				"P2", "LCC2", "seg", "13:00");
 	}
 	
 	/**
@@ -50,7 +50,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialMatrAlunoVazia() {
 		this.ajudaPresencial = new AjudaPresencial(1, "", "11111111", "P2",
-				"13:00", "seg", "LCC2");
+				"LCC2", "seg", "13:00");
 	}
 	
 	/**
@@ -60,7 +60,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialMatrAlunoEmBranco() {
 		this.ajudaPresencial = new AjudaPresencial(1, "    ", "11111111", "P2",
-				"13:00", "seg", "LCC2");
+				"LCC2", "seg", "13:00");
 	}
 	
 	/**
@@ -70,7 +70,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialMatrTutorVazia() {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "", "P2",
-				"13:00", "seg", "LCC2");
+				"LCC2", "seg", "13:00");
 	}
 	
 	/**
@@ -80,7 +80,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialMatrTutorEmBranco() {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "    ",
-				"P2", "13:00", "seg", "LCC2");
+				"P2", "LCC2", "seg", "13:00");
 	}
 	
 	/**
@@ -90,7 +90,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialDisciplinaVazia() {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
-				"", "13:00", "seg", "LCC2");
+				"", "LCC2", "seg", "13:00");
 	}
 	
 	/**
@@ -100,7 +100,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialDisciplinaEmBranco() {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
-				"  ", "13:00", "seg", "LCC2");
+				"  ", "LCC2", "seg", "13:00");
 	}
 	
 	/**
@@ -110,7 +110,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialHorarioVazio() {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
-				"P2", "", "seg", "LCC2");
+				"P2", "LCC2", "seg", "");
 	}
 	
 	/**
@@ -120,7 +120,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialHorarioEmBranco() {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
-				"P2", "   ", "seg", "LCC2");
+				"P2", "LCC2", "seg", "   ");
 	}
 	
 	/**
@@ -130,7 +130,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialDiaVazio() {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
-				"P2", "13:00", "", "LCC2");
+				"P2", "LCC2", "", "13:00");
 	}
 	
 	/**
@@ -140,7 +140,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialDiaEmBranco() {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
-				"P2", "13:00", "   ", "LCC2");
+				"P2", "LCC2", "   ", "13:00");
 	}
 	
 	/**
@@ -150,7 +150,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialLocalVazio() {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
-				"P2", "", "seg", "LCC2");
+				"P2", "", "seg", "13:00");
 	}
 	
 	/**
@@ -160,7 +160,7 @@ public class AjudaPresencialTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialLocalEmBranco() {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
-				"P2", "   ", "seg", "LCC2");
+				"P2", "    ", "seg", "13:00");
 	}
 	
 	/**
@@ -169,8 +169,58 @@ public class AjudaPresencialTest {
 	@Test
 	public void testGetMatriculaTutor() {
 		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111",
-				"P2", "   ", "seg", "LCC2");
+				"P2", "LCC2", "seg", "13:00");
 		assertEquals("11111111", this.ajudaPresencial.getMatriculaTutor());
+	}
+	
+	/**
+	 * Verifica se a disciplina de uma ajuda presencial e retornada.
+	 */
+	@Test
+	public void testGetInfoAjudaDisciplina() {
+		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111", "P2",
+				"LCC2", "seg", "13:00");
+		assertEquals("P2", this.ajudaPresencial.getInfoAjuda("disciplina"));
+	}
+	
+	/**
+	 * Verifica se o dia de uma ajuda presencial e retornado.
+	 */
+	@Test
+	public void testGetInfoAjudaDia() {
+		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111", "P2",
+				"LCC2", "seg", "13:00");
+		assertEquals("seg", this.ajudaPresencial.getInfoAjuda("dia"));
+	}
+	
+	/**
+	 * Verifica se o local de uma ajuda presencial e retornado.
+	 */
+	@Test
+	public void testGetInfoAjudaLocalInteresse() {
+		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111", "P2",
+				"LCC2", "seg", "13:00");
+		assertEquals("LCC2", this.ajudaPresencial.getInfoAjuda("localInteresse"));
+	}
+	
+	/**
+	 * Verifica se o horario de uma ajuda presencial e retornado.
+	 */
+	@Test
+	public void testGetInfoAjudaHorario() {
+		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111", "P2",
+				"LCC2", "seg", "13:00");
+		assertEquals("LCC2", this.ajudaPresencial.getInfoAjuda("localInteresse"));
+	}
+	
+	/**
+	 * Verifica se um atributo qualquer que nao pertence a uma ajuda presencial e retornado.
+	 */
+	@Test
+	public void testGetInfoAjudaAtributoInvalido() {
+		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111", "P2",
+				"LCC2", "seg", "13:00");
+		assertEquals("atributo invalido", this.ajudaPresencial.getInfoAjuda("minuto"));
 	}
 
 }
