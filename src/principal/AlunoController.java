@@ -325,9 +325,10 @@ public class AlunoController {
 	 *            matricula do aluno
 	 * @return nota
 	 */
-	public int getNota(String matricula) {
+	public String getNota(String matricula) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
-		return aluno.getTutor().getPontuacao();
+		double pontuacao = aluno.getTutor().getPontuacao();
+		return String.format("%.2f", pontuacao).replace('.', ',');
 	}
 
 	/**

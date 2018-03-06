@@ -251,6 +251,16 @@ public class QuemMeAjudaController {
 		String matricula = ajudaCtrl.avaliar(idAjuda, nota);
 		alunoCtrl.avaliarTutor(matricula, nota);
 	}
+	
+	public String pegarNota(String matricula) {
+		// validar matricula
+		return alunoCtrl.getNota(matricula);
+	}
+	
+	public String pegarNivel(String matricula) {
+		// validar matricula
+		return alunoCtrl.getNivel(matricula);
+	}
 
 	/**
 	 * Valida os dados passados ao metodo pegarTutor.

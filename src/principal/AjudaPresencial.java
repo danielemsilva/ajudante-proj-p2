@@ -58,25 +58,7 @@ public class AjudaPresencial extends Ajuda {
 			return this.disciplina;
 		}
 		return "atributo invalido";
-	}
-	
-	/**
-	 * Retorna a matricula do aluno que pediu a ajuda.
-	 * 
-	 * @return matricula do aluno
-	 */
-	public String getMatriculaAluno() {
-		return this.matrAluno;
-	}
-	
-	/**
-	 * Retorna a matricula do tutor.
-	 * 
-	 * @return matricula do tutor
-	 */
-	public String getMatriculaTutor() {
-		return this.matrTutor;
-	}
+	}	
 
 	/**
 	 * Representacao textual de uma ajuda presencial.

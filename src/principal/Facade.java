@@ -23,8 +23,7 @@ public class Facade {
 	 * @param email
 	 *            email
 	 */
-	public void cadastrarAluno(String nome, String matricula, 
-			String codigoCurso, String telefone, String email) {
+	public void cadastrarAluno(String nome, String matricula, String codigoCurso, String telefone, String email) {
 		qmaCtrl.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
@@ -159,8 +158,7 @@ public class Facade {
 	}
 
 	/**
-	 * Delega para ajudaController a responsabilidade de criar uma ajuda
-	 * presencial.
+	 * Delega para ajudaController a responsabilidade de criar uma ajuda presencial.
 	 * 
 	 * @param matrAluno
 	 *            matricula do aluno que pediu a ajuda
@@ -174,10 +172,9 @@ public class Facade {
 	 *            local de interesse do aluno
 	 * @return identificacao da ajuda
 	 */
-	public int pedirAjudaPresencial(String matrAluno, String disciplina, 
-			String horario, String dia, String localInteresse) {
-		return qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario,
-				dia, localInteresse);
+	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
+			String localInteresse) {
+		return qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
 	}
 
 	/**
@@ -231,6 +228,28 @@ public class Facade {
 	}
 
 	/**
+	 * Retorna a pontuacao atribuida a um tutor
+	 * 
+	 * @param matricula
+	 *            matricula do tutor
+	 * @return nota do tutor
+	 */
+	public String pegarNota(String matricula) {
+		return qmaCtrl.pegarNota(matricula);
+	}
+
+	/**
+	 * Retorna o nivel de conhecimento do tutor de acordo com a pontuacao
+	 * 
+	 * @param matricula
+	 *            matricula do tutor
+	 * @return nivel
+	 */
+	public String pegarNivel(String matricula) {
+		return qmaCtrl.pegarNivel(matricula);
+	}
+
+	/**
 	 * Executa chamada de testes de aceitacao
 	 * 
 	 * @param args
@@ -243,5 +262,5 @@ public class Facade {
 				"acceptance_test/us5_test.txt", "acceptance_test/us6_test.txt" };
 		EasyAccept.main(args);
 	}
-	
+
 }

@@ -48,12 +48,22 @@ public abstract class Ajuda {
 	public abstract String getInfoAjuda(String atributo);
 	
 	/**
-	 * Metodo abstrato para o retorno da matricula do tutor que ensina
-	 * na ajuda.
+	 * Retorna a matricula do aluno que pediu a ajuda.
+	 * 
+	 * @return matricula do aluno
+	 */
+	public String getMatriculaAluno() {
+		return this.matrAluno;
+	}
+	
+	/**
+	 * Retorna a matricula do tutor.
 	 * 
 	 * @return matricula do tutor
 	 */
-	public abstract String getMatriculaTutor();
+	public String getMatriculaTutor() {
+		return this.matrTutor;
+	}
 	
 	/**
 	 * Retorna a identificacao da ajuda.
