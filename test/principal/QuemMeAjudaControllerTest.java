@@ -145,7 +145,7 @@ public class QuemMeAjudaControllerTest {
 		this.quemMeAjudaController.cadastrarLocalDeAtendimento(
 				"mario@ccc.edu.br", "LCC2");
 		assertEquals(1, this.quemMeAjudaController.pedirAjudaPresencial(
-				"11111111", "P2", "13:00", "seg", "LCC2"));
+				"11111111", "P2", "LCC2", "seg", "13:00"));
 	}
 	
 	/**
@@ -163,9 +163,9 @@ public class QuemMeAjudaControllerTest {
 		this.quemMeAjudaController.cadastrarLocalDeAtendimento(
 				"mario@ccc.edu.br", "LCC2");
 		this.quemMeAjudaController.pedirAjudaPresencial("11111111", "P2",
-				"15:00", "sex", "LCC2");
+				"LCC2", "sex", "15:00");
 		assertEquals(2, this.quemMeAjudaController.pedirAjudaPresencial(
-				"11111111", "P2", "13:00", "seg", "LCC2"));
+				"11111111", "P2", "LCC2", "seg", "13:00"));
 	}
 	
 	/**
@@ -276,5 +276,204 @@ public class QuemMeAjudaControllerTest {
 				"15:00", "sex", "LCC2");
 	    this.quemMeAjudaController.pegarTutor(1);
 	}
-
+	
+	
+	
+	
+	
+	
+	/**
+	 * Verifica se a disciplina de uma ajuda de id negativo pode ser retornada.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoDisciplinaAjudaIdNegativo() {
+		this.quemMeAjudaController.getInfoAjuda(-1, "disciplina");
+	}
+	
+	/**
+	 * Verifica se a disciplina de uma ajuda de id nao cadastrado pode ser 
+	 * retornada.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoDisciplinaAjudaIdNaoCadastrado() {
+		this.quemMeAjudaController.getInfoAjuda(10, "disciplina");
+	}
+	
+	/**
+	 * Verifica se alguma informacao pode ser obtida de uma ajuda presencial
+	 * cadastrada quando o atributo informado e vazio.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAjudaPresencialAtributoVazio() {
+		assertEquals("P2", this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaPresencial("11111111",
+						"P2", "LCC2", "seg", "13:00"),
+				""));
+	}
+	
+	/**
+	 * Verifica se alguma informacao pode ser obtida de uma ajuda presencial
+	 * cadastrada quando o atributo informado e em branco.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAjudaPresencialAtributoEmBranco() {
+		assertEquals("P2", this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaPresencial("11111111",
+						"P2", "LCC2", "seg", "13:00"),
+				"    "));
+	}
+	
+	/**
+	 * Verifica se alguma informacao pode ser obtida de uma ajuda online
+	 * cadastrada quando o atributo informado e vazio.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAjudaOnlineAtributoVazio() {
+		assertEquals("P2", this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"),
+				""));
+	}
+	
+	/**
+	 * Verifica se alguma informacao pode ser obtida de uma ajuda online
+	 * cadastrada quando o atributo informado e em branco.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAjudaOnlineAtributoEmBranco() {
+		assertEquals("P2", this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"),
+				"    "));
+	}
+	
+	/**
+	 * Verifica se a disciplina de uma ajuda presencial cadastrada pode ser
+	 * retornada.
+	 */
+	@Test
+	public void testGetInfoDisciplinaAjudaPresencial() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.cadastrarHorario("mario@ccc.edu.br",
+				"13:00", "seg");
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento(
+				"mario@ccc.edu.br", "LCC2");
+		assertEquals("P2", this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaPresencial("11111111",
+						"P2", "LCC2", "seg", "13:00"),
+				"disciplina"));
+	}
+	
+	/**
+	 * Verifica se o dia de uma ajuda presencial cadastrada pode ser retornado.
+	 */
+	@Test
+	public void testGetInfoDiaAjudaPresencial() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.cadastrarHorario("mario@ccc.edu.br",
+				"13:00", "seg");
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento(
+				"mario@ccc.edu.br", "LCC2");
+		assertEquals("seg", this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaPresencial("11111111",
+						"P2", "LCC2", "seg", "13:00"),
+				"dia"));
+	}
+	
+	/**
+	 * Verifica se o local de uma ajuda presencial cadastrada pode ser 
+	 * retornado.
+	 */
+	@Test
+	public void testGetInfoLocalAjudaPresencial() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.cadastrarHorario("mario@ccc.edu.br",
+				"13:00", "seg");
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento(
+				"mario@ccc.edu.br", "LCC2");
+		assertEquals("LCC2", this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaPresencial("11111111",
+						"P2", "LCC2", "seg", "13:00"),
+				"localInteresse"));
+	}
+	
+	/**
+	 * Verifica se o horario de uma ajuda presencial cadastrada pode ser 
+	 * retornado.
+	 */
+	@Test
+	public void testGetInfoHorarioAjudaPresencial() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.cadastrarHorario("mario@ccc.edu.br",
+				"13:00", "seg");
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento(
+				"mario@ccc.edu.br", "LCC2");
+		assertEquals("13:00", this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaPresencial("11111111",
+						"P2", "LCC2", "seg", "13:00"),
+				"horario"));
+	}
+	
+	/**
+	 * Verifica se um atributo que nao pertence a uma ajuda presencial 
+	 * cadastrada pode ser retornado.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAtributoInvalidoAjudaPresencial() {
+		assertEquals("13:00", this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaPresencial("11111111",
+						"P2", "LCC2", "seg", "13:00"),
+				"minuto"));
+	}
+	
+	/**
+	 * Verifica se a disciplina de uma ajuda online cadastrada pode ser 
+	 * retornada.
+	 */
+	@Test
+	public void testGetInfoDisciplinaAjudaOnline() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		assertEquals("P2", this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"),
+			    "disciplina"));
+	}
+	
+	/**
+	 * Verifica se o dia de uma ajuda online cadastrada pode ser retornado.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoDiaAjudaOnline() {
+		this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"),
+				"dia");
+	}
+	
+	/**
+	 * Verifica se o local de uma ajuda online cadastrada pode ser retornado.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoLocalAjudaOnline() {
+		this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"),
+				"localInteresse");
+	}
+	
+	/**
+	 * Verifica se o horario de uma ajuda online cadastrada pode ser retornado.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoHorarioAjudaOnline() {
+		this.quemMeAjudaController.getInfoAjuda(
+				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"),
+				"horario");
+	}
+	
 }

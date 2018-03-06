@@ -126,7 +126,8 @@ public class AjudaOnlineTest {
 	@Test
 	public void testGetInfoAjudaLocalInteresse() {
 		this.ajudaOnline = new AjudaOnline(1, "22222222", "11111111", "P2");
-		assertEquals("atributo invalido", this.ajudaOnline.getInfoAjuda("localInteresse"));
+		assertEquals("atributo invalido", this.ajudaOnline.getInfoAjuda(
+				"localInteresse"));
 	}
 	
 	/**
@@ -135,16 +136,19 @@ public class AjudaOnlineTest {
 	@Test
 	public void testGetInfoAjudaHorario() {
 		this.ajudaOnline = new AjudaOnline(1, "22222222", "11111111", "P2");
-		assertEquals("atributo invalido", this.ajudaOnline.getInfoAjuda("localInteresse"));
+		assertEquals("atributo invalido", this.ajudaOnline.getInfoAjuda(
+				"localInteresse"));
 	}
 	
 	/**
-	 * Verifica se um atributo qualquer que nao pertence a uma ajuda online e retornado.
+	 * Verifica se um atributo qualquer que nao pertence a uma ajuda online e 
+	 * retornado.
 	 */
 	@Test
 	public void testGetInfoAjudaAtributoInvalido() {
 		this.ajudaOnline = new AjudaOnline(1, "22222222", "11111111", "P2");
-		assertEquals("atributo invalido", this.ajudaOnline.getInfoAjuda("minuto"));
+		assertEquals("atributo invalido", this.ajudaOnline.getInfoAjuda(
+				"minuto"));
 	}
 	
 }
