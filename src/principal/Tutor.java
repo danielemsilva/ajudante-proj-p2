@@ -143,6 +143,14 @@ public class Tutor {
 	 *            nota da avaliacao utilizada no calculo da pontuacao
 	 */
 	public void setPontuacao(double nota) {
+		if (nota < 0) {
+			throw new IllegalArgumentException(
+					"Erro na avaliacao de tutor: nota nao pode ser menor que 0");
+		}
+		if (nota > 5) {
+			throw new IllegalArgumentException(
+					"Erro na avaliacao de tutor: nota nao pode ser maior que 5");
+		}
 		this.pontuacao = ((this.pontuacao * 5) + nota) / 6.0;
 		this.setNivel();
 	}
@@ -167,6 +175,10 @@ public class Tutor {
 	 *            dinheiro dado ao tutor
 	 */
 	public void setDinheiro(int dinheiro) {
+		if (dinheiro < 0) {
+			throw new IllegalArgumentException(
+					"Erro na doacao para tutor: totalCentavos nao pode ser menor que 0");
+		}
 		this.dinheiro += dinheiro;
 	}
 
