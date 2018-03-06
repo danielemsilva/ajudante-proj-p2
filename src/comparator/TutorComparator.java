@@ -19,11 +19,11 @@ public class TutorComparator implements Comparator<Aluno> {
 	 */
 	@Override
 	public int compare(Aluno aluno1, Aluno aluno2) {
-		int diferenca = aluno1.getTutor().getPontuacao() - aluno2.getTutor().getPontuacao();
+		double diferenca = aluno1.getTutor().getPontuacao() - aluno2.getTutor().getPontuacao();
 		if(diferenca == 0) {
 			diferenca = aluno1.getTutor().getId() - aluno2.getTutor().getId();
 		}
-		return diferenca;
+		return (int) diferenca;
 	}
 
 }
