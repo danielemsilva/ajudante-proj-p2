@@ -28,31 +28,13 @@ public class AjudaOnline extends Ajuda {
 	}
 	
 	/**
-	 * Retorna a matricula do aluno que pediu a ajuda.
-	 * 
-	 * @return matricula do aluno
-	 */
-	public String getMatriculaAluno() {
-		return this.matrAluno;
-	}
-	
-	/**
-	 * Retorna a matricula do tutor.
-	 * 
-	 * @return matricula do tutor
-	 */
-	public String getMatriculaTutor() {
-		return this.matrTutor;
-	}
-	
-	/**
 	 * Representacao textual da ajuda.
 	 * 
 	 * @return String com a matricula do tutor e a disciplina
 	 */
 	@Override
 	public String toString() {
-		return "Tutor - " + this.matrTutor + ", disciplina- " + this.disciplina;
+		return "Tutor - " + this.matrTutor + ", disciplina - " + this.disciplina;
 	}	
 
 	/**

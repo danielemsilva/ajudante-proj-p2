@@ -16,7 +16,7 @@ public class Tutor {
 
 	private int id;
 	private int dinheiro;
-	private int pontuacao;
+	private double pontuacao;
 	private String nivel;
 	private List<String> locais;
 	private Map<String, Integer> disciplinas;
@@ -31,7 +31,8 @@ public class Tutor {
 		this.locais = new ArrayList<>();
 		this.disciplinas = new HashMap<>();
 		this.horarios = new HashMap<>();
-		this.pontuacao = 4;
+		this.pontuacao = 4.0;
+		this.setNivel();
 	}
 
 	/**
@@ -141,8 +142,8 @@ public class Tutor {
 	 * @param nota
 	 *            nota da avaliacao utilizada no calculo da pontuacao
 	 */
-	public void setPontuacao(int nota) {
-		this.pontuacao = ((this.pontuacao * 5) + nota) / 6;
+	public void setPontuacao(double nota) {
+		this.pontuacao = ((this.pontuacao * 5) + nota) / 6.0;
 		this.setNivel();
 	}
 
@@ -174,7 +175,7 @@ public class Tutor {
 	 * 
 	 * @return pontuacao
 	 */
-	public int getPontuacao() {
+	public double getPontuacao() {
 		return this.pontuacao;
 	}
 

@@ -1,5 +1,6 @@
 package principal;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -325,9 +326,11 @@ public class AlunoController {
 	 *            matricula do aluno
 	 * @return nota
 	 */
-	public int getNota(String matricula) {
+	public String getNota(String matricula) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
-		return aluno.getTutor().getPontuacao();
+		double pontuacao = aluno.getTutor().getPontuacao();
+		DecimalFormat decimalFormat = new DecimalFormat("#,##");
+		return decimalFormat.format(pontuacao);
 	}
 
 	/**

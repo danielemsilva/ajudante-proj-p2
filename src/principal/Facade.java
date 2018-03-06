@@ -229,6 +229,14 @@ public class Facade {
 	public void avaliarTutor(int idAjuda, int nota) {
 		qmaCtrl.avaliarTutor(idAjuda, nota);
 	}
+	
+	public String pegarNota(String matricula) {
+		return qmaCtrl.pegarNota(matricula);
+	}
+	
+	public String pegarNivel(String matricula) {
+		return qmaCtrl.pegarNivel(matricula);
+	}
 
 	/**
 	 * Executa chamada de testes de aceitacao
