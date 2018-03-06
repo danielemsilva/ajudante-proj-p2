@@ -251,17 +251,54 @@ public class QuemMeAjudaController {
 		String matricula = ajudaCtrl.avaliar(idAjuda, nota);
 		alunoCtrl.avaliarTutor(matricula, nota);
 	}
-	
+
+	/**
+	 * Retorna a pontuacao do tutor.
+	 * 
+	 * @param matricula
+	 *            matricula do aluno
+	 * @return nota
+	 */
 	public String pegarNota(String matricula) {
-		// validar matricula
+		this.validarPegarNota(matricula);
 		return alunoCtrl.getNota(matricula);
 	}
 	
+	/**
+	 * Retorna o nivel do tutor de acordo com a sua pontuacao.
+	 * 
+	 * @param matricula
+	 *            matricula do aluno
+	 * @return nivel do tutor
+	 */
 	public String pegarNivel(String matricula) {
-		// validar matricula
+		this.validarPegarNivel(matricula);
 		return alunoCtrl.getNivel(matricula);
 	}
-
+	
+	/**
+	 * Adiciona um total de dinheiro ao tutor
+	 * 
+	 * @param matricula 
+	 *            matricula do tutor
+	 * @param doacao 
+	 *            dinheiro a ser doado
+	 */
+	public void doarDinheiro(String matricula, int doacao) {
+		alunoCtrl.doarDinheiro(matricula, doacao);
+	}
+	
+	/**
+	 * Retorna o dinheiro total ja doado ao tutor
+	 * 
+	 * @param email 
+	 *            email do tutor
+	 * @return dinheiro do tutor
+	 */
+	public int totalDinheiroTutor(String email) {
+		return alunoCtrl.totalDinheiroTutor(email);
+	}
+	
 	/**
 	 * Valida os dados passados ao metodo pegarTutor.
 	 * 
@@ -380,6 +417,32 @@ public class QuemMeAjudaController {
 		if (id < 0) {
 			throw new IllegalArgumentException(
 					"Erro na avaliacao de tutor: id nao encontrado ");
+		}
+	}
+	
+	/**
+	 * Valida a matricula passada no metodo pegarNota
+	 * 
+	 * @param matricula 
+	 *            matricula do tutor
+	 */
+	private void validarPegarNota(String matricula) {
+		if(matricula == null || matricula.trim().equals("")) {
+			throw new IllegalArgumentException(
+					"Erro na consulta da nota: matricula nao pode ser nula ou vazia");
+		}
+	}
+	
+	/**
+	 * Valida a matricula passada no metodo pegarNivel
+	 * 
+	 * @param matricula 
+	 *            matricula do tutor
+	 */
+	private void validarPegarNivel(String matricula) {
+		if(matricula == null || matricula.trim().equals("")) {
+			throw new IllegalArgumentException(
+					"Erro na consulta do nivel: matricula nao pode ser nula ou vazia");
 		}
 	}
 
