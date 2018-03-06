@@ -102,4 +102,49 @@ public class AjudaOnlineTest {
 		assertEquals("11111111", this.ajudaOnline.getMatriculaTutor());
 	}
 	
+	/**
+	 * Verifica se a disciplina de uma ajuda online e retornada.
+	 */
+	@Test
+	public void testGetInfoAjuda() {
+		this.ajudaOnline = new AjudaOnline(1, "22222222", "11111111", "P2");
+		assertEquals("P2", this.ajudaOnline.getInfoAjuda("disciplina"));
+	}
+	
+	/**
+	 * Verifica se o dia de uma ajuda online e retornado.
+	 */
+	@Test
+	public void testGetInfoAjudaDia() {
+		this.ajudaOnline = new AjudaOnline(1, "22222222", "11111111", "P2");
+		assertEquals("atributo invalido", this.ajudaOnline.getInfoAjuda("dia"));
+	}
+	
+	/**
+	 * Verifica se o local de uma ajuda online e retornado.
+	 */
+	@Test
+	public void testGetInfoAjudaLocalInteresse() {
+		this.ajudaOnline = new AjudaOnline(1, "22222222", "11111111", "P2");
+		assertEquals("atributo invalido", this.ajudaOnline.getInfoAjuda("localInteresse"));
+	}
+	
+	/**
+	 * Verifica se o horario de uma ajuda online e retornado.
+	 */
+	@Test
+	public void testGetInfoAjudaHorario() {
+		this.ajudaOnline = new AjudaOnline(1, "22222222", "11111111", "P2");
+		assertEquals("atributo invalido", this.ajudaOnline.getInfoAjuda("localInteresse"));
+	}
+	
+	/**
+	 * Verifica se um atributo qualquer que nao pertence a uma ajuda online e retornado.
+	 */
+	@Test
+	public void testGetInfoAjudaAtributoInvalido() {
+		this.ajudaOnline = new AjudaOnline(1, "22222222", "11111111", "P2");
+		assertEquals("atributo invalido", this.ajudaOnline.getInfoAjuda("minuto"));
+	}
+	
 }

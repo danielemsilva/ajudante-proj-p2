@@ -251,7 +251,7 @@ public class QuemMeAjudaController {
 		String matricula = ajudaCtrl.avaliar(idAjuda, nota);
 		alunoCtrl.avaliarTutor(matricula, nota);
 	}
-	
+
 	/**
 	 * Retorna a pontuacao do tutor.
 	 * 
