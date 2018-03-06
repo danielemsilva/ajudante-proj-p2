@@ -177,7 +177,7 @@ public class Tutor {
 	public void setDinheiro(int dinheiro) {
 		if (dinheiro < 0) {
 			throw new IllegalArgumentException(
-					"Erro na doacao para tutor: totalCentavos nao pode ser menor que 0");
+					"Erro na doacao para tutor: totalCentavos nao pode ser menor que zero");
 		}
 		this.dinheiro += dinheiro;
 	}
@@ -217,7 +217,7 @@ public class Tutor {
 	public int getId() {
 		return this.id;
 	}
-
+	
 	/**
 	 * Valida disciplina e proficiencia.
 	 * 

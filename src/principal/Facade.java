@@ -248,6 +248,26 @@ public class Facade {
 	public String pegarNivel(String matricula) {
 		return qmaCtrl.pegarNivel(matricula);
 	}
+	
+	/**
+	 * Recebe um total de dinheiro, em centavos, destinado a algum tutor.
+	 * 
+	 * @param matriculaTutor 
+	 *            matricula do tutor que recebera a doacao
+	 * @param totalCentavos 
+	 *            total de centavos da doacao
+	 */
+	public void doar(String matriculaTutor, int totalCentavos) {
+		qmaCtrl.doarDinheiro(matriculaTutor, totalCentavos);
+	}
+	
+	public int totalDinheiroTutor(String emailTutor) {
+		return qmaCtrl.totalDinheiroTutor(emailTutor);
+	}
+	
+	public int totalDinheiroSistema() {
+		return qmaCtrl.totalDinheiroSistema();
+	}
 
 	/**
 	 * Executa chamada de testes de aceitacao

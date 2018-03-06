@@ -325,14 +325,13 @@ public class AlunoController {
 	 *            matricula do aluno
 	 * @return nota
 	 */
-	public String getNota(String matricula) {
+	public double getNota(String matricula) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
 		if (aluno == null) {
 			throw new IllegalArgumentException(
 					"Erro na consulta da nota: tutor nao cadastrado");
 		}
-		double pontuacao = aluno.getTutor().getPontuacao();
-		return String.format("%.2f", pontuacao).replace('.', ',');
+		return aluno.getTutor().getPontuacao();
 	}
 
 	/**
@@ -352,6 +351,33 @@ public class AlunoController {
 	}
 	
 	/**
+	 * Calcula uma taxa de dinheiro destinado ao tutor de acordo com
+	 * seu nivel e pontuacao.
+	 * 
+	 * @param matricula
+	 *            matricula do tutor
+	 * @return taxa calculada de acordo com o nivel e pontuacao
+	 */
+	public double calcularTaxaTutor(String matricula) {
+		Aluno aluno = this.procuraAlunoMatricula(matricula);
+		if (aluno == null) {
+			throw new IllegalArgumentException(
+					"Erro na doacao para tutor: Tutor nao encontrado");
+		}
+		double taxaTutor = 80;
+		if (this.getNivel(matricula).equals("TOP")) {
+			double diferenca = Math.floor(this.getNota(matricula) - 4.5) / 10;
+			taxaTutor = 90 + 1 * diferenca;
+		}
+		else if (this.getNivel(matricula).equals("Aprendiz")) {
+			double diferenca = Math.floor(3.0 - this.getNota(matricula)) / 10;
+			taxaTutor = 40 - 1 * diferenca;
+		}
+		return taxaTutor / 100;
+	}
+
+	
+	/**
 	 * Adiciona um total de dinheiro ao tutor
 	 * 
 	 * @param matricula 
@@ -363,7 +389,7 @@ public class AlunoController {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
 		if (aluno == null) {
 			throw new IllegalArgumentException(
-					"Erro na doacao para tutor: Tutor nao cadastrado");
+					"Erro na doacao para tutor: Tutor nao encontrado");
 		}
 		aluno.getTutor().setDinheiro(doacao);
 	}
@@ -379,7 +405,7 @@ public class AlunoController {
 		Aluno aluno = this.procuraAlunoEmail(email);
 		if (aluno == null) {
 			throw new IllegalArgumentException(
-					"Erro na consulta de total de dinheiro do tutor: Tutor nao cadastrado");
+					"Erro na consulta de total de dinheiro do tutor: Tutor nao encontrado");
 		}
 		return aluno.getTutor().getDinheiro();
 	}
