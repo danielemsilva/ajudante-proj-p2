@@ -9,6 +9,7 @@ public class QuemMeAjudaController {
 
 	private AlunoController alunoCtrl;
 	private AjudaController ajudaCtrl;
+	private int dinheiroSistema;
 
 	/**
 	 * Constroi um novo controller do sistema, inicializando tambem os controllers
@@ -17,6 +18,7 @@ public class QuemMeAjudaController {
 	public QuemMeAjudaController() {
 		alunoCtrl = new AlunoController();
 		ajudaCtrl = new AjudaController();
+		this.dinheiroSistema = 0;
 	}
 
 	/**
@@ -221,7 +223,10 @@ public class QuemMeAjudaController {
 	 * @return dados do tutor que deu a ajuda
 	 */
 	public String pegarTutor(int idAjuda) {
-		this.validarDadosPegarTutor(idAjuda);
+		if (idAjuda <= 0) {
+			throw new IllegalArgumentException(
+					"Erro ao tentar recuperar tutor : id nao pode menor que zero ");
+		}
 		return ajudaCtrl.pegarTutor(idAjuda);
 	}
 
@@ -258,11 +263,14 @@ public class QuemMeAjudaController {
 	 * 
 	 * @param matricula
 	 *            matricula do aluno
-	 * @return nota
+	 * @return nota do tutor no formato "#,##"
 	 */
 	public String pegarNota(String matricula) {
-		this.validarPegarNota(matricula);
-		return alunoCtrl.getNota(matricula);
+		if(matricula == null || matricula.trim().equals("")) {
+			throw new IllegalArgumentException(
+					"Erro na consulta da nota: matricula nao pode ser nula ou vazia");
+		}
+		return String.format("%.2f", alunoCtrl.getNota(matricula)).replace('.', ',');
 	}
 	
 	/**
@@ -273,12 +281,16 @@ public class QuemMeAjudaController {
 	 * @return nivel do tutor
 	 */
 	public String pegarNivel(String matricula) {
-		this.validarPegarNivel(matricula);
+		if(matricula == null || matricula.trim().equals("")) {
+			throw new IllegalArgumentException(
+					"Erro na consulta do nivel: matricula nao pode ser nula ou vazia");
+		}
 		return alunoCtrl.getNivel(matricula);
 	}
 	
 	/**
-	 * Adiciona um total de dinheiro ao tutor
+	 * Distribui o dinheiro de uma doacao entre o tutor e o sistema atraves de
+	 * uma taxa baseada na pontuacao e nivel do tutor.
 	 * 
 	 * @param matricula 
 	 *            matricula do tutor
@@ -286,33 +298,39 @@ public class QuemMeAjudaController {
 	 *            dinheiro a ser doado
 	 */
 	public void doarDinheiro(String matricula, int doacao) {
-		alunoCtrl.doarDinheiro(matricula, doacao);
+		this.validarDadosDoar(matricula, doacao);
+		double taxaTutor = alunoCtrl.calcularTaxaTutor(matricula);
+		int totalSistema = (int) Math.ceil((1 - taxaTutor) * doacao);
+		int totalTutor = doacao - totalSistema;
+		this.dinheiroSistema += totalSistema;
+		alunoCtrl.doarDinheiro(matricula, totalTutor);
 	}
 	
 	/**
-	 * Retorna o dinheiro total ja doado ao tutor
+	 * Retorna o dinheiro total ja doado ao tutor.
 	 * 
 	 * @param email 
 	 *            email do tutor
 	 * @return dinheiro do tutor
 	 */
 	public int totalDinheiroTutor(String email) {
+		if(email == null || email.trim().equals("")) {
+			throw new IllegalArgumentException(
+					"Erro na consulta de total de dinheiro do tutor: "
+					+ "emailTutor nao pode ser vazio ou nulo");
+		}
 		return alunoCtrl.totalDinheiroTutor(email);
 	}
 	
 	/**
-	 * Valida os dados passados ao metodo pegarTutor.
+	 * Retorna o dinheiro disponivel no caixa do sistema.
 	 * 
-	 * @param idAjuda
-	 *            o identificador da ajuda
+	 * @return total do dinheiro do sistema, em centavos
 	 */
-	private void validarDadosPegarTutor(int idAjuda) {
-		if (idAjuda <= 0) {
-			throw new IllegalArgumentException(
-					"Erro ao tentar recuperar tutor : id nao pode menor que zero ");
-		}
+	public int totalDinheiroSistema() {
+		return this.dinheiroSistema;
 	}
-
+	
 	/**
 	 * Valida os dados passados ao metodo pedirAjudaOnline.
 	 * 
@@ -421,29 +439,14 @@ public class QuemMeAjudaController {
 		}
 	}
 	
-	/**
-	 * Valida a matricula passada no metodo pegarNota
-	 * 
-	 * @param matricula 
-	 *            matricula do tutor
-	 */
-	private void validarPegarNota(String matricula) {
-		if(matricula == null || matricula.trim().equals("")) {
-			throw new IllegalArgumentException(
-					"Erro na consulta da nota: matricula nao pode ser nula ou vazia");
+	private void validarDadosDoar(String matricula, int doacao) {
+		if (doacao < 0) {
+			throw new IllegalArgumentException("Erro na doacao para tutor: "
+					+ "totalCentavos nao pode ser menor que zero");
 		}
-	}
-	
-	/**
-	 * Valida a matricula passada no metodo pegarNivel
-	 * 
-	 * @param matricula 
-	 *            matricula do tutor
-	 */
-	private void validarPegarNivel(String matricula) {
-		if(matricula == null || matricula.trim().equals("")) {
+		if (matricula == null || matricula.trim().equals("")) {
 			throw new IllegalArgumentException(
-					"Erro na consulta do nivel: matricula nao pode ser nula ou vazia");
+					"Erro na doacao para tutor: matricula nao pode ser vazia ou nula");
 		}
 	}
 
