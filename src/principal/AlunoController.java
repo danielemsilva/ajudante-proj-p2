@@ -327,6 +327,10 @@ public class AlunoController {
 	 */
 	public String getNota(String matricula) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
+		if (aluno == null) {
+			throw new IllegalArgumentException(
+					"Erro na consulta da nota: tutor nao cadastrado");
+		}
 		double pontuacao = aluno.getTutor().getPontuacao();
 		return String.format("%.2f", pontuacao).replace('.', ',');
 	}
@@ -340,7 +344,44 @@ public class AlunoController {
 	 */
 	public String getNivel(String matricula) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
+		if (aluno == null) {
+			throw new IllegalArgumentException(
+					"Erro na consulta do nivel: tutor nao cadastrado");
+		}
 		return aluno.getTutor().getNivel();
+	}
+	
+	/**
+	 * Adiciona um total de dinheiro ao tutor
+	 * 
+	 * @param matricula 
+	 *            matricula do tutor
+	 * @param doacao 
+	 *            dinheiro a ser doado
+	 */
+	public void doarDinheiro(String matricula, int doacao) {
+		Aluno aluno = this.procuraAlunoMatricula(matricula);
+		if (aluno == null) {
+			throw new IllegalArgumentException(
+					"Erro na doacao para tutor: Tutor nao cadastrado");
+		}
+		aluno.getTutor().setDinheiro(doacao);
+	}
+	
+	/**
+	 * Retorna o dinheiro total ja doado ao tutor
+	 * 
+	 * @param email 
+	 *            email do tutor
+	 * @return dinheiro do tutor
+	 */
+	public int totalDinheiroTutor(String email) {
+		Aluno aluno = this.procuraAlunoEmail(email);
+		if (aluno == null) {
+			throw new IllegalArgumentException(
+					"Erro na consulta de total de dinheiro do tutor: Tutor nao cadastrado");
+		}
+		return aluno.getTutor().getDinheiro();
 	}
 
 	/**
