@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Classe respons√°vel por testar as funcionalidades da classe AjudaController.
+ * Classe respons·vel por testar as funcionalidades da classe AjudaController.
  *
  */
 public class AjudaControllerTest {
@@ -240,7 +240,7 @@ public class AjudaControllerTest {
 	@Test
 	public void testPegarTutorAjudaOnlineIdPositivo() {
 		this.ajudaController.pedirAjudaOnline("11111111", "22222222", "P2");
-	    //assertEquals("22222222", this.ajudaController.pegarTutor(1));
+	    assertEquals("Tutor - 22222222, disciplina - P2", this.ajudaController.pegarTutor(1));
 	}
 	
 	/**
@@ -268,7 +268,7 @@ public class AjudaControllerTest {
 	public void testGetInfoAjudaPresencialAtributoVazio() {
 		assertEquals("P2", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "LCC2", "seg", "13:00"),
+						"22222222", "P2", "13:00", "seg", "LCC2"),
 				""));
 	}
 	
@@ -280,7 +280,7 @@ public class AjudaControllerTest {
 	public void testGetInfoAjudaPresencialAtributoEmBranco() {
 		assertEquals("P2", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "LCC2", "seg", "13:00"),
+						"22222222", "P2", "13:00", "seg", "LCC2"),
 				"    "));
 	}
 	
@@ -339,7 +339,7 @@ public class AjudaControllerTest {
 	public void testGetInfoLocalAjudaPresencial() {
 		assertEquals("LCC2", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "LCC2", "seg", "13:00"),
+						"22222222", "P2", "13:00", "seg", "LCC2"),
 				"localInteresse"));
 	}
 	
@@ -351,7 +351,7 @@ public class AjudaControllerTest {
 	public void testGetInfoHorarioAjudaPresencial() {
 		assertEquals("13:00", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "LCC2", "seg", "13:00"),
+						"22222222", "P2", "13:00", "seg", "LCC2"),
 				"horario"));
 	}
 	
@@ -363,7 +363,7 @@ public class AjudaControllerTest {
 	public void testGetInfoAtributoInvalidoAjudaPresencial() {
 		assertEquals("13:00", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "LCC2", "seg", "13:00"),
+						"22222222", "P2", "13:00", "seg", "LCC2"),
 				"minuto"));
 	}
 	

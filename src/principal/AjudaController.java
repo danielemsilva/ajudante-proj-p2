@@ -37,7 +37,7 @@ public class AjudaController {
 	 * @return o inteiro que identifica a ajuda
 	 */
 	public int pedirAjudaPresencial(String matrAluno, String matrTutor, String disciplina, 
-			String localInteresse, String dia, String horario) {
+			String horario, String dia, String localInteresse) {
 		this.validarDadosAjudaPresencial(matrAluno, matrTutor, disciplina, horario, dia,
 				localInteresse);
 		Ajuda ajuda = new AjudaPresencial(this.ajudas.keySet().size() + 1, matrAluno,

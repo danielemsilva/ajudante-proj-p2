@@ -188,14 +188,13 @@ public class QuemMeAjudaController {
 	 * 
 	 * @return id da ajuda cadastrada.
 	 */
-	public int pedirAjudaPresencial(String matrAluno, String disciplina, 
-			String localInteresse, String dia, String horario) {
+	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, 
+			String dia, String localInteresse) {
 		this.validarDadosAjudaPresencial(matrAluno, disciplina, horario, dia, 
 				localInteresse);
-		String matrTutor = alunoCtrl.buscarTutor(disciplina, horario, dia,
-				localInteresse);
+		String matrTutor = alunoCtrl.buscarTutor(disciplina, horario, dia, localInteresse);
 		return ajudaCtrl.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, 
-				localInteresse, dia, horario);
+				horario, dia, localInteresse);
 	}
 
 	/**
