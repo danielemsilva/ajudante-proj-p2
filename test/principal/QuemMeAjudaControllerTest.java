@@ -476,4 +476,65 @@ public class QuemMeAjudaControllerTest {
 				"horario");
 	}
 	
+	/**
+	 * Verifica se a doacao do dinheiro ao tutor eh realizada devidamente
+	 */
+	@Test
+	public void testDoarDinheiroAoTutor() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.ufcg.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.doarDinheiro("22222", 100);
+		assertEquals(80, this.quemMeAjudaController.totalDinheiroTutor("mario@ccc.ufcg.edu.br"));
+	}
+	
+	/**
+	 * Espera-se erro ao tentar recuperar o total de dinheiro de um tutor
+	 * nao encontrado.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarDinheiroEmailInexistente() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.ufcg.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.doarDinheiro("22222", 100);
+		assertEquals(80, this.quemMeAjudaController.totalDinheiroTutor("luzia@ccc.ufcg.edu.br"));
+	}
+	
+	/**
+	 * Espera-se erro ao tentar recuperar o total de dinheiro de um tutor
+	 * informando um email vazio.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarDinheiroEmailVazio() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.ufcg.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.doarDinheiro("22222", 100);
+		assertEquals(80, this.quemMeAjudaController.totalDinheiroTutor("  "));
+	}
+	
+	/**
+	 * Espera-se erro ao tentar doar uma quantia negativa
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarDinheiroInvalido() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.ufcg.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.doarDinheiro("22222", -500);
+	}
+	
+	/**
+	 * Verifica se o dinheiro destinado ao sistema eh calculada devidamente
+	 */
+	@Test
+	public void testTotalDinheiroSistema() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.ufcg.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.doarDinheiro("22222", 100);
+		assertEquals(20, this.quemMeAjudaController.totalDinheiroSistema());
+	}
+	
 }
