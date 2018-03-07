@@ -239,7 +239,7 @@ public class QuemMeAjudaControllerTest {
 	}
 	
 	/**
-	 * Verifica se a matricula de um tutor de uma ajuda de id negativo pode ser
+	 * Verifica se um tutor de uma ajuda de id negativo pode ser
 	 * retornada.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -248,8 +248,8 @@ public class QuemMeAjudaControllerTest {
 	}
 	
 	/**
-	 * Verifica se a matricula de um tutor de uma ajuda de id zero pode ser
-	 * retornada.
+	 * Verifica se um tutor de uma ajuda de id zero pode ser
+	 * retornado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPegarTutorAjudaIdZero() {
@@ -257,24 +257,28 @@ public class QuemMeAjudaControllerTest {
 	}
 	
 	/**
-	 * Verifica se a matricula de um tutor de uma ajuda online de id positivo
-	 * pode ser retornada.
+	 * Verifica se um tutor de uma ajuda online de id positivo
+	 * pode ser retornado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPegarTutorAjudaOnlineIdPositivo() {
-		this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2");
-	    this.quemMeAjudaController.pegarTutor(1);
+	    assertEquals("Tutor - 22222222, disciplina - P2", 
+	    		this.quemMeAjudaController.pegarTutor(
+	    				this.quemMeAjudaController.pedirAjudaOnline("11111111",
+	    						"P2")));
 	}
 	
 	/**
-	 * Verifica se a matricula de um tutor de uma ajuda presencial de id
-	 * positivo pode ser retornada.
+	 * Verifica se um tutor de uma ajuda presencial de id
+	 * positivo pode ser retornado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPegarTutorAjudaPresencialIdPositivo() {
-		this.quemMeAjudaController.pedirAjudaPresencial("11111111", "P2",
-				"15:00", "sex", "LCC2");
-	    this.quemMeAjudaController.pegarTutor(1);
+	    assertEquals("Tutor - 22222222, horario - 13:00, dia - seg, "
+	    		+ "local - LCC2, disciplina - P2",
+	    		this.quemMeAjudaController.pegarTutor(
+	    				this.quemMeAjudaController.pedirAjudaPresencial(
+	    						"11111111", "P2", "LCC2", "seg", "13:00")));
 	}
 	
 	/**

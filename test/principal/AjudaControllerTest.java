@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Classe responsável por testar as funcionalidades da classe AjudaController.
+ * Classe responsï¿½vel por testar as funcionalidades da classe AjudaController.
  *
  */
 public class AjudaControllerTest {
@@ -217,7 +217,7 @@ public class AjudaControllerTest {
 	}
 	
 	/**
-	 * Verifica se a matricula de um tutor de uma ajuda de id negativo pode ser
+	 * Verifica se um tutor de uma ajuda de id negativo pode ser
 	 * retornada.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -226,7 +226,7 @@ public class AjudaControllerTest {
 	}
 	
 	/**
-	 * Verifica se a matricula de um tutor de uma ajuda de id zero pode ser
+	 * Verifica se um tutor de uma ajuda de id zero pode ser
 	 * retornada.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -235,12 +235,27 @@ public class AjudaControllerTest {
 	}
 	
 	/**
-	 * Verifica se o tutor de uma ajuda de id positivo pode ser retornado.
+	 * Verifica se o tutor de uma ajuda online de id positivo pode ser 
+	 * retornado.
 	 */
 	@Test
 	public void testPegarTutorAjudaOnlineIdPositivo() {
 		this.ajudaController.pedirAjudaOnline("11111111", "22222222", "P2");
-	    assertEquals("Tutor - 22222222, disciplina - P2", this.ajudaController.pegarTutor(1));
+	    assertEquals("Tutor - 22222222, disciplina - P2", 
+	    		this.ajudaController.pegarTutor(1));
+	}
+	
+	/**
+	 * Verifica se o tutor de uma ajuda presencial de id positivo pode ser 
+	 * retornado.
+	 */
+	@Test
+	public void testPegarTutorAjudaPresencialIdPositivo() {
+	    assertEquals("Tutor - 22222222, horario - 13:00, dia - seg, "
+	    		+ "local - LCC2, disciplina - P2", 
+	    		this.ajudaController.pegarTutor(
+	    				this.ajudaController.pedirAjudaPresencial("11111111",
+	    						"22222222", "P2", "LCC2", "seg", "13:00")));
 	}
 	
 	/**
