@@ -1,10 +1,12 @@
 package principal;
 
+import java.io.Serializable;
+
 /**
  * Esta classe representa um aluno, que possui nome, matricula (identificador),
  * codigo do curso, email e telefone (opcional).
  */
-public class Aluno {
+public class Aluno implements Serializable {
 
 	private String nome;
 	private String matricula;

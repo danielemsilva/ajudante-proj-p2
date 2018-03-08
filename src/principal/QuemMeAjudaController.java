@@ -331,6 +331,22 @@ public class QuemMeAjudaController {
 	}
 	
 	/**
+	 * Realiza as chamadas para gravacao dos dados
+	 */
+	public void gravarDados() {
+		alunoCtrl.gravarAlunos();
+		// depois grava ajudas
+	}
+	
+	/**
+	 * Realiza as chamadas para leitura dos dados
+	 */
+	public void lerDados() {
+		alunoCtrl.lerAlunos();
+		// depois le ajudas
+	}
+	
+	/**
 	 * Valida os dados passados ao metodo pedirAjudaOnline.
 	 * 
 	 * @param matrAluno

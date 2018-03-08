@@ -8,7 +8,7 @@ import easyaccept.EasyAccept;
 public class Facade {
 
 	private QuemMeAjudaController qmaCtrl = new QuemMeAjudaController();
-
+	
 	/**
 	 * Cadastro de um aluno
 	 * 

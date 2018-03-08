@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import comparator.TutorComparator;
-import comparator.AlunoComparator;
+import comparator.PontuacaoTutorComparator;
+import comparator.NomeAlunoComparator;
 
 /**
  * Esta classe e responsavel pelo gerenciamento dos alunos.
@@ -23,7 +23,7 @@ public class AlunoController {
 	 */
 	public AlunoController() {
 		this.alunos = new ArrayList<>();
-		this.comparator = new AlunoComparator();
+		this.comparator = new NomeAlunoComparator();
 	}
 
 	/**
@@ -276,7 +276,7 @@ public class AlunoController {
 			String local) {
 		List<Aluno> tutoresCandidatos = this.buscarTutoresCandidatos(disciplina, 
 				horario, dia, local);
-		Comparator<Aluno> comparator = new TutorComparator();
+		Comparator<Aluno> comparator = new PontuacaoTutorComparator();
 		Collections.sort(tutoresCandidatos, comparator);
 		if (!tutoresCandidatos.isEmpty()) {
 			return tutoresCandidatos.get(0).getMatricula();
@@ -296,7 +296,7 @@ public class AlunoController {
 	 */
 	public String buscarTutor(String disciplina) {
 		List<Aluno> tutoresCandidatos = this.buscarTutoresDisciplina(disciplina);
-		Comparator<Aluno> comparator = new TutorComparator();
+		Comparator<Aluno> comparator = new PontuacaoTutorComparator();
 		Collections.sort(tutoresCandidatos, comparator);
 		if (!tutoresCandidatos.isEmpty()) {
 			return tutoresCandidatos.get(0).getMatricula();
@@ -408,6 +408,24 @@ public class AlunoController {
 					"Erro na consulta de total de dinheiro do tutor: Tutor nao encontrado");
 		}
 		return aluno.getTutor().getDinheiro();
+	}
+	
+	/**
+	 * Cria uma nova instancia para gravar a lista de alunos
+	 * 
+	 * @return true se gravou no arquivo, false se deu algum erro
+	 */
+	public boolean gravarAlunos() {
+		ManipulaDados manipula = new ManipulaDados();
+		return manipula.gravaAlunos(this.alunos);
+	}
+	
+	/**
+	 * Realiza a leitura dos alunos e armazena na lista de alunos
+	 */
+	public void lerAlunos() {
+		ManipulaDados manipula = new ManipulaDados();
+		this.alunos = manipula.lerAlunos();
 	}
 
 	/**
