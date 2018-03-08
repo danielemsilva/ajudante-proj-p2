@@ -331,6 +331,13 @@ public class QuemMeAjudaController {
 	}
 	
 	/**
+	 * Altera o tipo da ordenacao de alunos
+	 */
+	public void configurarOrdem(String ordem) {
+		alunoCtrl.configurarOrdem(ordem);
+	}
+	
+	/**
 	 * Realiza as chamadas para gravacao dos dados
 	 */
 	public void gravarDados() {

@@ -8,7 +8,7 @@ import principal.Aluno;
  * Implementacao do comparator para ordenar os alunos pelo email
  * 
  */
-public class Email implements Comparator<Aluno> {
+public class EmailAlunoComparator implements Comparator<Aluno> {
 
 	/**
 	 * Compara os emails de dois alunos e retorna a diferença entre eles

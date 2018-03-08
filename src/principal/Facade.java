@@ -268,6 +268,10 @@ public class Facade {
 	public int totalDinheiroSistema() {
 		return qmaCtrl.totalDinheiroSistema();
 	}
+	
+	public void configurarOrdem(String ordem) {
+		qmaCtrl.configurarOrdem(ordem);
+	}
 
 	/**
 	 * Executa chamada de testes de aceitacao

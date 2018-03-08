@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import comparator.PontuacaoTutorComparator;
+import comparator.EmailAlunoComparator;
+import comparator.MatriculaAlunoComparator;
 import comparator.NomeAlunoComparator;
 
 /**
@@ -73,7 +75,7 @@ public class AlunoController {
 	 * @return lista de alunos
 	 */
 	public String listarAlunos() {
-		Collections.sort(this.alunos, comparator);
+		Collections.sort(this.alunos, this.comparator);
 		String lista = "";
 		for (Aluno aluno : this.alunos) {
 			if (!lista.equals("")) {
@@ -156,6 +158,7 @@ public class AlunoController {
 	 * @return lista com os dados dos tutores
 	 */
 	public String listarTutores() {
+		Collections.sort(this.alunos, this.comparator);
 		String lista = "";
 		for (Aluno aluno : this.alunos) {
 			if (aluno.ehTutor()) {
@@ -375,7 +378,6 @@ public class AlunoController {
 		}
 		return taxaTutor / 100;
 	}
-
 	
 	/**
 	 * Adiciona um total de dinheiro ao tutor
@@ -408,6 +410,23 @@ public class AlunoController {
 					"Erro na consulta de total de dinheiro do tutor: Tutor nao encontrado");
 		}
 		return aluno.getTutor().getDinheiro();
+	}
+	
+	/**
+	 * Altera o comparator que ordena a lista de alunos
+	 * 
+	 * @param ordem tipo da ordenacao
+	 */
+	public void configurarOrdem(String ordem) {
+		if (ordem.equals("NOME")) {
+			this.comparator = new NomeAlunoComparator();
+		}
+		else if (ordem.equals("MATRICULA")) {
+			this.comparator = new MatriculaAlunoComparator();
+		}
+		else if (ordem.equals("EMAIL")) {
+			this.comparator = new EmailAlunoComparator();
+		}
 	}
 	
 	/**

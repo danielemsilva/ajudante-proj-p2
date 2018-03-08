@@ -3,181 +3,184 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="principal.AjudaController" project="quem-me-ajuda" 
     file="/quem-me-ajuda/src/principal/AjudaController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="297" width="381" x="295" y="1029"/>    
+    <position height="293" width="382" x="613" y="1200"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="comparator.PontuacaoTutorComparator" project="quem-me-ajuda" 
-    file="/quem-me-ajuda/src/comparator/PontuacaoTutorComparator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="149" x="229" y="-95"/>    
+  <class id="2" language="java" name="comparator.MatriculaAlunoComparator" project="quem-me-ajuda" 
+    file="/quem-me-ajuda/src/comparator/MatriculaAlunoComparator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="179" x="215" y="48"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="comparator.NomeAlunoComparator" project="quem-me-ajuda" 
-    file="/quem-me-ajuda/src/comparator/NomeAlunoComparator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="149" x="418" y="-95"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="principal.AjudaOnline" project="quem-me-ajuda" 
-    file="/quem-me-ajuda/src/principal/AjudaOnline.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="210" x="229" y="2081"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="principal.QuemMeAjudaController" project="quem-me-ajuda" 
+  <class id="3" language="java" name="principal.QuemMeAjudaController" project="quem-me-ajuda" 
     file="/quem-me-ajuda/src/principal/QuemMeAjudaController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="567" width="350" x="607" y="422"/>    
+    <position height="599" width="351" x="822" y="561"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="principal.Tutor" project="quem-me-ajuda" 
+  <class id="4" language="java" name="principal.Tutor" project="quem-me-ajuda" 
     file="/quem-me-ajuda/src/principal/Tutor.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="549" width="228" x="828" y="2081"/>    
+    <position height="545" width="229" x="1035" y="2280"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="principal.AjudaPresencial" project="quem-me-ajuda" 
-    file="/quem-me-ajuda/src/principal/AjudaPresencial.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="309" x="479" y="2081"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="principal.Facade" project="quem-me-ajuda" 
-    file="/quem-me-ajuda/src/principal/Facade.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="477" width="302" x="607" y="-95"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="principal.Aluno" project="quem-me-ajuda" 
+  <class id="5" language="java" name="principal.Aluno" project="quem-me-ajuda" 
     file="/quem-me-ajuda/src/principal/Aluno.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="423" width="275" x="772" y="1618"/>    
+    <position height="419" width="276" x="1035" y="1821"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="principal.AlunoController" project="quem-me-ajuda" 
+  <class id="6" language="java" name="principal.AlunoController" project="quem-me-ajuda" 
     file="/quem-me-ajuda/src/principal/AlunoController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="549" width="340" x="716" y="1029"/>    
+    <position height="581" width="341" x="1035" y="1200"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="principal.Ajuda" project="quem-me-ajuda" 
+  <class id="7" language="java" name="comparator.EmailAlunoComparator" project="quem-me-ajuda" 
+    file="/quem-me-ajuda/src/comparator/EmailAlunoComparator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="148" x="434" y="48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="comparator.NomeAlunoComparator" project="quem-me-ajuda" 
+    file="/quem-me-ajuda/src/comparator/NomeAlunoComparator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="160" x="622" y="48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="principal.Ajuda" project="quem-me-ajuda" 
     file="/quem-me-ajuda/src/principal/Ajuda.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="297" width="156" x="295" y="1618"/>    
+    <position height="293" width="153" x="613" y="1821"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="12">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="11"/>  
+  <class id="10" language="java" name="principal.AjudaOnline" project="quem-me-ajuda" 
+    file="/quem-me-ajuda/src/principal/AjudaOnline.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="131" width="211" x="435" y="2280"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="principal.AjudaPresencial" project="quem-me-ajuda" 
+    file="/quem-me-ajuda/src/principal/AjudaPresencial.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="185" width="309" x="686" y="2280"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="principal.ManipulaDados" project="quem-me-ajuda" 
+    file="/quem-me-ajuda/src/principal/ManipulaDados.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="113" width="192" x="1164" y="48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="principal.Facade" project="quem-me-ajuda" 
+    file="/quem-me-ajuda/src/principal/Facade.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="473" width="302" x="822" y="48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="comparator.PontuacaoTutorComparator" project="quem-me-ajuda" 
+    file="/quem-me-ajuda/src/comparator/PontuacaoTutorComparator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="183" x="1396" y="48"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="15">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="9"/>  
   </generalization>  
-  <association id="13">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="14" name="qmaCtrl">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="15" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="16">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="11"/>  
-  </generalization>  
-  <association id="17">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="18" name="alunoCtrl">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="19" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="20">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="21" name="alunos">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="22" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="23">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="24" name="ajudas">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="25" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="27" name="tutor">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="28" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <association id="16">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="17" name="alunoCtrl"/>      
+      <multiplicity id="18" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="29">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="30" name="ajudaCtrl">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="31" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <association id="19">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="20" name="ajudaCtrl"/>      
+      <multiplicity id="21" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="23" name="alunos"/>      
+      <multiplicity id="24" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="26">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="27" name="ajudas"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="30" name="qmaCtrl"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="33" name="tutor"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
