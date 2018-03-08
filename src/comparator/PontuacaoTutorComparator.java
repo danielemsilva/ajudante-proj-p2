@@ -7,7 +7,7 @@ import principal.Aluno;
  * Implementacao do comparator para ordenar tutores pela pontuacao
  * 
  */
-public class TutorComparator implements Comparator<Aluno> {
+public class PontuacaoTutorComparator implements Comparator<Aluno> {
 
 	/**
 	 * Compara as pontuacoes dos dois alunos tutores e retorna a diferenca entre eles.
