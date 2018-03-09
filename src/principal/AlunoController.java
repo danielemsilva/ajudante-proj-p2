@@ -121,8 +121,8 @@ public class AlunoController {
 			throw new IllegalArgumentException(
 					"Erro na definicao de papel: Tutor nao encontrado");
 		}
-		aluno.tornarTutor(disciplina, proficiencia, id);
-		id++;
+		aluno.tornarTutor(disciplina, proficiencia, this.id);
+		this.id++;
 	}
 
 	/**
@@ -369,11 +369,13 @@ public class AlunoController {
 		}
 		double taxaTutor = 80;
 		if (this.getNivel(matricula).equals("TOP")) {
-			double diferenca = Math.floor(this.getNota(matricula) - 4.5) / 10;
+			double nota = Math.floor(this.getNota(matricula) * 10) / 10.0;
+			double diferenca = (nota - 4.5) * 10;
 			taxaTutor = 90 + 1 * diferenca;
 		}
 		else if (this.getNivel(matricula).equals("Aprendiz")) {
-			double diferenca = Math.floor(3.0 - this.getNota(matricula)) / 10;
+			double nota = Math.floor(this.getNota(matricula) * 10) / 10.0;
+			double diferenca = (3.0 - nota) * 10;
 			taxaTutor = 40 - 1 * diferenca;
 		}
 		return taxaTutor / 100;

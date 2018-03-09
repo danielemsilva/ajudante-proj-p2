@@ -142,7 +142,7 @@ public class Tutor {
 	 * @param nota
 	 *            nota da avaliacao utilizada no calculo da pontuacao
 	 */
-	public void setPontuacao(double nota) {
+	public void setPontuacao(int nota) {
 		if (nota < 0) {
 			throw new IllegalArgumentException(
 					"Erro na avaliacao de tutor: nota nao pode ser menor que 0");
@@ -161,9 +161,9 @@ public class Tutor {
 	private void setNivel() {
 		if (this.pontuacao > 4.5) {
 			this.nivel = "TOP";
-		} else if (this.pontuacao > 3.0 || this.pontuacao <= 4.5) {
+		} else if (this.pontuacao > 3.0 && this.pontuacao <= 4.5) {
 			this.nivel = "Tutor";
-		} else if (this.pontuacao > 0 || this.pontuacao <= 3.0) {
+		} else if (this.pontuacao > 0 && this.pontuacao <= 3.0) {
 			this.nivel = "Aprendiz";
 		}
 	}

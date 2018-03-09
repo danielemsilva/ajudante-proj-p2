@@ -100,8 +100,8 @@ public class AjudaController {
 	 * 
 	 * @param idAjuda
 	 */
-	public String avaliar(int idAjuda, int nota) {
-		this.validarDadosAvaliar(idAjuda, nota);
+	public String avaliar(int idAjuda) {
+		this.validarDadosAvaliar(idAjuda);
 		this.ajudas.get(idAjuda).avaliar();
 		return this.ajudas.get(idAjuda).getMatriculaTutor();
 	}
@@ -265,15 +265,7 @@ public class AjudaController {
 	 * @param nota
 	 *            nota a ser atribuida ao tutor
 	 */
-	private void validarDadosAvaliar(int id, int nota) {
-		if (nota < 0) {
-			throw new IllegalArgumentException(
-					"Erro na avaliacao de tutor: nota nao pode ser menor que 0");
-		}
-		if (nota > 5) {
-			throw new IllegalArgumentException(
-					"Erro na avaliacao de tutor: nota nao pode ser maior que 5");
-		}
+	private void validarDadosAvaliar(int id) {
 		if (id < 0 || !this.ajudas.containsKey(id)) {
 			throw new IllegalArgumentException(
 					"Erro na avaliacao de tutor: id nao encontrado ");

@@ -253,7 +253,7 @@ public class QuemMeAjudaController {
 	 */
 	public void avaliarTutor(int idAjuda, int nota) {
 		this.validarDadosAvaliar(idAjuda, nota);
-		String matricula = ajudaCtrl.avaliar(idAjuda, nota);
+		String matricula = ajudaCtrl.avaliar(idAjuda);
 		alunoCtrl.avaliarTutor(matricula, nota);
 	}
 
@@ -299,7 +299,7 @@ public class QuemMeAjudaController {
 	public void doarDinheiro(String matricula, int doacao) {
 		this.validarDadosDoar(matricula, doacao);
 		double taxaTutor = alunoCtrl.calcularTaxaTutor(matricula);
-		int totalSistema = (int) Math.ceil((1 - taxaTutor) * doacao);
+		int totalSistema = (int) Math.round(((1 - taxaTutor) * doacao));
 		int totalTutor = doacao - totalSistema;
 		this.dinheiroSistema += totalSistema;
 		alunoCtrl.doarDinheiro(matricula, totalTutor);

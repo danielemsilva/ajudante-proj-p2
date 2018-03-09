@@ -261,14 +261,29 @@ public class Facade {
 		qmaCtrl.doarDinheiro(matriculaTutor, totalCentavos);
 	}
 	
+	/**
+	 * Retorna o dinheiro total ja doado ao tutor.
+	 * 
+	 * @param emailTutor
+	 *            email do tutor
+	 * @return dinheiro do tutor
+	 */
 	public int totalDinheiroTutor(String emailTutor) {
 		return qmaCtrl.totalDinheiroTutor(emailTutor);
 	}
 	
+	/**
+	 * Retorna o dinheiro disponivel no caixa do sistema.
+	 * 
+	 * @return total do dinheiro do sistema, em centavos
+	 */
 	public int totalDinheiroSistema() {
 		return qmaCtrl.totalDinheiroSistema();
 	}
 	
+	/**
+	 * Altera o tipo da ordenacao de alunos
+	 */
 	public void configurarOrdem(String ordem) {
 		qmaCtrl.configurarOrdem(ordem);
 	}
