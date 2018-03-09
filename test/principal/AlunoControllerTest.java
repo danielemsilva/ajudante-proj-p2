@@ -371,6 +371,61 @@ public class AlunoControllerTest {
 		assertEquals(this.alunoController.listarTutores(),
 				"111111 - Beatriz - CC - 99999999 - bia@ccc.com");
 	}
+	
+	/**
+	 * Verifica se uma avaliacao pode ser feita para um aluno nao cadastrado.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorAlunoNaoCadastrado() {
+		this.alunoController.avaliarTutor("1111111", 3);
+	}
+	
+	/**
+	 * Verifica se uma avaliacao pode ser feita para um aluno cadastrado que
+	 * nao eh tutor.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorAlunoCadastradoNaoTutor() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.avaliarTutor("1111111", 3);
+	}
+	
+	/**
+	 * Verifica se uma avaliacao pode ser feita para um aluno cadastrado que
+	 * eh tutor.
+	 */
+	@Test
+	public void testAvaliarTutorAlunoCadastradoTutor() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.tornarTutor("111111", "P2", 5);
+		this.alunoController.avaliarTutor("111111", 5);
+	}
+	
+	/**
+	 * Verifica se uma avaliacao pode ser feita para um aluno cadastrado, que
+	 * eh tutor, quando a nota eh zero.
+	 */
+	@Test
+	public void testAvaliarTutorNotaMinima() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.tornarTutor("111111", "P2", 5);
+		this.alunoController.avaliarTutor("111111", 0);
+	}
+	
+	/**
+	 * Verifica se uma avaliacao pode ser feita para um aluno cadastrado, que
+	 * eh tutor, quando a nota eh zero.
+	 */
+	@Test
+	public void testAvaliarTutorNotaMaxima() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.tornarTutor("111111", "P2", 5);
+		this.alunoController.avaliarTutor("111111", 5);
+	}
 
 }
 

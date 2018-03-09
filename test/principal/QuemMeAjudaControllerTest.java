@@ -357,7 +357,7 @@ public class QuemMeAjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAvaliarTutorIdAjudaNaoCadastrado() {
-		this.quemMeAjudaController.avaliarTutor(-1, 4);
+		this.quemMeAjudaController.avaliarTutor(1, 4);
 	}
 	
 	/**

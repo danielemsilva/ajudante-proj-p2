@@ -318,11 +318,35 @@ public class AlunoController {
 	 */
 	public void avaliarTutor(String matricula, int nota) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
+		this.validarDadosAvaliarTutor(aluno, nota);
+		aluno.getTutor().setPontuacao(nota);
+	}
+	
+	/**
+	 * Valida os dados passados ao metodo avaliarTutor.
+	 * 
+	 * @param aluno
+	 *     o aluno que se pretende avaliar
+	 * @param nota
+	 *     a nota que sera atribuida ao aluno
+	 */
+	private void validarDadosAvaliarTutor(Aluno aluno, int nota) {
 		if (aluno == null) {
 			throw new IllegalArgumentException(
 					"Erro ao avaliar tutor: tutor nao cadastrado");
 		}
-		aluno.getTutor().setPontuacao(nota);
+		if (aluno.getTutor() == null) {
+			throw new IllegalArgumentException(
+					"Erro ao avaliar tutor: o aluno informado nao eh tutor");
+		}
+		if (nota > 5) {
+			throw new IllegalArgumentException(
+					"Erro na avaliacao de tutor: nota nao pode ser maior que 5");
+		}
+		if (id < 0) {
+			throw new IllegalArgumentException(
+					"Erro na avaliacao de tutor: id nao encontrado ");
+		}
 	}
 
 	/**

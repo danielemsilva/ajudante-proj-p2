@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Classe respons�vel por testar as funcionalidades da classe AjudaController.
+ * Classe responsavel por testar as funcionalidades da classe AjudaController.
  *
  */
 public class AjudaControllerTest {
@@ -354,7 +354,7 @@ public class AjudaControllerTest {
 	public void testGetInfoLocalAjudaPresencial() {
 		assertEquals("LCC2", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "13:00", "seg", "LCC2"),
+						"22222222", "P2", "LCC2", "seg", "13:00"),
 				"localInteresse"));
 	}
 	
@@ -366,7 +366,7 @@ public class AjudaControllerTest {
 	public void testGetInfoHorarioAjudaPresencial() {
 		assertEquals("13:00", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "13:00", "seg", "LCC2"),
+						"22222222", "P2", "LCC2", "seg", "13:00"),
 				"horario"));
 	}
 	
@@ -378,7 +378,7 @@ public class AjudaControllerTest {
 	public void testGetInfoAtributoInvalidoAjudaPresencial() {
 		assertEquals("13:00", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "13:00", "seg", "LCC2"),
+						"22222222", "P2", "LCC2", "seg", "13:00"),
 				"minuto"));
 	}
 	
@@ -426,5 +426,70 @@ public class AjudaControllerTest {
 						"P2"),
 				"horario");
 	}
-
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda de id negativo pode ser
+	 * feita.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorIdAjudaNegativo() {
+		this.ajudaController.avaliar(-1);
+	}
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda de id nao cadastrado 
+	 * pode ser feita.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorIdAjudaNaoCadastrado() {
+		this.ajudaController.avaliar(1);
+	}
+	
+	/**
+	 * Verifica se a avaliacao de um tutor de uma ajuda online cadastrada que 
+	 * nao foi avaliada pode ser feita.
+	 */
+	@Test
+	public void testAvaliarTutorAjudaOnlineNaoAvaliada() {
+		this.ajudaController.avaliar(
+				this.ajudaController.pedirAjudaOnline("11111111", "22222222",
+						"P2"));
+	}
+	
+	/**
+	 * Verifica se a avaliacao de um tutor de uma ajuda online cadastrada que 
+	 * foi avaliada pode ser feita.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorAjudaOnlineAvaliada() {
+		int id = this.ajudaController.pedirAjudaOnline("11111111", "22222222",
+				"P2");
+		this.ajudaController.avaliar(id);
+		this.ajudaController.avaliar(id);
+	}
+	
+	/**
+	 * Verifica se a avaliacao de um tutor de uma ajuda presencial cadastrada 
+	 * que nao foi avaliada pode ser feita.
+	 */
+	@Test
+	public void testAvaliarTutorAjudaPresencialNaoAvaliada() {
+		this.ajudaController.avaliar(this.ajudaController.pedirAjudaPresencial(
+				"11111111", "22222222", "P2", "LCC2", "seg", "13:00"));
+	}
+	
+	/**
+	 * Verifica se a avaliacao de um tutor de uma ajuda presencial cadastrada 
+	 * que foi avaliada pode ser feita.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorAjudaPresencialAvaliada() {
+		int id = this.ajudaController.pedirAjudaPresencial(
+				"11111111", "22222222", "P2", "LCC2", "seg", "13:00");
+		this.ajudaController.avaliar(id);
+		this.ajudaController.avaliar(id);
+	}
+		
 }
+	
+	
