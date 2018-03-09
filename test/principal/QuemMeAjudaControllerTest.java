@@ -429,5 +429,59 @@ public class QuemMeAjudaControllerTest {
 				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"), 
 				5);
 	}
+	
+	/**
+	 * Verifica se os alunos sao listados pela ordem configurada para nome
+	 */
+	@Test
+	public void testListarAlunosPorNome() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Lucas", "1232428", "EER4", "", "luquinhas@blizzard.com");
+		this.quemMeAjudaController.cadastrarAluno(
+				"Ana", "1232455", "DD34", "8495981012", "ana234@blizzard.com");
+		this.quemMeAjudaController.cadastrarAluno(
+				"Joao", "1232423", "DD34", "8467989023", "joaozinho@blizzard.com");
+		this.quemMeAjudaController.configurarOrdem("NOME");
+		String retornoEsperado = "1232455 - Ana - DD34 - 8495981012 - ana234@blizzard.com, "
+				+ "1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com, "
+				+ "1232428 - Lucas - EER4 - luquinhas@blizzard.com";
+		assertEquals(this.quemMeAjudaController.listarAlunos(), retornoEsperado);
+	}
+
+	/**
+	 * Verifica se os alunos sao listados pela ordem configurada para email
+	 */
+	@Test
+	public void testListarAlunosPorEmail() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Lucas", "1232428", "EER4", "", "luquinhas@blizzard.com");
+		this.quemMeAjudaController.cadastrarAluno(
+				"Ana", "1232455", "DD34", "8495981012", "ana234@blizzard.com");
+		this.quemMeAjudaController.cadastrarAluno(
+				"Joao", "1232423", "DD34", "8467989023", "joaozinho@blizzard.com");
+		this.quemMeAjudaController.configurarOrdem("EMAIL");
+		String retornoEsperado = "1232455 - Ana - DD34 - 8495981012 - ana234@blizzard.com, "
+				+ "1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com, "
+				+ "1232428 - Lucas - EER4 - luquinhas@blizzard.com";
+		assertEquals(this.quemMeAjudaController.listarAlunos(), retornoEsperado);
+	}
+	
+	/**
+	 * Verifica se os alunos sao listados pela ordem configurada para matricula
+	 */
+	@Test
+	public void testListarAlunosPorMatricula() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Lucas", "1232428", "EER4", "", "luquinhas@blizzard.com");
+		this.quemMeAjudaController.cadastrarAluno(
+				"Ana", "1232455", "DD34", "8495981012", "ana234@blizzard.com");
+		this.quemMeAjudaController.cadastrarAluno(
+				"Joao", "1232423", "DD34", "8467989023", "joaozinho@blizzard.com");
+		this.quemMeAjudaController.configurarOrdem("MATRICULA");
+		String retornoEsperado = "1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com, "
+				+ "1232428 - Lucas - EER4 - luquinhas@blizzard.com, "
+				+ "1232455 - Ana - DD34 - 8495981012 - ana234@blizzard.com";
+		assertEquals(this.quemMeAjudaController.listarAlunos(), retornoEsperado);
+	}
 
 }

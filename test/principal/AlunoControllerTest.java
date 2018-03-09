@@ -26,7 +26,7 @@ public class AlunoControllerTest {
 	 * Cadastra um aluno com telefone.
 	 */
 	@Before
-	public void CadastraAlunoTest() {
+	public void cadastraAluno() {
 		this.alunoController.cadastrarAluno(
 				"Joao", "1232423", "DD34", "8467989023", "joaozinho@blizzard.com");
 	}
@@ -35,7 +35,7 @@ public class AlunoControllerTest {
 	 * Verifica se o cadastro de um aluno sem telefone pode ser realizado.
 	 */
 	@Test
-	public void cadastraAlunoSemTelefoneTest() {
+	public void testCadastraAlunoSemTelefone() {
 		this.alunoController.cadastrarAluno(
 				"Lucas", "1232428", "EER4", "", "luquinhas@blizzard.com");
 	}
@@ -45,7 +45,7 @@ public class AlunoControllerTest {
 	 * anteriormente.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void cadastraAlunoMatriculaJaExistenteTest() {
+	public void testCadastraAlunoMatriculaJaExistente() {
 		this.alunoController.cadastrarAluno(
 				"Lucas", "1232423", "EER4", "832334521", "luquinhas@blizzard.com");
 	}
@@ -54,7 +54,7 @@ public class AlunoControllerTest {
 	 * Verifica os dados retornados por recupera aluno
 	 */
 	@Test
-	public void recuperaAlunoTest() {
+	public void testRecuperaAluno() {
 		assertEquals(this.alunoController.recuperaAluno("1232423"),
 				"1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com");
 	}
@@ -64,7 +64,7 @@ public class AlunoControllerTest {
 	 * existente.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void recuperarAlunoNaoCadastrado() {
+	public void testRecuperarAlunoNaoCadastrado() {
 		this.alunoController.recuperaAluno("1347895");
 	}
 	
@@ -90,10 +90,58 @@ public class AlunoControllerTest {
 	}
 
 	/**
+	 * Verifica se os alunos sao listados pela ordem configurada para nome
+	 */
+	@Test
+	public void testListarAlunosPorNome() {
+		this.alunoController.cadastrarAluno(
+				"Lucas", "1232428", "EER4", "", "luquinhas@blizzard.com");
+		this.alunoController.cadastrarAluno(
+				"Ana", "1232455", "DD34", "8495981012", "ana234@blizzard.com");
+		this.alunoController.configurarOrdem("NOME");
+		String retornoEsperado = "1232455 - Ana - DD34 - 8495981012 - ana234@blizzard.com, "
+				+ "1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com, "
+				+ "1232428 - Lucas - EER4 - luquinhas@blizzard.com";
+		assertEquals(this.alunoController.listarAlunos(), retornoEsperado);
+	}
+
+	/**
+	 * Verifica se os alunos sao listados pela ordem configurada para email
+	 */
+	@Test
+	public void testListarAlunosPorEmail() {
+		this.alunoController.cadastrarAluno(
+				"Lucas", "1232428", "EER4", "", "luquinhas@blizzard.com");
+		this.alunoController.cadastrarAluno(
+				"Ana", "1232455", "DD34", "8495981012", "ana234@blizzard.com");
+		this.alunoController.configurarOrdem("EMAIL");
+		String retornoEsperado = "1232455 - Ana - DD34 - 8495981012 - ana234@blizzard.com, "
+				+ "1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com, "
+				+ "1232428 - Lucas - EER4 - luquinhas@blizzard.com";
+		assertEquals(this.alunoController.listarAlunos(), retornoEsperado);
+	}
+	
+	/**
+	 * Verifica se os alunos sao listados pela ordem configurada para matricula
+	 */
+	@Test
+	public void testListarAlunosPorMatricula() {
+		this.alunoController.cadastrarAluno(
+				"Lucas", "1232428", "EER4", "", "luquinhas@blizzard.com");
+		this.alunoController.cadastrarAluno(
+				"Ana", "1232455", "DD34", "8495981012", "ana234@blizzard.com");
+		this.alunoController.configurarOrdem("MATRICULA");
+		String retornoEsperado = "1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com, "
+				+ "1232428 - Lucas - EER4 - luquinhas@blizzard.com, "
+				+ "1232455 - Ana - DD34 - 8495981012 - ana234@blizzard.com";
+		assertEquals(this.alunoController.listarAlunos(), retornoEsperado);
+	}
+	
+	/**
 	 * Verifica o retorno de getInfoAluno para o dado 'Matricula'
 	 */
 	@Test
-	public void getInfoMatriculaTest() {
+	public void testGetInfoMatricula() {
 		assertEquals("1232423", 
 				this.alunoController.getInfoAluno("1232423", "Matricula"));
 	}
@@ -102,7 +150,7 @@ public class AlunoControllerTest {
 	 * Verifica o retorno de getInfoAluno para o dado 'Nome'
 	 */
 	@Test
-	public void getInfoNomeTest() {
+	public void testGetInfoNome() {
 		assertEquals("Joao", 
 				this.alunoController.getInfoAluno("1232423", "Nome"));
 	}
@@ -111,7 +159,7 @@ public class AlunoControllerTest {
 	 * Verifica o retorno de getInfoAluno para o dado 'CodigoCurso'
 	 */
 	@Test
-	public void getInfoCodigoCursoTest() {
+	public void testGetInfoCodigoCurso() {
 		assertEquals("DD34", 
 				this.alunoController.getInfoAluno("1232423", "CodigoCurso"));
 	}
@@ -120,7 +168,7 @@ public class AlunoControllerTest {
 	 * Verifica o retorno de getInfoAluno para o dado 'Telefone'
 	 */
 	@Test
-	public void getInfoTelefoneTest() {
+	public void testGetInfoTelefone() {
 		assertEquals("8467989023", 
 				this.alunoController.getInfoAluno("1232423", "Telefone"));
 	}
@@ -275,7 +323,7 @@ public class AlunoControllerTest {
 	 * esta entre seus horarios de atendimento.
 	 */
 	@Test
-	public void consultaHorarioNCadastradoTest() {
+	public void consultaHorarioNaoCadastradoTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 		this.alunoController.cadastrarHorario("joaozinho@blizzard.com",
 				"14:30", "21/03");
@@ -288,7 +336,7 @@ public class AlunoControllerTest {
 	 * esta entre seus horarios de atendimento.
 	 */
 	@Test
-	public void consultaHorarioTutorNCadastradoTest() {
+	public void consultaHorarioTutorNaoCadastradoTest() {
 		assertEquals(false, this.alunoController.consultaHorario(
 				"elizinha@blizzard.com", "17:30", "21/03"));
 	}
