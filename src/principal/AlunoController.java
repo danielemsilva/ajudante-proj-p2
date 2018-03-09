@@ -318,6 +318,10 @@ public class AlunoController {
 	 */
 	public void avaliarTutor(String matricula, int nota) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
+		if (aluno == null) {
+			throw new IllegalArgumentException(
+					"Erro ao avaliar tutor: tutor nao cadastrado");
+		}
 		aluno.getTutor().setPontuacao(nota);
 	}
 
