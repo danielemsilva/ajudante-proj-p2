@@ -341,5 +341,93 @@ public class QuemMeAjudaControllerTest {
 		this.quemMeAjudaController.doarDinheiro("22222", 100);
 		assertEquals(20, this.quemMeAjudaController.totalDinheiroSistema());
 	}
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda de id negativo pode ser
+	 * feita.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorIdAjudaNegativo() {
+		this.quemMeAjudaController.avaliarTutor(-1, 4);
+	}
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda de id nao cadastrado 
+	 * pode ser feita.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorIdAjudaNaoCadastrado() {
+		this.quemMeAjudaController.avaliarTutor(-1, 4);
+	}
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda de id cadastrado pode 
+	 * ser feita.
+	 */
+	@Test
+	public void testAvaliarTutorIdAjudaCadastrado() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"), 
+				4);
+	}
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda de id cadastrado pode 
+	 * ser feita quando a nota e inferior a zero.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorNotaNegativa() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"), 
+				-1);
+	}
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda de id cadastrado pode 
+	 * ser feita quando a nota e superior a cinco.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorNotaAcimaPermitido() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"), 
+				6);
+	}
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda de id cadastrado pode 
+	 * ser feita quando a nota e igual a zero.
+	 */
+	@Test
+	public void testAvaliarTutorNotaMinima() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"), 
+				0);
+	}
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda de id cadastrado pode 
+	 * ser feita quando a nota e igual a cinco.
+	 */
+	@Test
+	public void testAvaliarTutorNotaMaxima() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"), 
+				5);
+	}
 
 }
