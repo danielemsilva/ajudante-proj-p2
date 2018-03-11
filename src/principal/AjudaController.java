@@ -37,11 +37,11 @@ public class AjudaController {
 	 * @return o inteiro que identifica a ajuda
 	 */
 	public int pedirAjudaPresencial(String matrAluno, String matrTutor, String disciplina, 
-			String localInteresse, String dia, String horario) {
+			String horario, String dia, String localInteresse) {
 		this.validarDadosAjudaPresencial(matrAluno, matrTutor, disciplina, horario, dia,
 				localInteresse);
 		Ajuda ajuda = new AjudaPresencial(this.ajudas.keySet().size() + 1, matrAluno,
-				matrTutor, disciplina, localInteresse, dia, horario);
+				matrTutor, disciplina, horario, dia, localInteresse);
 		this.ajudas.put(this.ajudas.keySet().size() + 1, ajuda);
 		return this.ajudas.keySet().size();
 	}
@@ -104,6 +104,24 @@ public class AjudaController {
 		this.validarDadosAvaliar(idAjuda);
 		this.ajudas.get(idAjuda).avaliar();
 		return this.ajudas.get(idAjuda).getMatriculaTutor();
+	}
+	
+	/**
+	 * Cria uma nova instancia para gravar a lista de ajudas
+	 * 
+	 * @return true se gravou no arquivo, false se deu algum erro
+	 */
+	public boolean gravarAlunos() {
+		ManipulaDados manipula = new ManipulaDados();
+		return manipula.gravarAjudas(this.ajudas);
+	}
+	
+	/**
+	 * Realiza a leitura dos alunos e armazena na lista de alunos
+	 */
+	public void lerAlunos() {
+		ManipulaDados manipula = new ManipulaDados();
+		this.ajudas = manipula.lerAjudas();
 	}
 
 	/**

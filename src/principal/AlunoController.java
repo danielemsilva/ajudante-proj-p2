@@ -474,7 +474,7 @@ public class AlunoController {
 	 */
 	public boolean gravarAlunos() {
 		ManipulaDados manipula = new ManipulaDados();
-		return manipula.gravaAlunos(this.alunos);
+		return manipula.gravarAlunos(this.alunos);
 	}
 	
 	/**

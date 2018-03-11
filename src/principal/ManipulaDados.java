@@ -5,10 +5,11 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+import java.util.Map;
 
 public class ManipulaDados {
 	
-	public boolean gravaAlunos(List<Aluno> alunos) {
+	public boolean gravarAlunos(List<Aluno> alunos) {
 		boolean sucesso = false;
 		try {
 			FileOutputStream arquivo = new FileOutputStream("dados/alunos.dat");
@@ -40,4 +41,36 @@ public class ManipulaDados {
 		return null;
 	}
 	
+	
+	public boolean gravarAjudas(Map<Integer, Ajuda> ajudas) {
+		boolean sucesso = false;
+		try {
+			FileOutputStream arquivo = new FileOutputStream("dados/ajudas.dat");
+			ObjectOutputStream objGravar = new ObjectOutputStream(arquivo);
+			objGravar.writeObject(ajudas);
+			objGravar.flush();
+			objGravar.close();
+			arquivo.flush();
+			arquivo.close();
+			sucesso = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sucesso;
+	}
+	
+	public Map<Integer, Ajuda> lerAjudas() {
+		try {
+			FileInputStream arquivoLeitura = new FileInputStream("dados/ajudas.dat");
+			ObjectInputStream objLeitura =
+					new ObjectInputStream(arquivoLeitura);
+			Map<Integer, Ajuda> ajudasLidas = (Map<Integer, Ajuda>) objLeitura.readObject();
+			objLeitura.close();
+			arquivoLeitura.close();
+			return ajudasLidas;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

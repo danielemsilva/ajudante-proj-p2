@@ -29,7 +29,7 @@ public class AjudaPresencial extends Ajuda {
 	 *            horario da ajuda
 	 */
 	public AjudaPresencial(int id, String matrAluno, String matrTutor, 
-			String disciplina, String local, String dia, String horario) {
+			String disciplina, String horario, String dia, String local) {
 		super(id);
 		this.validarDados(matrAluno, matrTutor, disciplina, horario, dia, local);
 		this.matrAluno = matrAluno;

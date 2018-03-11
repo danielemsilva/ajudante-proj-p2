@@ -1,7 +1,6 @@
 package principal;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +27,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialMatrAlunoVazia() {
 		this.ajudaController.pedirAjudaPresencial("", "11111111", "P2",
-				"LCC2", "seg", "13:00");
+				"13:00", "seg", "LCC2");
 	}
 	
 	/**
@@ -38,7 +37,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialMatrAlunoEmBranco() {
 		this.ajudaController.pedirAjudaPresencial("    ", "11111111", "P2",
-				"LCC2", "seg", "13:00");
+				"13:00", "seg", "LCC2");
 	}
 	
 	/**
@@ -48,7 +47,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialMatrTutorVazia() {
 		this.ajudaController.pedirAjudaPresencial("22222222", "", "P2",
-				"LCC2", "seg", "13:00");
+				"13:00", "seg", "LCC2");
 	}
 	
 	/**
@@ -58,7 +57,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialMatrTutorEmBranco() {
 		this.ajudaController.pedirAjudaPresencial("22222222", "    ", "P2",
-				"LCC2", "seg", "13:00");
+				"13:00", "seg", "LCC2");
 	}
 	
 	/**
@@ -68,7 +67,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialDisciplinaVazia() {
 		this.ajudaController.pedirAjudaPresencial("22222222", "11111111", "",
-				"LCC2", "seg", "13:00");
+				"13:00", "seg", "LCC2");
 	}
 	
 	/**
@@ -78,7 +77,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialDisciplinaEmBranco() {
 		this.ajudaController.pedirAjudaPresencial("22222222", "11111111", "  ",
-				"LCC2", "seg", "13:00");
+				"13:00", "seg", "LCC2");
 	}
 	
 	/**
@@ -88,7 +87,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialHorarioVazio() {
 		this.ajudaController.pedirAjudaPresencial("22222222", "11111111", "P2",
-				"LCC2", "seg", "");
+				"", "seg", "LCC2");
 	}
 	
 	/**
@@ -98,7 +97,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialHorarioEmBranco() {
 		this.ajudaController.pedirAjudaPresencial("22222222", "11111111", "P2",
-				"LCC2", "seg", "   ");
+				"   ", "seg", "LCC2");
 	}
 	
 	/**
@@ -108,7 +107,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialDiaVazio() {
 		this.ajudaController.pedirAjudaPresencial("22222222", "11111111", "P2",
-				"LCC2", "", "13:00");
+				"13:00", "", "LCC2");
 	}
 	
 	/**
@@ -118,7 +117,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialDiaEmBranco() {
 		this.ajudaController.pedirAjudaPresencial("22222222", "11111111", "P2",
-				"LCC2", "   ", "13:00");
+				"13:00", "   ", "LCC2");
 	}
 	
 	/**
@@ -128,7 +127,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialLocalVazio() {
 		this.ajudaController.pedirAjudaPresencial("22222222", "11111111", "P2",
-				"", "seg", "13:00");
+				"13:00", "seg", "");
 	}
 	
 	/**
@@ -138,7 +137,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialLocalEmBranco() {
 		this.ajudaController.pedirAjudaPresencial("22222222", "11111111", "P2",
-				"   ", "seg", "13:00");
+				"13:00", "seg", "  ");
 	}
 	
 	/**
@@ -147,7 +146,7 @@ public class AjudaControllerTest {
 	@Test
 	public void testPedirPrimeiraAjudaPresencialValida() {
 		assertEquals(1, this.ajudaController.pedirAjudaPresencial("22222222",
-				"11111111", "P2", "LCC2", "seg", "13:00"));
+				"11111111", "P2", "13:00", "seg", "LCC2"));
 	}
 	
 	/**
@@ -156,9 +155,9 @@ public class AjudaControllerTest {
 	@Test
 	public void testPedirSegundaAjudaPresencialValida() {
 		this.ajudaController.pedirAjudaPresencial("22222222", "11111111", "P2",
-				"LCC2", "sex", "15:00");
+				"13:00", "seg", "LCC2");
 		assertEquals(2, this.ajudaController.pedirAjudaPresencial("22222222",
-				"11111111", "P2", "LCC2", "seg", "13:00"));
+				"11111111", "P2", "13:00", "seg", "LCC2"));
 	}
 	
 	/**
@@ -252,10 +251,9 @@ public class AjudaControllerTest {
 	@Test
 	public void testPegarTutorAjudaPresencialIdPositivo() {
 	    assertEquals("Tutor - 22222222, horario - 13:00, dia - seg, "
-	    		+ "local - LCC2, disciplina - P2", 
-	    		this.ajudaController.pegarTutor(
+	    		+ "local - LCC2, disciplina - P2", this.ajudaController.pegarTutor(
 	    				this.ajudaController.pedirAjudaPresencial("11111111",
-	    						"22222222", "P2", "LCC2", "seg", "13:00")));
+	    						"22222222", "P2", "13:00", "seg", "LCC2")));
 	}
 	
 	/**
@@ -331,7 +329,7 @@ public class AjudaControllerTest {
 	public void testGetInfoDisciplinaAjudaPresencial() {
 		assertEquals("P2", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "LCC2", "seg", "13:00"),
+						"22222222", "P2", "13:00", "seg", "LCC2"),
 				"disciplina"));
 	}
 	
@@ -342,7 +340,7 @@ public class AjudaControllerTest {
 	public void testGetInfoDiaAjudaPresencial() {
 		assertEquals("seg", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "LCC2", "seg", "13:00"),
+						"22222222", "P2", "13:00", "seg", "LCC2"),
 				"dia"));
 	}
 	
@@ -354,7 +352,7 @@ public class AjudaControllerTest {
 	public void testGetInfoLocalAjudaPresencial() {
 		assertEquals("LCC2", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "LCC2", "seg", "13:00"),
+						"22222222", "P2", "13:00", "seg", "LCC2"),
 				"localInteresse"));
 	}
 	
@@ -366,7 +364,7 @@ public class AjudaControllerTest {
 	public void testGetInfoHorarioAjudaPresencial() {
 		assertEquals("13:00", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "LCC2", "seg", "13:00"),
+						"22222222", "P2", "13:00", "seg", "LCC2"),
 				"horario"));
 	}
 	
@@ -378,7 +376,7 @@ public class AjudaControllerTest {
 	public void testGetInfoAtributoInvalidoAjudaPresencial() {
 		assertEquals("13:00", this.ajudaController.getInfoAjuda(
 				this.ajudaController.pedirAjudaPresencial("11111111",
-						"22222222", "P2", "LCC2", "seg", "13:00"),
+						"22222222", "P2", "13:00", "seg", "LCC2"),
 				"minuto"));
 	}
 	
@@ -475,7 +473,7 @@ public class AjudaControllerTest {
 	@Test
 	public void testAvaliarTutorAjudaPresencialNaoAvaliada() {
 		this.ajudaController.avaliar(this.ajudaController.pedirAjudaPresencial(
-				"11111111", "22222222", "P2", "LCC2", "seg", "13:00"));
+				"11111111", "22222222", "P2", "13:00", "seg", "LCC2"));
 	}
 	
 	/**
@@ -485,7 +483,7 @@ public class AjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testAvaliarTutorAjudaPresencialAvaliada() {
 		int id = this.ajudaController.pedirAjudaPresencial(
-				"11111111", "22222222", "P2", "LCC2", "seg", "13:00");
+				"11111111", "22222222", "P2", "13:00", "seg", "LCC2");
 		this.ajudaController.avaliar(id);
 		this.ajudaController.avaliar(id);
 	}
