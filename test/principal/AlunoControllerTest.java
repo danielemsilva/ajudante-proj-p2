@@ -458,7 +458,9 @@ public class AlunoControllerTest {
 	 * */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPegarNotaMatriculaNaoTutor() {
-		this.alunoController.getNota("111111111");
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.getNota("111111");
 	}
 	
 	/**
@@ -484,6 +486,143 @@ public class AlunoControllerTest {
 		this.alunoController.tornarTutor("111111", "P2", 5);
 		this.alunoController.avaliarTutor("111111", 5);
 		assertEquals(4.16, this.alunoController.getNota("111111"), 0.01);
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula informada
+	 * e nula.*/
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNivelMatriculaNula() {
+		this.alunoController.getNivel(null);
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula informada
+	 * e vazia.*/
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNivelMatriculaVazia() {
+		this.alunoController.getNivel("");
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula informada
+	 * nao foi registrada no sistema.
+	 * */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNivelMatriculaInexistente() {
+		this.alunoController.getNivel("111111111");
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula informada
+	 * eh de um aluno que nao eh tutor.
+	 * */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNivelMatriculaNaoTutor() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.getNivel("111111");
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula informada
+	 * eh de um aluno que eh tutor que nao foi avaliado.
+	 */
+	@Test
+	public void testPegarNivelMatriculaTutorNaoAvaliado() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.tornarTutor("111111", "P2", 5);
+		assertEquals("Tutor", this.alunoController.getNivel("111111"));
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula 
+	 * informada eh de um aluno que eh tutor de uma ajuda presencial.
+	 */
+	@Test
+	public void testPegarNivelMatriculaTutorAvaliadoAjudaPresencial() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.tornarTutor("3333", "TG", 5);
+		this.alunoController.cadastrarLocalDeAtendimento("bia@ccc.com",
+				"LCC3");
+		this.alunoController.cadastrarHorario("bia@ccc.com", "13:00", 
+				"seg");
+		this.alunoController.avaliarTutor("3333", 5);
+		assertEquals("Tutor", this.alunoController.getNivel("3333"));
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula 
+	 * informada eh de um aluno que eh tutor de uma ajuda online.
+	 */
+	@Test
+	public void testPegarNivelMatriculaTutorAvaliadoAjudaOnline() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.tornarTutor("3333", "TG", 5);
+		this.alunoController.avaliarTutor("3333", 5);
+		assertEquals("Tutor", this.alunoController.getNivel("3333"));
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula 
+	 * informada eh de um aluno que eh tutor que foi avaliado com boas notas.
+	 */
+	@Test
+	public void testPegarNivelMatriculaTutorAvaliadoBoasNotas() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.tornarTutor("3333", "TG", 5);
+		this.alunoController.cadastrarLocalDeAtendimento("bia@ccc.com",
+				"LCC3");
+		this.alunoController.cadastrarHorario("bia@ccc.com", "13:00", 
+				"seg");
+		this.alunoController.avaliarTutor("3333", 5);
+		this.alunoController.avaliarTutor("3333", 5);
+		this.alunoController.avaliarTutor("3333", 5);
+		this.alunoController.avaliarTutor("3333", 5);
+		this.alunoController.avaliarTutor("3333", 5);
+		assertEquals("TOP", this.alunoController.getNivel("3333"));
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula 
+	 * informada eh de um aluno que eh tutor que foi avaliado com notas medias.
+	 */
+	@Test
+	public void testPegarNivelMatriculaTutorAvaliadoNotasMedias() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.tornarTutor("3333", "TG", 5);
+		this.alunoController.cadastrarLocalDeAtendimento("bia@ccc.com",
+				"LCC3");
+		this.alunoController.cadastrarHorario("bia@ccc.com", "13:00", 
+				"seg");
+		this.alunoController.avaliarTutor("3333", 4);
+		this.alunoController.avaliarTutor("3333", 4);
+		this.alunoController.avaliarTutor("3333", 4);
+		assertEquals("Tutor", this.alunoController.getNivel("3333"));
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula 
+	 * informada eh de um aluno que eh tutor que foi avaliado com notas baixas.
+	 */
+	@Test
+	public void testPegarNivelMatriculaTutorAvaliadoNotasBaixas() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.tornarTutor("3333", "TG", 5);
+		this.alunoController.cadastrarLocalDeAtendimento("bia@ccc.com",
+				"LCC3");
+		this.alunoController.cadastrarHorario("bia@ccc.com", "13:00", 
+				"seg");
+		this.alunoController.avaliarTutor("3333", 1);
+		this.alunoController.avaliarTutor("3333", 1);
+		this.alunoController.avaliarTutor("3333", 1);
+		assertEquals("Aprendiz", this.alunoController.getNivel("3333"));
 	}
 
 }

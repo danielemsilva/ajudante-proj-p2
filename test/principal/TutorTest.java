@@ -184,5 +184,49 @@ public class TutorTest {
 		this.tutor.setPontuacao(5);
 		assertEquals(4.16, this.tutor.getPontuacao(), 0.01);
 	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando o tutor nao foi 
+	 * avaliado.
+	 */
+	@Test
+	public void testGetNivelTutorNaoAvaliado() {
+		assertEquals("Tutor", this.tutor.getNivel());
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando o tutor foi bem
+	 * avaliado.
+	 */
+	@Test
+	public void testGetNivelTutorBemAvaliado() {
+		this.tutor.setPontuacao(5);
+		this.tutor.setPontuacao(5);
+		this.tutor.setPontuacao(5);
+		this.tutor.setPontuacao(5);
+		assertEquals("TOP", this.tutor.getNivel());
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando o tutor foi 
+	 * medianamente avaliado.
+	 */
+	@Test
+	public void testGetNivelTutorAvaliadoMedianamente() {
+		this.tutor.setPontuacao(4);
+		assertEquals("Tutor", this.tutor.getNivel());
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando o tutor foi 
+	 * medianamente avaliado.
+	 */
+	@Test
+	public void testGetNivelTutorMauAvaliado() {
+		this.tutor.setPontuacao(1);
+		this.tutor.setPontuacao(1);
+		this.tutor.setPontuacao(1);
+		assertEquals("Aprendiz", this.tutor.getNivel());
+	}
 
 }

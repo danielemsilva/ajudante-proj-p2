@@ -382,6 +382,10 @@ public class AlunoController {
 			throw new IllegalArgumentException(
 					"Erro na consulta do nivel: tutor nao cadastrado");
 		}
+		if (aluno.getTutor() == null) {
+			throw new IllegalArgumentException(
+					"Erro ao pegar nota: o aluno informado nao eh tutor");
+		}
 		return aluno.getTutor().getNivel();
 	}
 	

@@ -403,11 +403,11 @@ public class QuemMeAjudaControllerTest {
 	}
 	
 	/**
-	 * Verifica se a avalicao de um tutor de uma ajuda de id cadastrado pode 
+	 * Verifica se a avalicao de um tutor de uma ajuda online cadastrada pode 
 	 * ser feita quando a nota e igual a zero.
 	 */
 	@Test
-	public void testAvaliarTutorNotaMinima() {
+	public void testAvaliarTutorNotaMinimaAjudaOnline() {
 		this.quemMeAjudaController.cadastrarAluno(
 				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
 		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
@@ -417,17 +417,86 @@ public class QuemMeAjudaControllerTest {
 	}
 	
 	/**
-	 * Verifica se a avalicao de um tutor de uma ajuda de id cadastrado pode 
+	 * Verifica se a avalicao de um tutor de uma ajuda online cadastrada pode 
 	 * ser feita quando a nota e igual a cinco.
 	 */
 	@Test
-	public void testAvaliarTutorNotaMaxima() {
+	public void testAvaliarTutorNotaMaximaAjudaOnline() {
 		this.quemMeAjudaController.cadastrarAluno(
 				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
 		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
 		this.quemMeAjudaController.avaliarTutor(
 				this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2"), 
 				5);
+	}
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda online cadastrada pode 
+	 * ser feita mais de uma vez.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorDuasVezesAjudaOnline() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		int id = this.quemMeAjudaController.pedirAjudaOnline("11111111", "P2");
+		this.quemMeAjudaController.avaliarTutor(id, 5);
+		this.quemMeAjudaController.avaliarTutor(id, 5);
+	}
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda presencial cadastrada 
+	 * pode ser feita quando a nota e igual a zero.
+	 */
+	@Test
+	public void testAvaliarTutorNotaMinimaAjudaPresencial() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.quemMeAjudaController.tornarTutor("3333", "TG", 5);
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento("bia@ccc.com",
+				"LCC3");
+		this.quemMeAjudaController.cadastrarHorario("bia@ccc.com", "13:00", 
+				"seg");
+		int id = this.quemMeAjudaController.pedirAjudaPresencial("22222", "TG",
+				"13:00", "seg", "LCC3");
+		this.quemMeAjudaController.avaliarTutor(id, 0);
+	}
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda presencial cadastrada 
+	 * pode ser feita quando a nota e igual a cinco.
+	 */
+	@Test
+	public void testAvaliarTutorNotaMaximaAjudaPresencial() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.quemMeAjudaController.tornarTutor("3333", "TG", 5);
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento("bia@ccc.com",
+				"LCC3");
+		this.quemMeAjudaController.cadastrarHorario("bia@ccc.com", "13:00", 
+				"seg");
+		int id = this.quemMeAjudaController.pedirAjudaPresencial("22222", "TG",
+				"13:00", "seg", "LCC3");
+		this.quemMeAjudaController.avaliarTutor(id, 5);
+	}
+	
+	/**
+	 * Verifica se a avalicao de um tutor de uma ajuda presencial cadastrada 
+	 * pode ser feita mais de uma vez.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testAvaliarTutorDuasVezesAjudaPresencial() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.quemMeAjudaController.tornarTutor("3333", "TG", 5);
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento("bia@ccc.com",
+				"LCC3");
+		this.quemMeAjudaController.cadastrarHorario("bia@ccc.com", "13:00", 
+				"seg");
+		int id = this.quemMeAjudaController.pedirAjudaPresencial("22222", "TG",
+				"13:00", "seg", "LCC3");
+		this.quemMeAjudaController.avaliarTutor(id, 5);
+		this.quemMeAjudaController.avaliarTutor(id, 5);
 	}
 	
 	/**
@@ -444,6 +513,24 @@ public class QuemMeAjudaControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPegarNotaMatriculaVazia() {
 		this.quemMeAjudaController.pegarNota("");
+	}
+	
+	/**
+	 * Verifica se a nota de um tutor eh retornada quando a matricula informada
+	 * nao foi registrada no sistema.
+	 * */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNotaMatriculaInexistente() {
+		this.quemMeAjudaController.pegarNota("111111111");
+	}
+	
+	/**
+	 * Verifica se a nota de um tutor eh retornada quando a matricula informada
+	 * eh de um aluno que nao eh tutor.
+	 * */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNotaMatriculaNaoTutor() {
+		this.quemMeAjudaController.pegarNota("111111111");
 	}
 	
 	/**
@@ -471,6 +558,160 @@ public class QuemMeAjudaControllerTest {
 				this.quemMeAjudaController.pedirAjudaOnline("222222", "P2"),
 				5);
 		this.quemMeAjudaController.pegarNota("111111");
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula informada
+	 * e nula.*/
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNivelMatriculaNula() {
+		this.quemMeAjudaController.pegarNivel(null);
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula informada
+	 * e vazia.*/
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNivelMatriculaVazia() {
+		this.quemMeAjudaController.pegarNivel("");
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula informada
+	 * nao foi registrada no sistema.
+	 * */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNivelMatriculaInexistente() {
+		this.quemMeAjudaController.pegarNivel("111111111");
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula informada
+	 * eh de um aluno que nao eh tutor.
+	 * */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNivelMatriculaNaoTutor() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.quemMeAjudaController.pegarNivel("111111");
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula informada
+	 * eh de um aluno que eh tutor que nao foi avaliado.
+	 */
+	@Test
+	public void testPegarNivelMatriculaTutorNaoAvaliado() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.quemMeAjudaController.tornarTutor("111111", "P2", 5);
+		assertEquals("Tutor", this.quemMeAjudaController.pegarNivel("111111"));
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula 
+	 * informada eh de um aluno que eh tutor de uma ajuda presencial.
+	 */
+	@Test
+	public void testPegarNivelMatriculaTutorAvaliadoAjudaPresencial() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.quemMeAjudaController.tornarTutor("3333", "TG", 5);
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento("bia@ccc.com",
+				"LCC3");
+		this.quemMeAjudaController.cadastrarHorario("bia@ccc.com", "13:00", 
+				"seg");
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaPresencial("22222", "TG",
+						"13:00", "seg", "LCC3"), 5);
+		assertEquals("Tutor", this.quemMeAjudaController.pegarNivel("3333"));
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula 
+	 * informada eh de um aluno que eh tutor de uma ajuda online.
+	 */
+	@Test
+	public void testPegarNivelMatriculaTutorAvaliadoAjudaOnline() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.quemMeAjudaController.tornarTutor("3333", "TG", 5);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("22222", "TG"), 5);
+		assertEquals("Tutor", this.quemMeAjudaController.pegarNivel("3333"));
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula 
+	 * informada eh de um aluno que eh tutor que foi avaliado com boas notas.
+	 */
+	@Test
+	public void testPegarNivelMatriculaTutorAvaliadoBoasNotas() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.quemMeAjudaController.tornarTutor("3333", "TG", 5);
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento("bia@ccc.com",
+				"LCC3");
+		this.quemMeAjudaController.cadastrarHorario("bia@ccc.com", "13:00", 
+				"seg");
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaPresencial("22222", "TG",
+				"13:00", "seg", "LCC3"), 5);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("22222", "TG"), 5);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("55555", "TG"), 5);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("88888", "TG"), 5);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("44444", "TG"), 5);
+		assertEquals("TOP", this.quemMeAjudaController.pegarNivel("3333"));
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula 
+	 * informada eh de um aluno que eh tutor que foi avaliado com notas medias.
+	 */
+	@Test
+	public void testPegarNivelMatriculaTutorAvaliadoNotasMedias() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.quemMeAjudaController.tornarTutor("3333", "TG", 5);
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento("bia@ccc.com",
+				"LCC3");
+		this.quemMeAjudaController.cadastrarHorario("bia@ccc.com", "13:00", 
+				"seg");
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaPresencial("22222", "TG",
+				"13:00", "seg", "LCC3"), 4);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("22222", "TG"), 4);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("55555", "TG"), 4);
+		assertEquals("Tutor", this.quemMeAjudaController.pegarNivel("3333"));
+	}
+	
+	/**
+	 * Verifica se o nivel de um tutor eh retornado quando a matricula 
+	 * informada eh de um aluno que eh tutor que foi avaliado com notas baixas.
+	 */
+	@Test
+	public void testPegarNivelMatriculaTutorAvaliadoNotasBaixas() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Beatriz", "3333", "CC", "99999999", "bia@ccc.com");
+		this.quemMeAjudaController.tornarTutor("3333", "TG", 5);
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento("bia@ccc.com",
+				"LCC3");
+		this.quemMeAjudaController.cadastrarHorario("bia@ccc.com", "13:00", 
+				"seg");
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaPresencial("22222", "TG",
+				"13:00", "seg", "LCC3"), 1);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("22222", "TG"), 2);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("55555", "TG"), 3);
+		assertEquals("Tutor", this.quemMeAjudaController.pegarNivel("3333"));
 	}
 	
 	/**
