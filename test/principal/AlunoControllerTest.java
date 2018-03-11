@@ -426,6 +426,65 @@ public class AlunoControllerTest {
 		this.alunoController.tornarTutor("111111", "P2", 5);
 		this.alunoController.avaliarTutor("111111", 5);
 	}
+	
+	/**
+	 * Verifica se a nota de um tutor eh retornada quando a matricula informada
+	 * e nula.*/
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNotaMatriculaNula() {
+		this.alunoController.getNota(null);
+	}
+	
+	/**
+	 * Verifica se a nota de um tutor eh retornada quando a matricula informada
+	 * e vazia.*/
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNotaMatriculaVazia() {
+		this.alunoController.getNota("");
+	}
+	
+	/**
+	 * Verifica se a nota de um tutor eh retornada quando a matricula informada
+	 * nao foi registrada no sistema.
+	 * */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNotaMatriculaInexistente() {
+		this.alunoController.getNota("111111111");
+	}
+	
+	/**
+	 * Verifica se a nota de um tutor eh retornada quando a matricula informada
+	 * eh de um aluno que nao eh tutor.
+	 * */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNotaMatriculaNaoTutor() {
+		this.alunoController.getNota("111111111");
+	}
+	
+	/**
+	 * Verifica se a nota de um tutor eh retornada quando a matricula informada
+	 * eh de um aluno que eh tutor que nao foi avaliado.
+	 * */
+	@Test
+	public void testPegarNotaMatriculaTutorNaoAvaliado() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.tornarTutor("111111", "P2", 5);
+		assertEquals(4, this.alunoController.getNota("111111"), 0);
+	}
+	
+	/**
+	 * Verifica se a nota de um tutor eh retornada quando a matricula informada
+	 * eh de um aluno que eh tutor que foi avaliado.
+	 * */
+	@Test
+	public void testPegarNotaMatriculaTutorAvaliado() {
+		this.alunoController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.alunoController.tornarTutor("111111", "P2", 5);
+		this.alunoController.avaliarTutor("111111", 5);
+		assertEquals(4.16, this.alunoController.getNota("111111"), 0.01);
+	}
 
 }
 

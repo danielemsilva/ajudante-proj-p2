@@ -431,6 +431,49 @@ public class QuemMeAjudaControllerTest {
 	}
 	
 	/**
+	 * Verifica se a nota de um tutor eh retornada quando a matricula informada
+	 * e nula.*/
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNotaMatriculaNula() {
+		this.quemMeAjudaController.pegarNota(null);
+	}
+	
+	/**
+	 * Verifica se a nota de um tutor eh retornada quando a matricula informada
+	 * e vazia.*/
+	@Test(expected = IllegalArgumentException.class)
+	public void testPegarNotaMatriculaVazia() {
+		this.quemMeAjudaController.pegarNota("");
+	}
+	
+	/**
+	 * Verifica se a nota de um tutor eh retornada quando a matricula informada
+	 * eh de um aluno que eh tutor que nao foi avaliado.
+	 * */
+	@Test
+	public void testPegarNotaMatriculaTutorNaoAvaliado() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.quemMeAjudaController.tornarTutor("111111", "P2", 5);
+		this.quemMeAjudaController.pegarNota("111111");
+	}
+	
+	/**
+	 * Verifica se a nota de um tutor eh retornada quando a matricula informada
+	 * eh de um aluno que eh tutor que foi avaliado.
+	 * */
+	@Test
+	public void testPegarNotaMatriculaTutorAvaliado() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
+		this.quemMeAjudaController.tornarTutor("111111", "P2", 5);
+		this.quemMeAjudaController.avaliarTutor(
+				this.quemMeAjudaController.pedirAjudaOnline("222222", "P2"),
+				5);
+		this.quemMeAjudaController.pegarNota("111111");
+	}
+	
+	/**
 	 * Verifica se os alunos sao listados pela ordem configurada para nome
 	 */
 	@Test

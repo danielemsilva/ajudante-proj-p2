@@ -133,5 +133,56 @@ public class TutorTest {
 		this.tutor.adicionaLocal("CAA");
 		assert(this.tutor.consultaLocal("CAA"));
 	}
+	
+	/**
+	 * Verifica se uma pontuacao de um tutor pode ser mudada para um valor 
+	 * negativo.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetPontuacaoNegativa() {
+		this.tutor.setPontuacao(-1);
+	}
+	
+	/**
+	 * Verifica se uma pontuacao de um tutor pode ser mudada para um valor 
+	 * maior que cinco.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetPontuacaoMaiorPermitido() {
+		this.tutor.setPontuacao(6);
+	}
+	
+	/**
+	 * Verifica se uma pontuacao de um tutor pode ser mudada para zero. 
+	 */
+	@Test
+	public void testSetPontuacaoMinima() {
+		this.tutor.setPontuacao(0);
+	}
+	
+	/**
+	 * Verifica se uma pontuacao de um tutor pode ser mudada para cinco. 
+	 */
+	@Test
+	public void testSetPontuacaoMaxima() {
+		this.tutor.setPontuacao(5);
+	}
+	
+	/**
+	 * Verifica se a pontuacao de um tutor nao avaliado eh quatro.
+	 */
+	@Test
+	public void testGetPontuacaoTutorNaoAvaliado() {
+		assertEquals(4, this.tutor.getPontuacao(), 0);
+	}
+	
+	/**
+	 * Verifica se a pontuacao de um tutor avaliado eh retornada como esperado.
+	 */
+	@Test
+	public void testGetPontuacaoTutorAvaliado() {
+		this.tutor.setPontuacao(5);
+		assertEquals(4.16, this.tutor.getPontuacao(), 0.01);
+	}
 
 }
