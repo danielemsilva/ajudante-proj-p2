@@ -15,9 +15,6 @@ import java.util.Map;
  */
 public class Tutor implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private int dinheiro;
@@ -28,8 +25,8 @@ public class Tutor implements Serializable {
 	private Map<String, List<String>> horarios;
 
 	/**
-	 * Constroi um tutor, inicializando os mapas disciplinas e horarios e a lista
-	 * locais.
+	 * Constroi um tutor, inicializando os mapas disciplinas e horarios e a 
+	 * lista locais.
 	 * 
 	 */
 	public Tutor() {
@@ -84,29 +81,30 @@ public class Tutor implements Serializable {
 	}
 
 	/**
-	 * Verifica se um determinado local esta entre os locais onde o tutor atende.
+	 * Verifica se um determinado local esta entre os locais onde o tutor 
+	 * atende.
 	 * 
 	 * @param local
 	 *            local a ser pesquisado
 	 * 
-	 * @return true, se o local for um dos locais de atendimento do tutor, e false
-	 *         caso contrario
+	 * @return true, se o local for um dos locais de atendimento do tutor, e 
+	 *         false caso contrario
 	 */
 	public boolean consultaLocal(String local) {
 		return this.locais.contains(local);
 	}
 
 	/**
-	 * Verifica se um determinado horario esta entre os horarios de atendimento do
-	 * tutor.
+	 * Verifica se um determinado horario esta entre os horarios de atendimento
+	 * do tutor.
 	 * 
 	 * @param dia
 	 *            dia a ser pesquisado
 	 * @param horario
 	 *            horario a ser pesquisado
 	 * 
-	 * @return true, se o horario for um dos horarios de atendimento do tutor, e
-	 *         false caso contrario
+	 * @return true, se o horario for um dos horarios de atendimento do tutor, 
+	 *         e false caso contrario
 	 */
 	public boolean consultaHorario(String dia, String horario) {
 		if (!this.horarios.containsKey(dia)) {
@@ -116,21 +114,22 @@ public class Tutor implements Serializable {
 	}
 
 	/**
-	 * Verifica se uma determinada disciplina esta entre as disciplinas da lista.
+	 * Verifica se uma determinada disciplina esta entre as disciplinas da 
+	 * lista.
 	 * 
 	 * @param disciplina
 	 *            nome da disciplina a ser consultado
 	 * 
-	 * @return true, se a disciplina for uma das que o tutor ensina, e false caso
-	 *         contrario
+	 * @return true, se a disciplina for uma das que o tutor ensina, e false 
+	 *         caso contrario
 	 */
 	public boolean consultaDisciplina(String disciplina) {
 		return this.disciplinas.containsKey(disciplina);
 	}
 
 	/**
-	 * Verifica se uma determinada disciplina tem proficiencia alta (maior ou igual
-	 * a 3)
+	 * Verifica se uma determinada disciplina tem proficiencia alta (maior ou 
+	 * igual a 3)
 	 * 
 	 * @param disciplina
 	 *            nome da disciplina a ser consultado
@@ -182,7 +181,8 @@ public class Tutor implements Serializable {
 	public void setDinheiro(int dinheiro) {
 		if (dinheiro < 0) {
 			throw new IllegalArgumentException(
-					"Erro na doacao para tutor: totalCentavos nao pode ser menor que zero");
+					"Erro na doacao para tutor: totalCentavos nao pode ser "
+					+ "menor que zero");
 		}
 		this.dinheiro += dinheiro;
 	}
@@ -274,7 +274,8 @@ public class Tutor implements Serializable {
 	private void validaLocal(String local) {
 		if (local == null || local.trim().equals("")) {
 			throw new IllegalArgumentException(
-					"Erro no cadastrar local de atendimento: local nao pode ser vazio ou em branco");
+					"Erro no cadastrar local de atendimento: local nao pode ser"
+					+ " vazio ou em branco");
 		}
 		if (this.locais.contains(local)) {
 			throw new IllegalArgumentException(

@@ -428,8 +428,16 @@ public class AlunoController {
 	public void doarDinheiro(String matricula, int doacao) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);
 		if (aluno == null) {
-			throw new IllegalArgumentException(
-					"Erro na doacao para tutor: Tutor nao encontrado");
+			throw new IllegalArgumentException("Erro na doacao para tutor: "
+					+ "Tutor nao encontrado");
+		}
+		if (doacao < 0) {
+			throw new IllegalArgumentException("Erro na doacao para tutor: "
+					+ "totalCentavos nao pode ser menor que zero");
+		}
+		if (aluno.getTutor() == null) {
+			throw new IllegalArgumentException("Erro na doacao para tutor: "
+					+ "o aluno informado nao eh tutor");
 		}
 		aluno.getTutor().setDinheiro(doacao);
 	}

@@ -228,5 +228,24 @@ public class TutorTest {
 		this.tutor.setPontuacao(1);
 		assertEquals("Aprendiz", this.tutor.getNivel());
 	}
+	
+	/**
+	 * Verifica se o dinheiro de um tutor eh mudado quando o valor informado eh
+	 * negativo.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetDinheiroNegativo() {
+		this.tutor.setDinheiro(-1);
+	}
+	
+	/**
+	 * Verifica se o dinheiro de um tutor eh mudado quando o valor informado eh
+	 * zero.
+	 */
+	@Test
+	public void testSetDinheiroZero() {
+		this.tutor.setDinheiro(0);
+	}
+	
 
 }

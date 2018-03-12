@@ -27,7 +27,8 @@ public class AlunoControllerTest {
 	@Before
 	public void cadastraAluno() {
 		this.alunoController.cadastrarAluno(
-				"Joao", "1232423", "DD34", "8467989023", "joaozinho@blizzard.com");
+				"Joao", "1232423", "DD34", "8467989023", 
+				"joaozinho@blizzard.com");
 	}
 
 	/**
@@ -46,7 +47,8 @@ public class AlunoControllerTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoMatriculaJaExistente() {
 		this.alunoController.cadastrarAluno(
-				"Lucas", "1232423", "EER4", "832334521", "luquinhas@blizzard.com");
+				"Lucas", "1232423", "EER4", "832334521", 
+				"luquinhas@blizzard.com");
 	}
 
 	/**
@@ -347,8 +349,10 @@ public class AlunoControllerTest {
 	@Test
 	public void consultaLocalDeAtendimentoTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
-		this.alunoController.cadastrarLocalDeAtendimento("joaozinho@blizzard.com", "UFCG");
-		assertEquals(true,this.alunoController.consultaLocal("joaozinho@blizzard.com", "UFCG"));
+		this.alunoController.cadastrarLocalDeAtendimento(
+				"joaozinho@blizzard.com", "UFCG");
+		assertEquals(true,this.alunoController.consultaLocal(
+				"joaozinho@blizzard.com", "UFCG"));
 	}
 	
 	/**
@@ -622,6 +626,85 @@ public class AlunoControllerTest {
 		this.alunoController.avaliarTutor("3333", 1);
 		this.alunoController.avaliarTutor("3333", 1);
 		assertEquals("Aprendiz", this.alunoController.getNivel("3333"));
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula do tutor eh 
+	 * vazia.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarMatriculaVazia() {
+		this.alunoController.doarDinheiro("", 100);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula do tutor eh 
+	 * em branco.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarMatriculaEmBranco() {
+		this.alunoController.doarDinheiro("   ", 100);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula do tutor eh 
+	 * nula.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarMatriculaNula() {
+		this.alunoController.doarDinheiro(null, 100);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula do tutor nao 
+	 * foi registrada no sistema.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarMatriculaInvalida() {
+		this.alunoController.doarDinheiro("10101010", 100);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula informada eh 
+	 * de um aluno que nao eh tutor.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarMatriculaNaoTutor() {
+		this.alunoController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.alunoController.doarDinheiro("22222", 100);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula informada eh 
+	 * de um aluno que eh tutor.
+	 */
+	@Test
+	public void testDoarMatriculaTutor() {
+		this.alunoController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.alunoController.tornarTutor("22222", "P2", 5);
+		this.alunoController.doarDinheiro("22222", 100);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula informada eh 
+	 * de um aluno que eh tutor e o valor informado eh zero.
+	 */
+	@Test
+	public void testDoarMatriculaTutorZero() {
+		this.alunoController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.alunoController.tornarTutor("22222", "P2", 5);
+		this.alunoController.doarDinheiro("22222", 0);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando o valor doado eh negativo.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarValorNegativo() {
+		this.alunoController.doarDinheiro("22222", -1);
 	}
 	
 	/**

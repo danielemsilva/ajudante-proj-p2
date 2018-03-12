@@ -715,6 +715,85 @@ public class QuemMeAjudaControllerTest {
 	}
 	
 	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula do tutor eh 
+	 * vazia.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarMatriculaVazia() {
+		this.quemMeAjudaController.doarDinheiro("", 100);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula do tutor eh 
+	 * em branco.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarMatriculaEmBranco() {
+		this.quemMeAjudaController.doarDinheiro("   ", 100);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula do tutor eh 
+	 * nula.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarMatriculaNula() {
+		this.quemMeAjudaController.doarDinheiro(null, 100);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula do tutor nao 
+	 * foi registrada no sistema.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarMatriculaInvalida() {
+		this.quemMeAjudaController.doarDinheiro("10101010", 100);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula informada eh 
+	 * de um aluno que nao eh tutor.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarMatriculaNaoTutor() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.doarDinheiro("22222", 100);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula informada eh 
+	 * de um aluno que eh tutor.
+	 */
+	@Test
+	public void testDoarMatriculaTutor() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 5);
+		this.quemMeAjudaController.doarDinheiro("22222", 100);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando o valor doado eh negativo.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testDoarValorNegativo() {
+		this.quemMeAjudaController.doarDinheiro("22222", -1);
+	}
+	
+	/**
+	 * Verifica se uma doacao pode ser feita quando a matricula informada eh 
+	 * de um aluno que eh tutor e o valor informado eh zero.
+	 */
+	@Test
+	public void testDoarMatriculaTutorZero() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 5);
+		this.quemMeAjudaController.doarDinheiro("22222", 0);
+	}
+	
+	/**
 	 * Verifica se os alunos sao listados pela ordem configurada para nome
 	 */
 	@Test
