@@ -1,7 +1,6 @@
 package principal;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -623,6 +622,25 @@ public class AlunoControllerTest {
 		this.alunoController.avaliarTutor("3333", 1);
 		this.alunoController.avaliarTutor("3333", 1);
 		assertEquals("Aprendiz", this.alunoController.getNivel("3333"));
+	}
+	
+	/**
+	 * Verifica se os dados de alunos sao gravados em arquivo
+	 */
+	@Test
+	public void testGravarAlunos() {
+		this.alunoController.cadastrarAluno(
+				"Ana", "1232455", "DD34", "8495981012", "ana234@blizzard.com");
+		assert(this.alunoController.gravarAlunos());
+	}
+	
+	/**
+	 * Verifica se a leitura dos dados de alunos foi realizada corretamente
+	 */
+	@Test
+	public void testLerAlunos() {
+		this.alunoController.lerAlunos();
+		assertEquals(this.alunoController.listarAlunos(), "22222 - Mario - CC - mario@ccc.edu.br");
 	}
 
 }

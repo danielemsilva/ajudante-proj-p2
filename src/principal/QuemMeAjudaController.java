@@ -340,9 +340,8 @@ public class QuemMeAjudaController {
 	/**
 	 * Realiza as chamadas para gravacao dos dados
 	 */
-	public void gravarDados() {
-		alunoCtrl.gravarAlunos();
-		ajudaCtrl.gravarAjudas();
+	public boolean gravarDados() {
+		return alunoCtrl.gravarAlunos() && ajudaCtrl.gravarAjudas();
 	}
 	
 	/**

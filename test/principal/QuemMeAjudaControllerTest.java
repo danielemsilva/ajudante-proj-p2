@@ -767,5 +767,39 @@ public class QuemMeAjudaControllerTest {
 				+ "1232455 - Ana - DD34 - 8495981012 - ana234@blizzard.com";
 		assertEquals(this.quemMeAjudaController.listarAlunos(), retornoEsperado);
 	}
+	
+	/**
+	 * Verifica se os dados cadastrados sao gravados em arquivo
+	 */
+	@Test
+	public void testGravarDados() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.cadastrarHorario("mario@ccc.edu.br", "13:00", "seg");
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento("mario@ccc.edu.br", "LCC2");
+		this.quemMeAjudaController.pedirAjudaPresencial(
+				"11111111", "P2", "13:00", "seg", "LCC2");
+		assert(this.quemMeAjudaController.gravarDados());
+	}
+	
+	/**
+	 * Verifica se a leitura de alunos foi realizada com sucesso
+	 */
+	@Test
+	public void testLerAlunos() {
+		this.quemMeAjudaController.lerDados();
+		assertEquals(this.quemMeAjudaController.listarAlunos(), "22222 - Mario - CC - mario@ccc.edu.br");
+	}
+	
+	/**
+	 * Verifica se a leitura de ajudas foi realizada com sucesso
+	 */
+	@Test
+	public void testLerAjudas() {
+		this.quemMeAjudaController.lerDados();
+		assertEquals("Tutor - 22222, horario - 13:00, dia - seg, local - LCC2, disciplina - P2", 
+				this.quemMeAjudaController.pegarTutor(1));
+	}
 
 }
