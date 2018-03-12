@@ -342,7 +342,7 @@ public class QuemMeAjudaController {
 	 */
 	public void gravarDados() {
 		alunoCtrl.gravarAlunos();
-		// depois grava ajudas
+		ajudaCtrl.gravarAjudas();
 	}
 	
 	/**
@@ -350,7 +350,7 @@ public class QuemMeAjudaController {
 	 */
 	public void lerDados() {
 		alunoCtrl.lerAlunos();
-		// depois le ajudas
+		ajudaCtrl.lerAjudas();
 	}
 	
 	/**

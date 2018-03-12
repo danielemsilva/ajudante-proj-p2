@@ -287,6 +287,20 @@ public class Facade {
 	public void configurarOrdem(String ordem) {
 		qmaCtrl.configurarOrdem(ordem);
 	}
+	
+	/**
+	 * Realiza a gravacao dos dados
+	 */
+	public void gravarDados() {
+		qmaCtrl.gravarDados();
+	}
+	
+	/**
+	 * Realiza a leitura dos dados
+	 */
+	public void lerDados() {
+		qmaCtrl.lerDados();
+	}
 
 	/**
 	 * Executa chamada de testes de aceitacao
@@ -300,6 +314,7 @@ public class Facade {
 				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt", 
 				"acceptance_test/us5_test.txt", "acceptance_test/us6_test.txt" };
 		EasyAccept.main(args);
+		
 	}
 
 }

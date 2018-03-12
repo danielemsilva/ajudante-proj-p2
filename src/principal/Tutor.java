@@ -1,5 +1,6 @@
 package principal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Map;
  * disponiveis.
  *
  */
-public class Tutor {
+public class Tutor implements Serializable {
 
 	private int id;
 	private int dinheiro;

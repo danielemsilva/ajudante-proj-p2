@@ -111,7 +111,7 @@ public class AjudaController {
 	 * 
 	 * @return true se gravou no arquivo, false se deu algum erro
 	 */
-	public boolean gravarAlunos() {
+	public boolean gravarAjudas() {
 		ManipulaDados manipula = new ManipulaDados();
 		return manipula.gravarAjudas(this.ajudas);
 	}
@@ -119,7 +119,7 @@ public class AjudaController {
 	/**
 	 * Realiza a leitura dos alunos e armazena na lista de alunos
 	 */
-	public void lerAlunos() {
+	public void lerAjudas() {
 		ManipulaDados manipula = new ManipulaDados();
 		this.ajudas = manipula.lerAjudas();
 	}

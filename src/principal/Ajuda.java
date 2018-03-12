@@ -1,9 +1,11 @@
 package principal;
 
+import java.io.Serializable;
+
 /**
  * Essa classe representa uma ajuda, contendo id e estado de avaliacao.
  */
-public abstract class Ajuda {
+public abstract class Ajuda implements Serializable {
 
 	private int id;
 	private boolean avaliada;

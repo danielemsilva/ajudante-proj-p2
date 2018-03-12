@@ -9,10 +9,13 @@ import java.util.Map;
 
 public class ManipulaDados {
 	
+	private String pathAlunos = "dados/alunos.dat";
+	private String pathAjudas = "dados/ajudas.dat";
+	
 	public boolean gravarAlunos(List<Aluno> alunos) {
 		boolean sucesso = false;
 		try {
-			FileOutputStream arquivo = new FileOutputStream("dados/alunos.dat");
+			FileOutputStream arquivo = new FileOutputStream(this.pathAlunos);
 			ObjectOutputStream objGravar = new ObjectOutputStream(arquivo);
 			objGravar.writeObject(alunos);
 			objGravar.flush();
@@ -28,7 +31,7 @@ public class ManipulaDados {
 	
 	public List<Aluno> lerAlunos() {
 		try {
-			FileInputStream arquivoLeitura = new FileInputStream("dados/alunos.dat");
+			FileInputStream arquivoLeitura = new FileInputStream(this.pathAlunos);
 			ObjectInputStream objLeitura =
 					new ObjectInputStream(arquivoLeitura);
 			List<Aluno> alunosLidos = (List<Aluno>) objLeitura.readObject();
@@ -45,7 +48,7 @@ public class ManipulaDados {
 	public boolean gravarAjudas(Map<Integer, Ajuda> ajudas) {
 		boolean sucesso = false;
 		try {
-			FileOutputStream arquivo = new FileOutputStream("dados/ajudas.dat");
+			FileOutputStream arquivo = new FileOutputStream(this.pathAjudas);
 			ObjectOutputStream objGravar = new ObjectOutputStream(arquivo);
 			objGravar.writeObject(ajudas);
 			objGravar.flush();
@@ -61,7 +64,7 @@ public class ManipulaDados {
 	
 	public Map<Integer, Ajuda> lerAjudas() {
 		try {
-			FileInputStream arquivoLeitura = new FileInputStream("dados/ajudas.dat");
+			FileInputStream arquivoLeitura = new FileInputStream(this.pathAjudas);
 			ObjectInputStream objLeitura =
 					new ObjectInputStream(arquivoLeitura);
 			Map<Integer, Ajuda> ajudasLidas = (Map<Integer, Ajuda>) objLeitura.readObject();
