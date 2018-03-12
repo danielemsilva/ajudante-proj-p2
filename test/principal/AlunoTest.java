@@ -358,5 +358,12 @@ public class AlunoTest {
 		aluno.getTutor().adicionaLocal("LCC2");
 		assertFalse(this.aluno.tutoriaDisponivel("Programacao", "14:00", "qua", "CAA404"));
 	}
+	/**
+	 * Espera-se que retorne toString de Aluno
+	 */
+	@Test
+	public void testToString() {
+		assertEquals("122312 - Joao - cc9 - 8390890923 - joaozinho@blizzad.com",this.aluno.toString());
+	}
 
 }
