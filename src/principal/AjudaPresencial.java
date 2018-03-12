@@ -6,6 +6,10 @@ package principal;
  */
 public class AjudaPresencial extends Ajuda {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String local;
 	private String dia;
 	private String horario;
