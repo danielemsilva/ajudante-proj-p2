@@ -20,7 +20,42 @@ public class TutorTest {
 	public void iniciaTutor() {
 		this.tutor = new Tutor();
 	}
-	
+	/**
+	 * Espera-se que lance uma excecao pois disciplina nao pode ser nula
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testadicionaDisciplinaNulo() {
+		this.tutor.adicionaDisciplina(null, 4, 3);
+	}
+	/**
+	 * Espera-se que lance uma excecao pois disciplina nao pode ser vazia
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testadicionaDisciplinaVazia() {
+		this.tutor.adicionaDisciplina("", 4, 3);
+	}
+	/**
+	 * Espera-se que lance uma excecao pois a disciplina ja existe
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testadicionaDisciplinaExistente() {
+		this.tutor.adicionaDisciplina("Programacao", 4, 3);
+		this.tutor.adicionaDisciplina("Programacao", 5, 1);
+	}
+	/**
+	 * Espera-se que lance uma excecao pois a proeficiencia nao pode ser menor igual a 0
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testadicionaDisciplinaProficienciaInvalida() {
+		this.tutor.adicionaDisciplina("Programacao", -1, 3);
+	}
+	/**
+	 * Espera-se que cadastre uma nova disciplina
+	 */
+	@Test
+	public void testadicionaDisciplina() {
+		this.tutor.adicionaDisciplina("Programacao", 4, 3);
+	}
 	/**
 	 * Verifica se um horario com dia vazio pode ser adicionado a um tutor.
 	 */
@@ -245,6 +280,38 @@ public class TutorTest {
 	@Test
 	public void testSetDinheiroZero() {
 		this.tutor.setDinheiro(0);
+	}
+
+	/**
+	 * Espera-se que lance uma excecao, pois o dinhero nao pode ser menor q 0.
+	 */
+	@Test (expected = IllegalArgumentException.class)
+	public void testSetDinheiroInvalido() {
+		this.tutor.setDinheiro(-15);
+	}
+	
+	/**
+	 * Espera-se que altere o valor do dinheiro do Tutor
+	 */
+	@Test
+	public void testSetDinheiro() {
+		this.tutor.setDinheiro(20);
+	}
+	/**
+	 * Espera-se que retorne o valor do dinheiro que o Tutor tem
+	 */
+	@Test
+	public void testGetDinheiro() {
+		this.tutor.setDinheiro(20);
+		assertEquals(20,this.tutor.getDinheiro());
+	}
+	/**
+	 * Espera-se que retorne o ID do Tutor
+	 */
+	@Test
+	public void testGetID() {
+		this.tutor.adicionaDisciplina("Programacao", 4, 3);
+		assertEquals(3,this.tutor.getId());
 	}
 	
 

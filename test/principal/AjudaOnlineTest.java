@@ -145,5 +145,11 @@ public class AjudaOnlineTest {
 		this.ajudaOnline = new AjudaOnline(1, "22222222", "11111111", "P2");
 		assertEquals("atributo invalido", this.ajudaOnline.getInfoAjuda("minuto"));
 	}
+	@Test
+	public void toStringTest() {
+		this.ajudaOnline = new AjudaOnline(1, "22222222", "11111111", "P2");
+		assertEquals("Tutor - 11111111, disciplina - P2", this.ajudaOnline.toString());
+		
+	}
 	
 }
