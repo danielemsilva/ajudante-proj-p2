@@ -7,6 +7,10 @@ import java.io.Serializable;
  */
 public abstract class Ajuda implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private boolean avaliada;
 	protected String matrAluno;

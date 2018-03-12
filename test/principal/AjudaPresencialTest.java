@@ -220,5 +220,14 @@ public class AjudaPresencialTest {
 				"13:00", "seg", "LCC2");
 		assertEquals("atributo invalido", this.ajudaPresencial.getInfoAjuda("minuto"));
 	}
+	/**
+	 * Verifica o toString de ajudaPresencial
+	 */
+	@Test
+	public void toStringTest() {
+		this.ajudaPresencial = new AjudaPresencial(1, "22222222", "11111111", "P2",
+				"13:00", "seg", "LCC2");
+		assertEquals("Tutor - 11111111, horario - 13:00, dia - seg, local - LCC2, disciplina - P2",this.ajudaPresencial.toString());
+	}
 
 }
