@@ -834,7 +834,7 @@ public class QuemMeAjudaControllerTest {
 	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
 	 * ordenacao informado eh NOME.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testConfigurarOrdemArgumentoNome() {
 		this.quemMeAjudaController.configurarOrdem("NOME");
 	}
@@ -843,7 +843,7 @@ public class QuemMeAjudaControllerTest {
 	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
 	 * ordenacao informado eh MATRICULA.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testConfigurarOrdemArgumentoMatricula() {
 		this.quemMeAjudaController.configurarOrdem("MATRICULA");
 	}
@@ -852,7 +852,7 @@ public class QuemMeAjudaControllerTest {
 	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
 	 * ordenacao informado eh EMAIL.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testConfigurarOrdemArgumentoEmail() {
 		this.quemMeAjudaController.configurarOrdem("EMAIL");
 	}

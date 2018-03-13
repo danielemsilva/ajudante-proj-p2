@@ -747,7 +747,7 @@ public class AlunoControllerTest {
 	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
 	 * ordenacao informado eh NOME.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testConfigurarOrdemArgumentoNome() {
 		this.alunoController.configurarOrdem("NOME");
 	}
@@ -756,7 +756,7 @@ public class AlunoControllerTest {
 	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
 	 * ordenacao informado eh MATRICULA.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testConfigurarOrdemArgumentoMatricula() {
 		this.alunoController.configurarOrdem("MATRICULA");
 	}
@@ -765,7 +765,7 @@ public class AlunoControllerTest {
 	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
 	 * ordenacao informado eh EMAIL.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testConfigurarOrdemArgumentoEmail() {
 		this.alunoController.configurarOrdem("EMAIL");
 	}
@@ -781,11 +781,14 @@ public class AlunoControllerTest {
 	}
 	
 	/**
-	 * Verifica se a leitura dos dados de alunos foi realizada corretamente
+	 * Verifica se a leitura dos dados de alunos foi realizada corretamente,
+	 * listando os alunos alfabeticamente
 	 */
 	@Test
 	public void testLerAlunos() {
 		this.alunoController.lerAlunos();
-		assertEquals(this.alunoController.listarAlunos(), "22222 - Mario - CC - mario@ccc.edu.br");
+		String retornoEsperado = "1232455 - Ana - DD34 - 8495981012 - ana234@blizzard.com, "
+				+ "1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com";
+		assertEquals(this.alunoController.listarAlunos(), retornoEsperado);
 	}
 }

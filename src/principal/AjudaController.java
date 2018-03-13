@@ -113,6 +113,7 @@ public class AjudaController {
 	 */
 	public boolean gravarAjudas() {
 		ManipulaDados manipula = new ManipulaDados();
+		System.out.println("Antes: " + this.ajudas);
 		return manipula.gravarAjudas(this.ajudas);
 	}
 	
@@ -122,6 +123,7 @@ public class AjudaController {
 	public void lerAjudas() {
 		ManipulaDados manipula = new ManipulaDados();
 		this.ajudas = manipula.lerAjudas();
+		System.out.println("Depois: " + this.ajudas);
 	}
 
 	/**

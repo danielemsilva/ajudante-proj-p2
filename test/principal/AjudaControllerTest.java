@@ -487,7 +487,5 @@ public class AjudaControllerTest {
 		this.ajudaController.avaliar(id);
 		this.ajudaController.avaliar(id);
 	}
-		
+	
 }
-	
-	

@@ -334,8 +334,10 @@ public class QuemMeAjudaController {
 	 * Altera o tipo da ordenacao de alunos
 	 */
 	public void configurarOrdem(String ordem) {
-		if (ordem == null || ordem.trim().equals("Erro na configuracao da "
-				+ "ordenacao: ordem nao pode ser vazia ou em branco"));
+		if (ordem == null || ordem.trim().equals("")){
+			throw new IllegalArgumentException("Erro na configuracao da "
+				+ "ordenacao: ordem nao pode ser vazia ou em branco");
+		}
 		alunoCtrl.configurarOrdem(ordem);
 	}
 	
