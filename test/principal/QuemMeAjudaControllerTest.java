@@ -290,7 +290,8 @@ public class QuemMeAjudaControllerTest {
 				"Mario", "22222", "CC", "", "mario@ccc.ufcg.edu.br");
 		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
 		this.quemMeAjudaController.doarDinheiro("22222", 100);
-		assertEquals(80, this.quemMeAjudaController.totalDinheiroTutor("mario@ccc.ufcg.edu.br"));
+		assertEquals(80, this.quemMeAjudaController.totalDinheiroTutor(
+				"mario@ccc.ufcg.edu.br"));
 	}
 	
 	/**

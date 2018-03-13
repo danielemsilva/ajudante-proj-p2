@@ -453,7 +453,8 @@ public class AlunoController {
 		Aluno aluno = this.procuraAlunoEmail(email);
 		if (aluno == null) {
 			throw new IllegalArgumentException(
-					"Erro na consulta de total de dinheiro do tutor: Tutor nao encontrado");
+					"Erro na consulta de total de dinheiro do tutor: Tutor nao "
+					+ "encontrado");
 		}
 		return aluno.getTutor().getDinheiro();
 	}

@@ -314,5 +314,32 @@ public class TutorTest {
 		assertEquals(3,this.tutor.getId());
 	}
 	
-
+	/**
+	 * Verifica se o dinheiro de um tutor que nao recebeu doacao eh zero.
+	 */
+	@Test
+	public void testGetDinheiroSemDoacao() {
+		assertEquals(0, this.tutor.getDinheiro());
+	}
+	
+	/**
+	 * Verifica se o dinheiro de um tutor que recebeu uma doacao eh o valor 
+	 * doado.
+	 */
+	@Test
+	public void testGetDinheiroUmaDoacao() {
+		this.tutor.setDinheiro(20);
+		assertEquals(20, this.tutor.getDinheiro());
+	}
+	
+	/**
+	 * Verifica se o dinheiro de um tutor que recebeu duas doacoes eh o valor 
+	 * doado.
+	 */
+	@Test
+	public void testGetDinheiroDuasDoacoes() {
+		this.tutor.setDinheiro(20);
+		this.tutor.setDinheiro(20);
+		assertEquals(40, this.tutor.getDinheiro());
+	}
 }
