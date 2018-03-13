@@ -16,8 +16,8 @@ public class QuemMeAjudaController {
 	 * controllers de ajuda e aluno.
 	 */
 	public QuemMeAjudaController() {
-		alunoCtrl = new AlunoController();
-		ajudaCtrl = new AjudaController();
+		this.alunoCtrl = new AlunoController();
+		this.ajudaCtrl = new AjudaController();
 		this.dinheiroSistema = 0;
 	}
 
@@ -37,7 +37,7 @@ public class QuemMeAjudaController {
 	 */
 	public void cadastrarAluno(String nome, String matricula, String codigoCurso, 
 			String telefone, String email) {
-		alunoCtrl.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
+		this.alunoCtrl.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class QuemMeAjudaController {
 	 * @return informacoes do aluno
 	 */
 	public String recuperaAluno(String matricula) {
-		return alunoCtrl.recuperaAluno(matricula);
+		return this.alunoCtrl.recuperaAluno(matricula);
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class QuemMeAjudaController {
 	 * @return lista de alunos
 	 */
 	public String listarAlunos() {
-		return alunoCtrl.listarAlunos();
+		return this.alunoCtrl.listarAlunos();
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class QuemMeAjudaController {
 	 * @return dado especifico do aluno
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		return alunoCtrl.getInfoAluno(matricula, atributo);
+		return this.alunoCtrl.getInfoAluno(matricula, atributo);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class QuemMeAjudaController {
 	 *            nivel de proficiencia para essa disciplina
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-		alunoCtrl.tornarTutor(matricula, disciplina, proficiencia);
+		this.alunoCtrl.tornarTutor(matricula, disciplina, proficiencia);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class QuemMeAjudaController {
 	 * @return dados do tutor
 	 */
 	public String recuperaTutor(String matricula) {
-		return alunoCtrl.recuperaTutor(matricula);
+		return this.alunoCtrl.recuperaTutor(matricula);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class QuemMeAjudaController {
 	 * @return lista com os dados dos tutores
 	 */
 	public String listarTutores() {
-		return alunoCtrl.listarTutores();
+		return this.alunoCtrl.listarTutores();
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class QuemMeAjudaController {
 	 *            dia disponivel
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
-		alunoCtrl.cadastrarHorario(email, horario, dia);
+		this.alunoCtrl.cadastrarHorario(email, horario, dia);
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class QuemMeAjudaController {
 	 *            local da tutoria
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		alunoCtrl.cadastrarLocalDeAtendimento(email, local);
+		this.alunoCtrl.cadastrarLocalDeAtendimento(email, local);
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class QuemMeAjudaController {
 	 *         false caso contrario
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
-		return alunoCtrl.consultaHorario(email, horario, dia);
+		return this.alunoCtrl.consultaHorario(email, horario, dia);
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class QuemMeAjudaController {
 	 *         false caso contrario
 	 */
 	public boolean consultaLocal(String email, String local) {
-		return alunoCtrl.consultaLocal(email, local);
+		return this.alunoCtrl.consultaLocal(email, local);
 	}
 
 	/**
@@ -192,8 +192,8 @@ public class QuemMeAjudaController {
 			String dia, String localInteresse) {
 		this.validarDadosAjudaPresencial(matrAluno, disciplina, horario, dia, 
 				localInteresse);
-		String matrTutor = alunoCtrl.buscarTutor(disciplina, horario, dia, localInteresse);
-		return ajudaCtrl.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, 
+		String matrTutor = this.alunoCtrl.buscarTutor(disciplina, horario, dia, localInteresse);
+		return this.ajudaCtrl.pedirAjudaPresencial(matrAluno, matrTutor, disciplina, 
 				horario, dia, localInteresse);
 	}
 
@@ -210,8 +210,8 @@ public class QuemMeAjudaController {
 	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
 		this.validarDadosAjudaOnline(matrAluno, disciplina);
-		String matrTutor = alunoCtrl.buscarTutor(disciplina);
-		return ajudaCtrl.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
+		String matrTutor = this.alunoCtrl.buscarTutor(disciplina);
+		return this.ajudaCtrl.pedirAjudaOnline(matrAluno, matrTutor, disciplina);
 	}
 
 	/**
@@ -226,7 +226,7 @@ public class QuemMeAjudaController {
 			throw new IllegalArgumentException(
 					"Erro ao tentar recuperar tutor : id nao pode menor que zero ");
 		}
-		return ajudaCtrl.pegarTutor(idAjuda);
+		return this.ajudaCtrl.pegarTutor(idAjuda);
 	}
 
 	/**
@@ -240,7 +240,7 @@ public class QuemMeAjudaController {
 	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		this.validarDadosGetInfoAjuda(idAjuda, atributo);
-		return ajudaCtrl.getInfoAjuda(idAjuda, atributo);
+		return this.ajudaCtrl.getInfoAjuda(idAjuda, atributo);
 	}
 
 	/**
@@ -253,8 +253,8 @@ public class QuemMeAjudaController {
 	 */
 	public void avaliarTutor(int idAjuda, int nota) {
 		this.validarDadosAvaliar(idAjuda, nota);
-		String matricula = ajudaCtrl.avaliar(idAjuda);
-		alunoCtrl.avaliarTutor(matricula, nota);
+		String matricula = this.ajudaCtrl.avaliar(idAjuda);
+		this.alunoCtrl.avaliarTutor(matricula, nota);
 	}
 
 	/**
@@ -269,7 +269,7 @@ public class QuemMeAjudaController {
 			throw new IllegalArgumentException(
 					"Erro na consulta da nota: matricula nao pode ser nula ou vazia");
 		}
-		return String.format("%.2f", alunoCtrl.getNota(matricula)).replace('.', ',');
+		return String.format("%.2f", this.alunoCtrl.getNota(matricula)).replace('.', ',');
 	}
 	
 	/**
@@ -284,7 +284,7 @@ public class QuemMeAjudaController {
 			throw new IllegalArgumentException(
 					"Erro na consulta do nivel: matricula nao pode ser nula ou vazia");
 		}
-		return alunoCtrl.getNivel(matricula);
+		return this.alunoCtrl.getNivel(matricula);
 	}
 	
 	/**
@@ -298,11 +298,11 @@ public class QuemMeAjudaController {
 	 */
 	public void doarDinheiro(String matricula, int doacao) {
 		this.validarDadosDoar(matricula, doacao);
-		double taxaTutor = alunoCtrl.calcularTaxaTutor(matricula);
+		double taxaTutor = this.alunoCtrl.calcularTaxaTutor(matricula);
 		int totalSistema = (int) Math.round(((1 - taxaTutor) * doacao));
 		int totalTutor = doacao - totalSistema;
 		this.dinheiroSistema += totalSistema;
-		alunoCtrl.doarDinheiro(matricula, totalTutor);
+		this.alunoCtrl.doarDinheiro(matricula, totalTutor);
 	}
 	
 	/**
@@ -318,7 +318,7 @@ public class QuemMeAjudaController {
 					"Erro na consulta de total de dinheiro do tutor: "
 					+ "emailTutor nao pode ser vazio ou nulo");
 		}
-		return alunoCtrl.totalDinheiroTutor(email);
+		return this.alunoCtrl.totalDinheiroTutor(email);
 	}
 	
 	/**

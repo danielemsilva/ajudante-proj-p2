@@ -128,8 +128,6 @@ public class AjudaController {
 	
 	/**
 	 * Deleta as ajudas cadastradas.
-	 * 
-	 * @return true se as ajudas foram deletadas e false caso contrario
 	 */
 	public void deletarAjudas() {
 		ManipulaDados manipula = new ManipulaDados();
