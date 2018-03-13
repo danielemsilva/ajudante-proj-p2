@@ -28,10 +28,6 @@ public class ManipulaDados {
 		boolean sucesso = false;
 		try {
 			File arquivo = new File(this.pathAlunos);
-			if(arquivo.exists()) {
-				arquivo.delete();
-			}
-			arquivo.createNewFile();
 			FileOutputStream arquivoGravar = new FileOutputStream(arquivo);
 			ObjectOutputStream objGravar = new ObjectOutputStream(arquivoGravar);
 			objGravar.writeObject(alunos);
@@ -76,10 +72,6 @@ public class ManipulaDados {
 		boolean sucesso = false;
 		try {
 			File arquivo = new File(this.pathAjudas);
-			if(arquivo.exists()) {
-				arquivo.delete();
-			}
-			arquivo.createNewFile();
 			FileOutputStream arquivoGravar = new FileOutputStream(arquivo);
 			ObjectOutputStream objGravar = new ObjectOutputStream(arquivoGravar);
 			objGravar.writeObject(ajudas);

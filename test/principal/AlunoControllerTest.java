@@ -25,7 +25,7 @@ public class AlunoControllerTest {
 	 * Cadastra um aluno com telefone.
 	 */
 	@Before
-	public void cadastraAluno() {
+	public void testCadastraAluno() {
 		this.alunoController.cadastrarAluno(
 				"Joao", "1232423", "DD34", "8467989023", 
 				"joaozinho@blizzard.com");
@@ -178,7 +178,7 @@ public class AlunoControllerTest {
 	 * Verifica o retorno de getInfoAluno para o dado 'Email'
 	 */
 	@Test
-	public void getInfoEmailTest() {
+	public void testGetInfoEmailTest() {
 		assertEquals("joaozinho@blizzard.com", 
 				this.alunoController.getInfoAluno("1232423", "Email"));
 	}
@@ -187,7 +187,7 @@ public class AlunoControllerTest {
 	 * Verifica se uma informacao pode ser obtida de um aluno nao cadastrado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void getInfoAlunoNaoCadastradoTest() {
+	public void testGetInfoAlunoNaoCadastradoTest() {
 		this.alunoController.getInfoAluno("234523", "Nome");
 	}
 	
@@ -195,7 +195,7 @@ public class AlunoControllerTest {
 	 * Verifica se um aluno cadastrado pode se tornar tutor de uma disciplina.
 	 */
 	@Test
-	public void tornarTutorTest() {
+	public void testTornarTutorTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 	}
 	
@@ -204,7 +204,7 @@ public class AlunoControllerTest {
 	 * disciplina.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void tornarTutorAlunoNaoCadastradoTest() {
+	public void testTornarTutorAlunoNaoCadastradoTest() {
 		this.alunoController.tornarTutor("237890", "Calculo I", 3);
 	}
 	
@@ -212,7 +212,7 @@ public class AlunoControllerTest {
 	 * Verifica se um tutor cadastrado pode ser recuperado.
 	 */
 	@Test
-	public void recuperaTutorTest() {
+	public void testRecuperaTutorTest() {
 		Aluno novoAluno = new Aluno("Joao", "1232423", "DD34", "8467989023",
 				"joaozinho@blizzard.com");
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
@@ -224,7 +224,7 @@ public class AlunoControllerTest {
 	 * Verifica se um tutor nao cadastrado pode ser recuperado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void recuperarTutorAlunoNaoCadastradoTest() {
+	public void testRecuperarTutorAlunoNaoCadastradoTest() {
 		this.alunoController.recuperaAluno("232342");
 	}
 	
@@ -233,7 +233,7 @@ public class AlunoControllerTest {
 	 * para um email valido de tutor.
 	 */
 	@Test
-	public void cadastrarHorarioTest() {
+	public void testCadastrarHorarioTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 		this.alunoController.cadastrarHorario("joaozinho@blizzard.com",
 				"17:30", "21/03");
@@ -244,7 +244,7 @@ public class AlunoControllerTest {
 	 * para um email nulo de tutor.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void cadastrarHorarioEmailNuloTest() {
+	public void testCadastrarHorarioEmailNuloTest() {
 		this.alunoController.cadastrarHorario(null, "17:30", "21/03");
 	}
 	
@@ -253,7 +253,7 @@ public class AlunoControllerTest {
 	 * para um email vazio de tutor.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void cadastrarHorarioEmailVazioTest() {
+	public void testCadastrarHorarioEmailVazioTest() {
 		this.alunoController.cadastrarHorario("", "17:30", "21/03");
 	}
 	
@@ -262,7 +262,7 @@ public class AlunoControllerTest {
 	 * para um email de tutor nao cadastrado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void cadastrarHorarioTutorNCadastradoTest() {
+	public void testCadastrarHorarioTutorNCadastradoTest() {
 		this.alunoController.cadastrarHorario("elizinha@blizzard.com", "14:30",
 				"23/03");
 	}
@@ -272,7 +272,7 @@ public class AlunoControllerTest {
 	 * para um email valido de tutor.
 	 */
 	@Test
-	public void cadastrarLocalDeAtendimentoTest() {
+	public void testCadastrarLocalDeAtendimentoTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 		this.alunoController.cadastrarLocalDeAtendimento(
 				"joaozinho@blizzard.com", "LCC3");
@@ -283,7 +283,7 @@ public class AlunoControllerTest {
 	 * para um email nulo de tutor.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void cadastrarLocalDeAtendimentoEmailNuloTest() {
+	public void testCadastrarLocalDeAtendimentoEmailNuloTest() {
 		this.alunoController.cadastrarLocalDeAtendimento(null, "LCC3");
 	}
 	
@@ -292,7 +292,7 @@ public class AlunoControllerTest {
 	 * para um email vazio de tutor.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void cadastrarLocalDeAtendimentoEmailVazioTest() {
+	public void testCadastrarLocalDeAtendimentoEmailVazioTest() {
 		this.alunoController.cadastrarLocalDeAtendimento("", "LCC3");
 	}
 	
@@ -301,7 +301,7 @@ public class AlunoControllerTest {
 	 * para um email de tutor nao cadastrado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void cadastrarLocalDeAtendimentoTutorNCadastradoTest() {
+	public void testCadastrarLocalDeAtendimentoTutorNCadastradoTest() {
 		this.alunoController.cadastrarLocalDeAtendimento(
 				"elizinha@blizzard.com", "LCC3");
 	}
@@ -311,7 +311,7 @@ public class AlunoControllerTest {
 	 * esta entre seus horarios de atendimento.
 	 */
 	@Test
-	public void consultaHorarioTest() {
+	public void testConsultaHorarioTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 		this.alunoController.cadastrarHorario("joaozinho@blizzard.com",
 				"17:30", "21/03");
@@ -324,7 +324,7 @@ public class AlunoControllerTest {
 	 * esta entre seus horarios de atendimento.
 	 */
 	@Test
-	public void consultaHorarioNaoCadastradoTest() {
+	public void testConsultaHorarioNaoCadastradoTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 		this.alunoController.cadastrarHorario("joaozinho@blizzard.com",
 				"14:30", "21/03");
@@ -337,7 +337,7 @@ public class AlunoControllerTest {
 	 * esta entre seus horarios de atendimento.
 	 */
 	@Test
-	public void consultaHorarioTutorNaoCadastradoTest() {
+	public void testConsultaHorarioTutorNaoCadastradoTest() {
 		assertEquals(false, this.alunoController.consultaHorario(
 				"elizinha@blizzard.com", "17:30", "21/03"));
 	}
@@ -347,7 +347,7 @@ public class AlunoControllerTest {
 	 * esta entre seus locais de atendimento.
 	 */
 	@Test
-	public void consultaLocalDeAtendimentoTest() {
+	public void testConsultaLocalDeAtendimentoTest() {
 		this.alunoController.tornarTutor("1232423", "Programacao", 4);
 		this.alunoController.cadastrarLocalDeAtendimento(
 				"joaozinho@blizzard.com", "UFCG");
@@ -359,7 +359,7 @@ public class AlunoControllerTest {
 	 * Testa a listagem dos tutores quando nenhum tutor foi cadastrado.
 	 */
 	@Test
-	public void listarTutoresSemTutores() {
+	public void testListarTutoresSemTutores() {
 		assertEquals(this.alunoController.listarTutores(), "");
 	}
 	
@@ -367,7 +367,7 @@ public class AlunoControllerTest {
 	 * Testa a listagem dos tutores quando um tutor foi cadastrado.
 	 */
 	@Test
-	public void listarTutoresComUmTutor() {
+	public void testListarTutoresComUmTutor() {
 		this.alunoController.cadastrarAluno(
 				"Beatriz", "111111", "CC", "99999999", "bia@ccc.com");
 		this.alunoController.tornarTutor("111111", "TG", 4);
@@ -781,6 +781,19 @@ public class AlunoControllerTest {
 	}
 	
 	/**
+	 * Verifica se os dados de alunos que sao tutores sao gravados
+	 */
+	@Test
+	public void testGravarAlunosTutores() {
+		this.alunoController.cadastrarAluno(
+				"Ana", "1232455", "DD34", "8495981012", "ana234@blizzard.com");
+		this.alunoController.tornarTutor("1232455", "P2", 5);
+		this.alunoController.cadastrarLocalDeAtendimento("ana234@blizzard.com", "LCC2");
+		this.alunoController.cadastrarHorario("ana234@blizzard.com", "13:00", "qua");
+		assert(this.alunoController.gravarAlunos());
+	}
+	
+	/**
 	 * Verifica se a leitura dos dados de alunos foi realizada corretamente,
 	 * listando os alunos alfabeticamente
 	 */
@@ -791,4 +804,16 @@ public class AlunoControllerTest {
 				+ "1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com";
 		assertEquals(this.alunoController.listarAlunos(), retornoEsperado);
 	}
+	
+	/**
+	 * Verifica se a leitura dos dados de alunos que sao tutores foi realizada 
+	 * corretamente, listando os alunos alfabeticamente
+	 */
+	@Test
+	public void testLerAlunosTutores() {
+		this.alunoController.lerAlunos();
+		String retornoEsperado = "1232455 - Ana - DD34 - 8495981012 - ana234@blizzard.com";
+		assertEquals(this.alunoController.listarTutores(), retornoEsperado);
+	}
+	
 }
