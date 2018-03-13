@@ -363,6 +363,14 @@ public class QuemMeAjudaController {
 	}
 	
 	/**
+	 * Realiza as chamadas para limpeza de dados.
+	 */
+	public void limparDados() {
+		this.alunoCtrl.deletarAlunos();
+		this.ajudaCtrl.deletarAjudas();
+	}
+	
+	/**
 	 * Valida os dados passados ao metodo pedirAjudaOnline.
 	 * 
 	 * @param matrAluno

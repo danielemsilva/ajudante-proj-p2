@@ -125,6 +125,16 @@ public class AjudaController {
 		ManipulaDados manipula = new ManipulaDados();
 		this.ajudas = manipula.lerAjudas();
 	}
+	
+	/**
+	 * Deleta as ajudas cadastradas.
+	 * 
+	 * @return true se as ajudas foram deletadas e false caso contrario
+	 */
+	public boolean deletarAjudas() {
+		ManipulaDados manipula = new ManipulaDados();
+		return manipula.deletarAjudas();
+	}
 
 	/**
 	 * Valida os dados passados ao metodo pegarTutor.

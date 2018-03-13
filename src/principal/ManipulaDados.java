@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -63,6 +64,25 @@ public class ManipulaDados {
 	}
 	
 	/**
+	 * Deleta os alunos armazenados no arquivo 'alunos.dat'.
+	 * 
+	 * @return estado de remocao: true se os alunos foram removidos com sucesso
+	 *     e false caso contrario.
+	 */
+	public boolean deletarAlunos() {
+		boolean sucesso = false;
+		try {
+			File arquivo = new File(this.pathAlunos);
+			PrintWriter writer = new PrintWriter(arquivo);
+			writer.print("");
+			writer.close();
+		} catch (Exception e) {
+			
+		}
+		return sucesso;
+	}
+	
+	/**
 	 * Grava uma mapa de ajudas em um arquivo 'ajudas.dat'
 	 * @param ajudas mapa de ajudas serializaveis para gravacao
 	 * @return estado da gravacao. True se foi realizado com sucesso,
@@ -104,5 +124,24 @@ public class ManipulaDados {
 		} catch (Exception e) {
 		}
 		return null;
+	}
+	
+	/**
+	 * Deleta as ajudas armazenadas no arquivo 'ajudas.dat'.
+	 * 
+	 * @return estado de remocao: true se as ajudas foram removidas com sucesso
+	 *     e false caso contrario.
+	 */
+	public boolean deletarAjudas() {
+		boolean sucesso = false;
+		try {
+			File arquivo = new File(this.pathAjudas);
+			PrintWriter writer = new PrintWriter(arquivo);
+			writer.print("");
+			writer.close();
+		} catch (Exception e) {
+			
+		}
+		return sucesso;
 	}
 }

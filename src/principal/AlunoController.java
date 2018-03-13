@@ -503,6 +503,14 @@ public class AlunoController {
 		ManipulaDados manipula = new ManipulaDados();
 		this.alunos = manipula.lerAlunos();
 	}
+	
+	/**
+	 * Deleta todos os alunos cadastrados, inclusive os tutores.
+	 */
+	public void deletarAlunos() {
+		ManipulaDados manipula = new ManipulaDados();
+		this.alunos = manipula.lerAlunos();
+	}
 
 	/**
 	 * Verifica se um aluno esta cadastrado no sistema, dada sua matricula.
