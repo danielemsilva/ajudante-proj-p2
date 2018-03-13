@@ -3,7 +3,7 @@ package principal;
 import easyaccept.EasyAccept;
 
 /**
- * Classe sem logica de negocio, apenas atribui tarefas a qmaCtrl.
+ * Classe sem logica de negocio, apenas atribui tarefas a this.qmaCtrl.
  */
 public class Facade {
 
@@ -24,7 +24,7 @@ public class Facade {
 	 *            email
 	 */
 	public void cadastrarAluno(String nome, String matricula, String codigoCurso, String telefone, String email) {
-		qmaCtrl.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
+		this.qmaCtrl.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class Facade {
 	 * @return informacoes do aluno
 	 */
 	public String recuperaAluno(String matricula) {
-		return qmaCtrl.recuperaAluno(matricula);
+		return this.qmaCtrl.recuperaAluno(matricula);
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class Facade {
 	 * @return lista de alunos
 	 */
 	public String listarAlunos() {
-		return qmaCtrl.listarAlunos();
+		return this.qmaCtrl.listarAlunos();
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class Facade {
 	 * @return dado especifico do aluno
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		return qmaCtrl.getInfoAluno(matricula, atributo);
+		return this.qmaCtrl.getInfoAluno(matricula, atributo);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class Facade {
 	 *            nivel de proficiencia para essa disciplina
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-		qmaCtrl.tornarTutor(matricula, disciplina, proficiencia);
+		this.qmaCtrl.tornarTutor(matricula, disciplina, proficiencia);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class Facade {
 	 * @return dados do tutor
 	 */
 	public String recuperaTutor(String matricula) {
-		return qmaCtrl.recuperaTutor(matricula);
+		return this.qmaCtrl.recuperaTutor(matricula);
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class Facade {
 	 * @return lista com os dados dos tutores
 	 */
 	public String listarTutores() {
-		return qmaCtrl.listarTutores();
+		return this.qmaCtrl.listarTutores();
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class Facade {
 	 *            dia disponivel
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
-		qmaCtrl.cadastrarHorario(email, horario, dia);
+		this.qmaCtrl.cadastrarHorario(email, horario, dia);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class Facade {
 	 *            local da tutoria
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		qmaCtrl.cadastrarLocalDeAtendimento(email, local);
+		this.qmaCtrl.cadastrarLocalDeAtendimento(email, local);
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class Facade {
 	 *         false caso contrario
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
-		return qmaCtrl.consultaHorario(email, horario, dia);
+		return this.qmaCtrl.consultaHorario(email, horario, dia);
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class Facade {
 	 *         caso contrario
 	 */
 	public boolean consultaLocal(String email, String local) {
-		return qmaCtrl.consultaLocal(email, local);
+		return this.qmaCtrl.consultaLocal(email, local);
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class Facade {
 	 */
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
 			String localInteresse) {
-		return qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
+		return this.qmaCtrl.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class Facade {
 	 * @return identificacao da ajuda
 	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
-		return qmaCtrl.pedirAjudaOnline(matrAluno, disciplina);
+		return this.qmaCtrl.pedirAjudaOnline(matrAluno, disciplina);
 	}
 
 	/**
@@ -199,7 +199,7 @@ public class Facade {
 	 * @return dados do tutor
 	 */
 	public String pegarTutor(int idAjuda) {
-		return qmaCtrl.pegarTutor(idAjuda);
+		return this.qmaCtrl.pegarTutor(idAjuda);
 	}
 
 	/**
@@ -212,7 +212,7 @@ public class Facade {
 	 * @return dado requerido
 	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
-		return qmaCtrl.getInfoAjuda(idAjuda, atributo);
+		return this.qmaCtrl.getInfoAjuda(idAjuda, atributo);
 	}
 
 	/**
@@ -224,7 +224,7 @@ public class Facade {
 	 *            nota a ser atribuida ao tutor
 	 */
 	public void avaliarTutor(int idAjuda, int nota) {
-		qmaCtrl.avaliarTutor(idAjuda, nota);
+		this.qmaCtrl.avaliarTutor(idAjuda, nota);
 	}
 
 	/**
@@ -235,7 +235,7 @@ public class Facade {
 	 * @return nota do tutor
 	 */
 	public String pegarNota(String matricula) {
-		return qmaCtrl.pegarNota(matricula);
+		return this.qmaCtrl.pegarNota(matricula);
 	}
 
 	/**
@@ -246,7 +246,7 @@ public class Facade {
 	 * @return nivel
 	 */
 	public String pegarNivel(String matricula) {
-		return qmaCtrl.pegarNivel(matricula);
+		return this.qmaCtrl.pegarNivel(matricula);
 	}
 	
 	/**
@@ -258,7 +258,7 @@ public class Facade {
 	 *            total de centavos da doacao
 	 */
 	public void doar(String matriculaTutor, int totalCentavos) {
-		qmaCtrl.doarDinheiro(matriculaTutor, totalCentavos);
+		this.qmaCtrl.doarDinheiro(matriculaTutor, totalCentavos);
 	}
 	
 	/**
@@ -269,7 +269,7 @@ public class Facade {
 	 * @return dinheiro do tutor
 	 */
 	public int totalDinheiroTutor(String emailTutor) {
-		return qmaCtrl.totalDinheiroTutor(emailTutor);
+		return this.qmaCtrl.totalDinheiroTutor(emailTutor);
 	}
 	
 	/**
@@ -278,7 +278,7 @@ public class Facade {
 	 * @return total do dinheiro do sistema, em centavos
 	 */
 	public int totalDinheiroSistema() {
-		return qmaCtrl.totalDinheiroSistema();
+		return this.qmaCtrl.totalDinheiroSistema();
 	}
 	
 	/**
@@ -288,21 +288,28 @@ public class Facade {
 	 *            descricao da ordenacao desejada
 	 */
 	public void configurarOrdem(String ordem) {
-		qmaCtrl.configurarOrdem(ordem);
+		this.qmaCtrl.configurarOrdem(ordem);
 	}
 	
 	/**
 	 * Realiza a gravacao dos dados
 	 */
 	public void gravarDados() {
-		qmaCtrl.gravarDados();
+		this.qmaCtrl.gravarDados();
 	}
 	
 	/**
 	 * Realiza a leitura dos dados
 	 */
 	public void lerDados() {
-		qmaCtrl.lerDados();
+		this.qmaCtrl.lerDados();
+	}
+	
+	/**
+	 * Realiza a limpeza dos dados
+	 */
+	public void limparDados() {
+		this.qmaCtrl.limparDados();
 	}
 
 	/**
@@ -317,7 +324,6 @@ public class Facade {
 				"acceptance_test/us3_test.txt", "acceptance_test/us4_test.txt", 
 				"acceptance_test/us5_test.txt", "acceptance_test/us6_test.txt" };
 		EasyAccept.main(args);
-		
 	}
 
 }

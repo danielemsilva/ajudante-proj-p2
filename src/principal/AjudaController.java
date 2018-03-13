@@ -131,9 +131,13 @@ public class AjudaController {
 	 * 
 	 * @return true se as ajudas foram deletadas e false caso contrario
 	 */
-	public boolean deletarAjudas() {
+	public void deletarAjudas() {
 		ManipulaDados manipula = new ManipulaDados();
-		return manipula.deletarAjudas();
+		manipula.deletarAjudas();
+		this.ajudas = manipula.lerAjudas();
+		if (this.ajudas == null) {
+			this.ajudas = new HashMap<>();
+		}
 	}
 
 	/**

@@ -509,7 +509,11 @@ public class AlunoController {
 	 */
 	public void deletarAlunos() {
 		ManipulaDados manipula = new ManipulaDados();
+		manipula.deletarAlunos();
 		this.alunos = manipula.lerAlunos();
+		if (this.alunos == null) {
+			this.alunos = new ArrayList<>();
+		}
 	}
 
 	/**

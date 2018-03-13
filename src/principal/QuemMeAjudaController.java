@@ -341,7 +341,7 @@ public class QuemMeAjudaController {
 			throw new IllegalArgumentException("Erro na configuracao da "
 				+ "ordenacao: ordem nao pode ser vazia ou em branco");
 		}
-		alunoCtrl.configurarOrdem(ordem);
+		this.alunoCtrl.configurarOrdem(ordem);
 	}
 	
 	/**
@@ -351,15 +351,16 @@ public class QuemMeAjudaController {
 	 * false se ocorreu algum erro durante as gravacoes.
 	 */
 	public boolean gravarDados() {
-		return alunoCtrl.gravarAlunos() && ajudaCtrl.gravarAjudas();
+		return this.alunoCtrl.gravarAlunos() && this.ajudaCtrl.gravarAjudas() && this.gravarCaixa();
 	}
 	
 	/**
 	 * Realiza as chamadas para leitura dos dados
 	 */
 	public void lerDados() {
-		alunoCtrl.lerAlunos();
-		ajudaCtrl.lerAjudas();
+		this.alunoCtrl.lerAlunos();
+		this.ajudaCtrl.lerAjudas();
+		this.lerCaixa();
 	}
 	
 	/**
@@ -368,6 +369,7 @@ public class QuemMeAjudaController {
 	public void limparDados() {
 		this.alunoCtrl.deletarAlunos();
 		this.ajudaCtrl.deletarAjudas();
+		this.deletarCaixa();
 	}
 	
 	/**
@@ -406,7 +408,6 @@ public class QuemMeAjudaController {
 	 * @param localInteresse
 	 *            o local onde a ajuda vai acontecer
 	 */
-
 	private void validarDadosAjudaPresencial(String matrAluno, String disciplina,
 			String horario, String dia, String localInteresse) {
 		if (matrAluno == null || matrAluno.trim().equals("")) {
@@ -480,6 +481,14 @@ public class QuemMeAjudaController {
 		}
 	}
 	
+	/**
+	 * Valida os dados passados ao metodo doarDinheiro.
+	 * 
+	 * @param matricula
+	 *            o identificador de aluno
+	 * @param doacao
+	 *            doacao para o tutor
+	 */
 	private void validarDadosDoar(String matricula, int doacao) {
 		if (doacao < 0) {
 			throw new IllegalArgumentException("Erro na doacao para tutor: "
@@ -492,4 +501,29 @@ public class QuemMeAjudaController {
 		}
 	}
 
+	/**
+	 * Realiza a chamada para gravar o dinheiro do sistema.
+	 * 
+	 * @return true se gravou em arquivo, false se ocorreu algum erro.
+	 */
+	private boolean gravarCaixa() {
+		ManipulaDados manipula = new ManipulaDados();
+		return manipula.gravarCaixa(this.dinheiroSistema);
+	}
+	
+	/**
+	 * Realiza a chamada para leitura do dinheiro do sistema.
+	 */
+	private void lerCaixa() {
+		ManipulaDados manipula = new ManipulaDados();
+		this.dinheiroSistema = manipula.lerCaixa();
+	}
+	
+	/**
+	 * Realiza a chamada para limpar o dinheiro do sistema no arquivo.
+	 */
+	private void deletarCaixa() {
+		ManipulaDados manipula = new ManipulaDados();
+		manipula.deletarCaixa();
+	}
 }
