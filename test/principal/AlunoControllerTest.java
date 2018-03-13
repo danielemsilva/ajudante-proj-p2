@@ -708,6 +708,69 @@ public class AlunoControllerTest {
 	}
 	
 	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh nulo.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoNulo() {
+		this.alunoController.configurarOrdem(null);
+	}
+	
+	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh vazio.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoVazio() {
+		this.alunoController.configurarOrdem("");
+	}
+	
+	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh em branco.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoEmBranco() {
+		this.alunoController.configurarOrdem("   ");
+	}
+	
+	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh invalido.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoInvalido() {
+		this.alunoController.configurarOrdem("blabla");
+	}
+	
+	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh NOME.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoNome() {
+		this.alunoController.configurarOrdem("NOME");
+	}
+	
+	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh MATRICULA.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoMatricula() {
+		this.alunoController.configurarOrdem("MATRICULA");
+	}
+	
+	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh EMAIL.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoEmail() {
+		this.alunoController.configurarOrdem("EMAIL");
+	}
+	
+	/**
 	 * Verifica se os dados de alunos sao gravados em arquivo
 	 */
 	@Test
@@ -725,6 +788,4 @@ public class AlunoControllerTest {
 		this.alunoController.lerAlunos();
 		assertEquals(this.alunoController.listarAlunos(), "22222 - Mario - CC - mario@ccc.edu.br");
 	}
-
 }
-

@@ -12,8 +12,8 @@ public class QuemMeAjudaController {
 	private int dinheiroSistema;
 
 	/**
-	 * Constroi um novo controller do sistema, inicializando tambem os controllers
-	 * de ajuda e aluno.
+	 * Constroi um novo controller do sistema, inicializando tambem os 
+	 * controllers de ajuda e aluno.
 	 */
 	public QuemMeAjudaController() {
 		alunoCtrl = new AlunoController();
@@ -137,8 +137,8 @@ public class QuemMeAjudaController {
 	}
 
 	/**
-	 * Verifica se um determinado horario esta entre os horarios de atendimento de
-	 * um tutor.
+	 * Verifica se um determinado horario esta entre os horarios de atendimento
+	 * de um tutor.
 	 * 
 	 * @param email
 	 *            email do tutor
@@ -155,16 +155,16 @@ public class QuemMeAjudaController {
 	}
 
 	/**
-	 * Verifica se um determinado local esta entre os locais de atendimento de um
-	 * tutor.
+	 * Verifica se um determinado local esta entre os locais de atendimento de 
+	 * um tutor.
 	 * 
 	 * @param email
 	 *            email do tutor
 	 * @param local
 	 *            local a ser pesquisado
 	 * 
-	 * @return true, se o local for um dos locais de atendimento do tutor, e false
-	 *         caso contrario
+	 * @return true, se o local for um dos locais de atendimento do tutor, e 
+	 *         false caso contrario
 	 */
 	public boolean consultaLocal(String email, String local) {
 		return alunoCtrl.consultaLocal(email, local);
@@ -334,6 +334,8 @@ public class QuemMeAjudaController {
 	 * Altera o tipo da ordenacao de alunos
 	 */
 	public void configurarOrdem(String ordem) {
+		if (ordem == null || ordem.trim().equals("Erro na configuracao da "
+				+ "ordenacao: ordem nao pode ser vazia ou em branco"));
 		alunoCtrl.configurarOrdem(ordem);
 	}
 	
@@ -429,11 +431,13 @@ public class QuemMeAjudaController {
 	private void validarDadosGetInfoAjuda(int idAjuda, String atributo) {
 		if (idAjuda < 0) {
 			throw new IllegalArgumentException(
-					"Erro ao tentar recuperar info da ajuda : id nao pode menor que zero ");
+					"Erro ao tentar recuperar info da ajuda : id nao pode menor"
+					+ " que zero ");
 		}
 		if (atributo == null || atributo.trim().equals("")) {
 			throw new IllegalArgumentException(
-					"Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
+					"Erro ao tentar recuperar info da ajuda : atributo nao pode"
+					+ " ser vazio ou em branco");
 		}
 	}
 
@@ -467,7 +471,8 @@ public class QuemMeAjudaController {
 		}
 		if (matricula == null || matricula.trim().equals("")) {
 			throw new IllegalArgumentException(
-					"Erro na doacao para tutor: matricula nao pode ser vazia ou nula");
+					"Erro na doacao para tutor: matricula nao pode ser vazia ou"
+					+ " nula");
 		}
 	}
 

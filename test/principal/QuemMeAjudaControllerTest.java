@@ -795,6 +795,69 @@ public class QuemMeAjudaControllerTest {
 	}
 	
 	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh nulo.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoNulo() {
+		this.quemMeAjudaController.configurarOrdem(null);
+	}
+	
+	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh vazio.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoVazio() {
+		this.quemMeAjudaController.configurarOrdem("");
+	}
+	
+	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh em branco.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoEmBranco() {
+		this.quemMeAjudaController.configurarOrdem("   ");
+	}
+	
+	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh invalido.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoInvalido() {
+		this.quemMeAjudaController.configurarOrdem("blabla");
+	}
+	
+	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh NOME.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoNome() {
+		this.quemMeAjudaController.configurarOrdem("NOME");
+	}
+	
+	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh MATRICULA.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoMatricula() {
+		this.quemMeAjudaController.configurarOrdem("MATRICULA");
+	}
+	
+	/**
+	 * Verifica se a configuracao de ordenacao pode ser feita quando o tipo de
+	 * ordenacao informado eh EMAIL.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testConfigurarOrdemArgumentoEmail() {
+		this.quemMeAjudaController.configurarOrdem("EMAIL");
+	}
+	
+	/**
 	 * Verifica se os alunos sao listados pela ordem configurada para nome
 	 */
 	@Test

@@ -465,6 +465,9 @@ public class AlunoController {
 	 * @param ordem tipo da ordenacao
 	 */
 	public void configurarOrdem(String ordem) {
+		if (ordem == null || ordem.trim().equals("Erro na configuracao da "
+				+ "ordenacao: ordem nao pode ser vazia ou em branco"));
+		
 		if (ordem.equals("NOME")) {
 			this.comparator = new NomeAlunoComparator();
 		}
@@ -473,6 +476,10 @@ public class AlunoController {
 		}
 		else if (ordem.equals("EMAIL")) {
 			this.comparator = new EmailAlunoComparator();
+		}
+		else {
+			throw new IllegalArgumentException("Erro na configuracao da "
+					+ "ordenacao: o tipo de ordenacao informado eh invalido");
 		}
 	}
 	
