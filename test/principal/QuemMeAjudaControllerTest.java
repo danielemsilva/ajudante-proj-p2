@@ -927,22 +927,49 @@ public class QuemMeAjudaControllerTest {
 	}
 	
 	/**
-	 * Verifica se a leitura de alunos foi realizada com sucesso
+	 * Verifica se a leitura de dados foi realizada com sucesso quando apenas
+	 * um aluno foi cadastrado.
 	 */
 	@Test
-	public void testLerAlunos() {
+	public void testLerDados1Aluno() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.gravarDados();
 		this.quemMeAjudaController.lerDados();
-		assertEquals(this.quemMeAjudaController.listarAlunos(), "22222 - Mario - CC - mario@ccc.edu.br");
+		assertEquals(this.quemMeAjudaController.listarAlunos(),
+				"22222 - Mario - CC - mario@ccc.edu.br");
 	}
 	
 	/**
-	 * Verifica se a leitura de ajudas foi realizada com sucesso
+	 * Verifica se a leitura de dados foi realizada com sucesso quando apenas
+	 * uma ajuda e um aluno tutor foram cadastrados.
 	 */
 	@Test
-	public void testLerAjudas() {
+	public void testLerDados1Ajuda1Tutor() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
+		this.quemMeAjudaController.cadastrarHorario("mario@ccc.edu.br", 
+				"13:00", "seg");
+		this.quemMeAjudaController.cadastrarLocalDeAtendimento(
+				"mario@ccc.edu.br", "LCC2");
+		this.quemMeAjudaController.gravarDados();
 		this.quemMeAjudaController.lerDados();
-		assertEquals("Tutor - 22222, horario - 13:00, dia - seg, local - LCC2, disciplina - P2", 
-				this.quemMeAjudaController.pegarTutor(1));
+		int id = this.quemMeAjudaController.pedirAjudaPresencial(
+	            "11111111", "P2", "13:00", "seg", "LCC2");
+		assertEquals(this.quemMeAjudaController.listarAlunos() + System.lineSeparator()
+		        + this.quemMeAjudaController.pegarTutor(id), "22222 - Mario - "
+				+ "CC - mario@ccc.edu.br\n"
+		        		+this.quemMeAjudaController.pegarTutor(id));
+	}
+	
+	@Test
+	public void testLimparDados() {
+		this.quemMeAjudaController.cadastrarAluno(
+				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
+		this.quemMeAjudaController.gravarDados();
+		this.quemMeAjudaController.limparDados();
+		assertEquals(this.quemMeAjudaController.listarAlunos(), "");
 	}
 
 }

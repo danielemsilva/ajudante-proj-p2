@@ -488,4 +488,70 @@ public class AjudaControllerTest {
 		this.ajudaController.avaliar(id);
 	}
 	
+	/**
+	 * Verifica se uma ajuda online cadastrada pode ser gravada.
+	 */
+	@Test
+	public void testgravarAjudas1AjudaOnline() {
+		this.ajudaController.pedirAjudaOnline("11111111", "22222222", "P2");
+		assert(this.ajudaController.gravarAjudas());
+	}
+	
+	/**
+	 * Verifica se uma ajuda presencial cadastrada pode ser gravada.
+	 */
+	@Test
+	public void testGravarAjudas1AjudaPresencial() {
+		this.ajudaController.pedirAjudaPresencial(
+				"11111111", "22222222", "P2", "13:00", "seg", "LCC2");
+		assert(this.ajudaController.gravarAjudas());
+	}
+	
+	/**
+	 * Verifica se uma ajuda online gravada pode ser lida.
+	 */
+	@Test
+	public void testLerAjudas1AjudaOnline() {
+		int id = this.ajudaController.pedirAjudaOnline("11111111", "22222222",
+				"P2");
+		this.ajudaController.gravarAjudas();
+		this.ajudaController.lerAjudas();
+		assertEquals(this.ajudaController.pegarTutor(id), "Tutor - 22222222, "
+				+ "disciplina - P2");
+	}
+	
+	/**
+	 * Verifica se uma ajuda presencial gravada pode ser lida.
+	 */
+	@Test
+	public void testgravarAjudas1AjudaPresencial() {
+		int id = this.ajudaController.pedirAjudaPresencial(
+				"11111111", "22222222", "P2", "13:00", "seg", "LCC2");
+		this.ajudaController.gravarAjudas();
+		this.ajudaController.lerAjudas();
+		assertEquals(this.ajudaController.pegarTutor(id), "Tutor - 22222222, horario "
+				+ "- 13:00, dia - seg, local - LCC2, disciplina - P2");
+	}
+	
+	/**
+	 * Verifica se uma ajuda online gravada pode ser removida.
+	 */
+	@Test																																																																																											
+	public void testLimparAjudas1AjudaOnline() {
+		int id = this.ajudaController.pedirAjudaOnline("11111111", "22222222",
+				"P2");
+		this.ajudaController.gravarAjudas();
+		this.ajudaController.deletarAjudas();
+	}
+	
+	/**
+	 * Verifica se uma ajuda presencial gravada pode ser removida.
+	 */
+	@Test
+	public void testLimparAjudas1AjudaPresencial() {
+		int id = this.ajudaController.pedirAjudaPresencial(
+				"11111111", "22222222", "P2", "13:00", "seg", "LCC2");
+		this.ajudaController.gravarAjudas();
+	}
+	
 }

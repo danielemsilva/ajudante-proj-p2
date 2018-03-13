@@ -816,4 +816,14 @@ public class AlunoControllerTest {
 		assertEquals(this.alunoController.listarTutores(), retornoEsperado);
 	}
 	
+	/**
+	 * Verifica se a limpeza dos dados de alunos eh realizada.
+	 */
+	@Test
+	public void testDeletarAlunos() {
+		this.alunoController.deletarAlunos();
+	}
+	
+
+	
 }
