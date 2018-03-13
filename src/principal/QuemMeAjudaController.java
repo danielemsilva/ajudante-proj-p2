@@ -331,7 +331,10 @@ public class QuemMeAjudaController {
 	}
 	
 	/**
-	 * Altera o tipo da ordenacao de alunos
+	 * Altera o tipo da ordenacao de alunos.
+	 * 
+	 * @param ordem
+	 *            descricao da ordenacao desejada
 	 */
 	public void configurarOrdem(String ordem) {
 		if (ordem == null || ordem.trim().equals("")){
@@ -342,7 +345,10 @@ public class QuemMeAjudaController {
 	}
 	
 	/**
-	 * Realiza as chamadas para gravacao dos dados
+	 * Realiza as chamadas para gravacao dos dados.
+	 * 
+	 * @return true se todos os dados foram salvos com sucesso,
+	 * false se ocorreu algum erro durante as gravacoes.
 	 */
 	public boolean gravarDados() {
 		return alunoCtrl.gravarAlunos() && ajudaCtrl.gravarAjudas();

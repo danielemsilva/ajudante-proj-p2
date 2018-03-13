@@ -145,7 +145,9 @@ public class AlunoController {
 	/**
 	 * Retorna o objeto tutor do aluno
 	 * 
-	 * @return tutor
+	 * @param matricula
+	 *            matricula do tutor
+	 * @return objeto tutor
 	 */
 	public Tutor getTutor(String matricula) {
 		Aluno aluno = this.procuraAlunoMatricula(matricula);

@@ -45,6 +45,8 @@ public class Tutor implements Serializable {
 	 * @param proficiencia
 	 *            nivel de proficiencia nessa disciplina. Os valores possiveis
 	 *            pertencem ao conjunto [1, 5]
+	 * @param id
+	 *            id do tutor
 	 */
 	public void adicionaDisciplina(String disciplina, int proficiencia, int id) {
 		this.validaDisciplinaProficiencia(disciplina, proficiencia);

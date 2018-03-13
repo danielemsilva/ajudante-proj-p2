@@ -114,7 +114,8 @@ public class Aluno implements Serializable {
 	 *            disciplina a ser acrescentada
 	 * @param proficiencia
 	 *            proficiencia em relacao a nova disciplina
-	 * @param id
+	 * @param id 
+	 *            id do tutor cadastrado
 	 */
 	public void tornarTutor(String disciplina, int proficiencia, int id) {
 		if (tutor == null) {

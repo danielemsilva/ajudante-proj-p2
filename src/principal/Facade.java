@@ -283,6 +283,9 @@ public class Facade {
 	
 	/**
 	 * Altera o tipo da ordenacao de alunos
+	 * 
+	 * @param ordem
+	 *            descricao da ordenacao desejada
 	 */
 	public void configurarOrdem(String ordem) {
 		qmaCtrl.configurarOrdem(ordem);

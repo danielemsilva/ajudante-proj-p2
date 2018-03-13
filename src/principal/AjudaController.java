@@ -98,7 +98,9 @@ public class AjudaController {
 	 * Verifica se a ajuda ja foi avaliada. Se nao, altera o estado para
 	 * avalida e retorna a matricula do tutor da ajuda.
 	 * 
-	 * @param idAjuda
+	 * @param idAjuda 
+	 *            id da ajuda
+	 * @return matricula do tutor da ajuda
 	 */
 	public String avaliar(int idAjuda) {
 		this.validarDadosAvaliar(idAjuda);
