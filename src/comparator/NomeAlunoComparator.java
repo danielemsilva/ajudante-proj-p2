@@ -10,9 +10,13 @@ import principal.Aluno;
 public class NomeAlunoComparator implements Comparator<Aluno> {
 
 	/**
-	 * Compara os nomes de dois alunos e retorna a diferença entre eles
-	 * @param aluno1 um objeto Aluno
-	 * @param aluno2 outro objeto Aluno
+	 * Compara os nomes de dois alunos e retorna a diferença entre eles.
+	 * 
+	 * @param aluno1 
+	 *     um objeto Aluno
+	 * @param aluno2 
+	 *     outro objeto Aluno
+	 *     
 	 * @return inteiro com a diferenca das strings de nome 
 	 */
 	@Override

@@ -11,9 +11,13 @@ import principal.Aluno;
 public class MatriculaAlunoComparator implements Comparator<Aluno> {
 
 	/**
-	 * Compara as matriculas de dois alunos e retorna a diferença entre eles
-	 * @param aluno1 um objeto Aluno
-	 * @param aluno2 outro objeto Aluno
+	 * Compara as matriculas de dois alunos e retorna a diferença entre eles.
+	 * 
+	 * @param aluno1 
+	 *     um objeto Aluno
+	 * @param aluno2 
+	 *     outro objeto Aluno
+	 *     
 	 * @return inteiro com a diferenca das strings matriculas 
 	 */
 	@Override
