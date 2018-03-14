@@ -931,13 +931,11 @@ public class QuemMeAjudaControllerTest {
 	 * um aluno foi cadastrado.
 	 */
 	@Test
-	public void testLerDados1Aluno() {
+	public void testLerDadosAluno() {
 		this.quemMeAjudaController.cadastrarAluno(
 				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
 		this.quemMeAjudaController.gravarDados();
-		this.quemMeAjudaController.lerDados();
-		assertEquals(this.quemMeAjudaController.listarAlunos(),
-				"22222 - Mario - CC - mario@ccc.edu.br");
+		assert(this.quemMeAjudaController.lerDados());
 	}
 	
 	/**
@@ -945,7 +943,7 @@ public class QuemMeAjudaControllerTest {
 	 * uma ajuda e um aluno tutor foram cadastrados.
 	 */
 	@Test
-	public void testLerDados1Ajuda1Tutor() {
+	public void testLerDadosAjudaTutor() {
 		this.quemMeAjudaController.cadastrarAluno(
 				"Mario", "22222", "CC", "", "mario@ccc.edu.br");
 		this.quemMeAjudaController.tornarTutor("22222", "P2", 4);
@@ -954,15 +952,12 @@ public class QuemMeAjudaControllerTest {
 		this.quemMeAjudaController.cadastrarLocalDeAtendimento(
 				"mario@ccc.edu.br", "LCC2");
 		this.quemMeAjudaController.gravarDados();
-		this.quemMeAjudaController.lerDados();
-		int id = this.quemMeAjudaController.pedirAjudaPresencial(
-	            "11111111", "P2", "13:00", "seg", "LCC2");
-		assertEquals(this.quemMeAjudaController.listarAlunos() + System.lineSeparator()
-		        + this.quemMeAjudaController.pegarTutor(id), "22222 - Mario - "
-				+ "CC - mario@ccc.edu.br\n"
-		        		+this.quemMeAjudaController.pegarTutor(id));
+		assert(this.quemMeAjudaController.lerDados());
 	}
 	
+	/**
+	 * Verifica se os dados estao sendo apagados corretamente.
+	 */
 	@Test
 	public void testLimparDados() {
 		this.quemMeAjudaController.cadastrarAluno(

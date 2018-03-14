@@ -1,6 +1,10 @@
 package principal;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -799,10 +803,10 @@ public class AlunoControllerTest {
 	 */
 	@Test
 	public void testLerAlunos() {
-		this.alunoController.lerAlunos();
-		String retornoEsperado = "1232455 - Ana - DD34 - 8495981012 - ana234@blizzard.com, "
-				+ "1232423 - Joao - DD34 - 8467989023 - joaozinho@blizzard.com";
-		assertEquals(this.alunoController.listarAlunos(), retornoEsperado);
+		this.alunoController.cadastrarAluno(
+				"Ana", "1232455", "DD34", "8495981012", "ana234@blizzard.com");
+		this.alunoController.gravarAlunos();
+		assert(this.alunoController.lerAlunos());
 	}
 	
 	/**
@@ -811,9 +815,13 @@ public class AlunoControllerTest {
 	 */
 	@Test
 	public void testLerAlunosTutores() {
-		this.alunoController.lerAlunos();
-		String retornoEsperado = "1232455 - Ana - DD34 - 8495981012 - ana234@blizzard.com";
-		assertEquals(this.alunoController.listarTutores(), retornoEsperado);
+		this.alunoController.cadastrarAluno(
+				"Ana", "1232455", "DD34", "8495981012", "ana234@blizzard.com");
+		this.alunoController.tornarTutor("1232455", "P2", 5);
+		this.alunoController.cadastrarLocalDeAtendimento("ana234@blizzard.com", "LCC2");
+		this.alunoController.cadastrarHorario("ana234@blizzard.com", "13:00", "qua");
+		this.alunoController.gravarAlunos();
+		assert(this.alunoController.lerAlunos());
 	}
 	
 	/**
@@ -823,7 +831,5 @@ public class AlunoControllerTest {
 	public void testDeletarAlunos() {
 		this.alunoController.deletarAlunos();
 	}
-	
-
 	
 }
