@@ -498,10 +498,13 @@ public class AlunoController {
 	
 	/**
 	 * Realiza a leitura dos alunos e armazena na lista de alunos
+	 * 
+	 * @return true se a lista de alunos nao esta nula, false se esta nula
 	 */
-	public void lerAlunos() {
+	public boolean lerAlunos() {
 		ManipulaDados manipula = new ManipulaDados();
 		this.alunos = manipula.lerAlunos();
+		return this.alunos != null;
 	}
 	
 	/**

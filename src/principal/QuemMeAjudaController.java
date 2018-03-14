@@ -355,12 +355,14 @@ public class QuemMeAjudaController {
 	}
 	
 	/**
-	 * Realiza as chamadas para leitura dos dados
+	 * Realiza as chamadas para leitura dos dados.
+	 * 
+	 * @return true se as listas de alunos e ajudas foram preenchidas,
+	 * 		false se alguma esta nula.
 	 */
-	public void lerDados() {
-		this.alunoCtrl.lerAlunos();
-		this.ajudaCtrl.lerAjudas();
+	public boolean lerDados() {
 		this.lerCaixa();
+		return this.alunoCtrl.lerAlunos() && this.ajudaCtrl.lerAjudas();
 	}
 	
 	/**

@@ -120,10 +120,13 @@ public class AjudaController {
 	
 	/**
 	 * Realiza a leitura dos alunos e armazena na lista de alunos
+	 * 
+	 * @return true se a lista de ajudas nao esta nula, false se esta nula
 	 */
-	public void lerAjudas() {
+	public boolean lerAjudas() {
 		ManipulaDados manipula = new ManipulaDados();
 		this.ajudas = manipula.lerAjudas();
+		return this.ajudas != null;
 	}
 	
 	/**
@@ -211,7 +214,6 @@ public class AjudaController {
 	 * @param localInteresse
 	 *            o local onde a ajuda vai acontecer
 	 */
-
 	private void validarDadosAjudaPresencial(String matrAluno, String matrTutor,
 			String disciplina, String horario, String dia, String localInteresse) {
 		this.validarDadosAjudaPresencial(matrAluno, disciplina, horario, dia,
@@ -237,7 +239,6 @@ public class AjudaController {
 	 * @param localInteresse
 	 *            o local onde a ajuda vai acontecer
 	 */
-
 	private void validarDadosAjudaPresencial(String matrAluno, String disciplina,
 			String horario, String dia, String localInteresse) {
 		if (matrAluno == null || matrAluno.trim().equals("")) {
